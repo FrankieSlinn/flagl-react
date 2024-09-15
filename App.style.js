@@ -9,7 +9,7 @@ export const s = StyleSheet.create({
         backgroundColor: "#f9f9f9", 
         padding: 15,
         color: "#353839",
-        fontSize: 20, // Roughly equivalent to 1.25rem (20px)
+        fontSize: 30, // Roughly equivalent to 1.25rem (20px)
         backgroundColor: "white", // Background color for text container
         fontFamily: "Arial", // Font family
         letterSpacing: -0.08, // Letter spacing in pixels (React Native uses px by default)
@@ -27,7 +27,7 @@ export const s = StyleSheet.create({
     },
     body:{
         marginTop: -50,
-        flex:5,
+        flex:6,
         padding: 16,
         textAlign: "center",
 
@@ -68,6 +68,17 @@ close:{
     fontWeight: 'bold',
     
   
+},
+
+starsContainer:{
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop:-5,
+
+},
+question:{
+    marginTop: 10,
+    fontSize: 20,
 },
    footer:{
  
