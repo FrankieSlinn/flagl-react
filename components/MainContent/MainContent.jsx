@@ -10,12 +10,13 @@ import {
 import * as allFlagImages from '../../utils/flagMappings';
 import {flags } from '../../utils/countryTerritoryNames';
 
-export function MainContent() {
+export function MainContent({icon, setIcon}) {
   const [turns, setTurns] = useState(0);
   const [arrayDailyFlags, setArrayDailyFlags] = useState([]);
   const [currentFlag, setCurrentFlag] = useState(null);
   const[countryButtonVisible, setCountryButtonVisible] = useState(false)
   const [inputValue, setInputValue] = useState("");
+  const[countryMatchingPredText, setCountryMatchingPredText]=useState([])
 
   // Generate flags on component mount using useEffect
   useEffect(() => {
@@ -39,9 +40,7 @@ export function MainContent() {
 
   return (
     <>
-      {console.log("Current flag:", currentFlag)}
-      {console.log("ArrayDailyFlags:", arrayDailyFlags)}
-      {console.log("Flag image source:", allFlagImages[`${currentFlag}`])}
+
       <View style={s.mainContent}>
 
       <Stars />
@@ -67,13 +66,24 @@ export function MainContent() {
         countryButtonVisible={countryButtonVisible}
         setCountryButtonVisible={setCountryButtonVisible}
         inputValue={inputValue}
-        setInputValue={setInputValue}/>
+        setInputValue={setInputValue}
+        countryMatchingPredText={countryMatchingPredText}
+        setCountryMatchingPredText={setCountryMatchingPredText}
+        />
         </View >
-        {countryButtonVisible && (
+
           <View>
-            <CountryButton visible={countryButtonVisible} />
+            <CountryButton 
+            countryMatchingPredText={countryMatchingPredText}
+            setCountryMatchingPredText={setCountryMatchingPredText}
+            icon={icon}
+            setIcon={setIcon}
+            currentFlag={currentFlag}
+            
+            />
+
           </View>
-        )}
+        
       </View>
     </>
   );

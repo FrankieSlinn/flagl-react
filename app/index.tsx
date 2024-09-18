@@ -11,11 +11,12 @@ import { Header } from "../components/Header/Header";
 import { CloseButton } from "../components/CloseButton/CloseButton";
 
 import { MainContent } from "../components/MainContent/MainContent";
+import { FeedbackScreen } from "../components/FeedbackScreen/FeedbackScreen";
 import { useState } from "react";
 
 export default function Index() {
   const [content, setContent] = useState("This is the default content");
-  const [icon, setIcon] = useState("help");
+  const [icon, setIcon] = useState("");
 
   const renderContent = () => {
     if (icon === "help") {
@@ -92,12 +93,24 @@ export default function Index() {
   
       return (
         <>
-        <MainContent/>
+        <MainContent
+        icon={icon}
+        setIcon={setIcon}
+        />
         
         {}
  
         </>
       );
+    }
+    else if (icon==="feedback"){
+      return(<>
+
+<FeedbackScreen/>
+</>
+
+      )
+
     }
   };
 
