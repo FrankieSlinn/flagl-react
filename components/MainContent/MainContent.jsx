@@ -10,7 +10,7 @@ import {
 import * as allFlagImages from '../../utils/flagMappings';
 import {flags } from '../../utils/countryTerritoryNames';
 
-export function MainContent({icon, setIcon, currentFlag, setCurrentFlag}) {
+export function MainContent({icon, setIcon, currentFlag, setCurrentFlag, country, setCountry}) {
   const [turns, setTurns] = useState(0);
   const [arrayDailyFlags, setArrayDailyFlags] = useState([]);
 
@@ -79,6 +79,8 @@ export function MainContent({icon, setIcon, currentFlag, setCurrentFlag}) {
             setIcon={setIcon}
             currentFlag={currentFlag}
             setcurrentFlag={setCurrentFlag}
+            country={country}
+            setCountry={setCountry}
             
             />
 

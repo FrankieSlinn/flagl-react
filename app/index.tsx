@@ -18,6 +18,7 @@ export default function Index() {
   const [content, setContent] = useState("This is the default content");
   const [icon, setIcon] = useState("");
   const[currentFlag, setCurrentFlag] = useState("");
+  const [country, setCountry] = useState("");
   
 
 
@@ -101,6 +102,8 @@ export default function Index() {
         setIcon={setIcon}
         currentFlag={currentFlag}
         setCurrentFlag={setCurrentFlag}
+        country={country}
+        setCountry={setCountry}
         />
         
         {}
@@ -113,7 +116,11 @@ export default function Index() {
 
 <FeedbackScreen
    currentFlag={currentFlag}
-   setCurrentFlag={setCurrentFlag}/>
+   setCurrentFlag={setCurrentFlag}
+   country={country}
+   setCountry={setCountry}
+   
+   />
 </>
 
       )
