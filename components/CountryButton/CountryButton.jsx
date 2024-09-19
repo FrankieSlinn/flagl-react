@@ -1,7 +1,12 @@
 import { Text, View, TouchableOpacity } from "react-native";
 import { s } from "../../App.style.js";
 
-export function CountryButton({ countryMatchingPredText, setCountryMatchingPredText , icon, setIcon}) {
+export function CountryButton({ countryMatchingPredText, setCountryMatchingPredText , icon, setIcon, currentFlag, setCurrentFlag}) {
+
+    function setIconToFeedback(){
+        setIcon("feedback")
+
+    }
 
 
     function mapCountryArrayToButtons(countryMatchingPredText) {
@@ -10,7 +15,7 @@ export function CountryButton({ countryMatchingPredText, setCountryMatchingPredT
         if (countryMatchingPredText.length > 0) {
             return countryMatchingPredText.map((country, index) => (
                 <View key={index} style={s.countryButtonContainer}>
-                    <TouchableOpacity style={s.countryButton} onPress={setIcon("feedback")}>
+                    <TouchableOpacity style={s.countryButton} onPress={setIconToFeedback}>
                         <Text style={s.countryButtonText}>
                             {country} {/* Display the country name */}
                         </Text>

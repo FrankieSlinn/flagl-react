@@ -10,10 +10,10 @@ import {
 import * as allFlagImages from '../../utils/flagMappings';
 import {flags } from '../../utils/countryTerritoryNames';
 
-export function MainContent({icon, setIcon}) {
+export function MainContent({icon, setIcon, currentFlag, setCurrentFlag}) {
   const [turns, setTurns] = useState(0);
   const [arrayDailyFlags, setArrayDailyFlags] = useState([]);
-  const [currentFlag, setCurrentFlag] = useState(null);
+
   const[countryButtonVisible, setCountryButtonVisible] = useState(false)
   const [inputValue, setInputValue] = useState("");
   const[countryMatchingPredText, setCountryMatchingPredText]=useState([])
@@ -22,7 +22,6 @@ export function MainContent({icon, setIcon}) {
   useEffect(() => {
     const newFlags = generateNewFlagsToPopulateArrayDailyFlags();
     setArrayDailyFlags(newFlags);
-    console.log("New flags generated:", newFlags); // Log the new flags
   }, []); // Empty dependency array to run only once
 
   useEffect(() => {
@@ -79,6 +78,7 @@ export function MainContent({icon, setIcon}) {
             icon={icon}
             setIcon={setIcon}
             currentFlag={currentFlag}
+            setcurrentFlag={setCurrentFlag}
             
             />
 

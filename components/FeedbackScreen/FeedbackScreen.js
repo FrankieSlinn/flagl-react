@@ -2,7 +2,7 @@ import { s } from "../../App.style.js";
 import {View, Text} from "react-native";
 import { Stars } from "../Stars/Stars";
 
-export function FeedbackScreen(){
+export function FeedbackScreen({currentFlag, setCurrentFlag}){
 
     return(
         <>
@@ -12,7 +12,7 @@ export function FeedbackScreen(){
         Feedback
       </Text>
       <Text style={s.mainContentText}>
-        The correct answer is....
+        The correct answer is {currentFlag}
       </Text>
 </View>
         

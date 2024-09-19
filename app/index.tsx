@@ -17,6 +17,9 @@ import { useState } from "react";
 export default function Index() {
   const [content, setContent] = useState("This is the default content");
   const [icon, setIcon] = useState("");
+  const[currentFlag, setCurrentFlag] = useState("");
+  
+
 
   const renderContent = () => {
     if (icon === "help") {
@@ -96,6 +99,8 @@ export default function Index() {
         <MainContent
         icon={icon}
         setIcon={setIcon}
+        currentFlag={currentFlag}
+        setCurrentFlag={setCurrentFlag}
         />
         
         {}
@@ -106,7 +111,9 @@ export default function Index() {
     else if (icon==="feedback"){
       return(<>
 
-<FeedbackScreen/>
+<FeedbackScreen
+   currentFlag={currentFlag}
+   setCurrentFlag={setCurrentFlag}/>
 </>
 
       )
