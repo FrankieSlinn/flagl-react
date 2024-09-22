@@ -137,13 +137,17 @@ countryButtonContainer: {
     fontSize: 16, // Text size
     fontWeight: 'bold', // Bold text
   },
+  scoreText:{
+    fontWeight: 'bold', 
+    fontSize:25,
+    textAlign: 'center',
+
+  },
    footer:{
  
     height:70,
     backgroundColor: "white",
-  
-
-
     },
+
 
 });

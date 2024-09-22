@@ -1,6 +1,7 @@
 import { s } from "../../App.style.js";
 import { Text, Image, View } from "react-native";
 import { useState, useEffect } from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
 import { Stars } from "../Stars/Stars";
 import { Input } from "../Input/Input";
 import { CountryButton } from "../CountryButton/CountryButton";
@@ -10,32 +11,79 @@ import {
 import * as allFlagImages from '../../utils/flagMappings';
 import {flags } from '../../utils/countryTerritoryNames';
 
-export function MainContent({icon, setIcon, currentFlag, setCurrentFlag, country, setCountry}) {
-  const [turns, setTurns] = useState(0);
-  const [arrayDailyFlags, setArrayDailyFlags] = useState([]);
+export function MainContent({icon, setIcon, currentFlag, setCurrentFlag, country, setCountry, turns, setTurns,
+  arrayDailyFlags, setArrayDailyFlags
+}) {
+  let arrayFlagNames = []
+
 
   const[countryButtonVisible, setCountryButtonVisible] = useState(false)
   const [inputValue, setInputValue] = useState("");
   const[countryMatchingPredText, setCountryMatchingPredText]=useState([])
 
-  // Generate flags on component mount using useEffect
+   let currentFlagNumber ;
+
+  arrayDailyFlags.forEach((flag, index) => {
+    arrayFlagNames.push(flags[flag]);
+   
+  });
+  console.log("arrayFlagNames", arrayFlagNames)
+
+  
+  // Function to fetch or generate new flags based on the date
+  const fetchOrGenerateFlags = async () => {
+    try {
+      const storedFlags = await AsyncStorage.getItem('arrayDailyFlags'); // Retrieve stored flags
+      const storedDate = await AsyncStorage.getItem('flagGenerationDate'); // Retrieve the stored generation date
+  
+      const today = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+  
+      if (storedFlags !== null && storedDate === today) {
+        // If flags exist and were generated today, use them
+        setArrayDailyFlags(JSON.parse(storedFlags));
+        console.log("Flags loaded from storage:", JSON.parse(storedFlags));
+      } else {
+        // If no flags are stored or it's a new day, generate new flags
+        const newFlags = generateNewFlagsToPopulateArrayDailyFlags();
+        setArrayDailyFlags(newFlags);
+  
+        // Store new flags and the current date
+        await AsyncStorage.setItem('arrayDailyFlags', JSON.stringify(newFlags));
+        await AsyncStorage.setItem('flagGenerationDate', today);
+  
+        console.log("Generated and stored new flags:", newFlags);
+      }
+    } catch (error) {
+      console.error('Error fetching or generating flags:', error);
+    }
+  };
+  
   useEffect(() => {
-    const newFlags = generateNewFlagsToPopulateArrayDailyFlags();
-    setArrayDailyFlags(newFlags);
-  }, []); // Empty dependency array to run only once
+    fetchOrGenerateFlags(); // Fetch or generate flags only once when the component mounts
+  }, []);
+  
 
   useEffect(() => {
     // Update current flag when arrayDailyFlags or turns change
+    let currentFlagNumber = arrayDailyFlags[turns]
     console.log("arrayDailyFlags[turns]", arrayDailyFlags[turns])
-    let currentFlagNumber = arrayDailyFlags[turns];
+ 
     console.log("currentFlagNumber", currentFlagNumber);
     console.log("flags, flags")
     if (arrayDailyFlags.length > 0) {
-      setCurrentFlag(flags[currentFlagNumber]);
+   
+      let flagWithoutUnderscore = String(flags[currentFlagNumber]);
+      //let flagWithoutUnderscore = flags[currentFlag];
+      
+      let flagWithUnderscore = flagWithoutUnderscore.replaceAll(" ", "_");
+      console.log("flagWithUnderscore", flagWithUnderscore)
+      setCurrentFlag(flagWithUnderscore);
       console.log("current Flag in useEffect", currentFlag)
       
     }
-  }, [arrayDailyFlags, turns, currentFlag]);
+  }, [arrayDailyFlags, turns]);
+
+  console.log("allFlagImages[currentFlag]", allFlagImages[currentFlag])
 
   return (
     <>

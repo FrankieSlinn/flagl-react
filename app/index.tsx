@@ -12,6 +12,7 @@ import { CloseButton } from "../components/CloseButton/CloseButton";
 
 import { MainContent } from "../components/MainContent/MainContent";
 import { FeedbackScreen } from "../components/FeedbackScreen/FeedbackScreen";
+import {FinishGameScreen} from "../components/FinishGameScreen/FinishGameScreen";
 import { useState } from "react";
 
 export default function Index() {
@@ -19,6 +20,10 @@ export default function Index() {
   const [icon, setIcon] = useState("");
   const[currentFlag, setCurrentFlag] = useState("");
   const [country, setCountry] = useState("");
+  const [turns, setTurns] = useState(0);
+  const [arrayDailyFlags, setArrayDailyFlags] = useState([]);
+  const [score, setScore] = useState(0);
+  const[countryUnderscore, setCountryUnderscore]=useState("");
   
 
 
@@ -104,6 +109,10 @@ export default function Index() {
         setCurrentFlag={setCurrentFlag}
         country={country}
         setCountry={setCountry}
+        turns={turns}
+        setTurns={setTurns}
+        arrayDailyFlags={arrayDailyFlags}
+        setArrayDailyFlags={setArrayDailyFlags}
         />
         
         {}
@@ -119,6 +128,17 @@ export default function Index() {
    setCurrentFlag={setCurrentFlag}
    country={country}
    setCountry={setCountry}
+   icon={icon}
+   setIcon={setIcon}
+   turns={turns}
+   setTurns={setTurns}
+   arrayDailyFlags={arrayDailyFlags}
+   setArrayDailyFlags={setArrayDailyFlags}
+   score={score}
+   setScore={setScore}
+   countryUnderscore={countryUnderscore}
+   setCountryUnderscore={setCountryUnderscore}
+
    
    />
 </>
@@ -126,6 +146,19 @@ export default function Index() {
       )
 
     }
+    else if (icon==="finish")
+      return(<>
+      <FinishGameScreen
+      country={country}
+      currentFlag = {currentFlag}
+      score={score}
+      setScore={setScore}
+      countryUnderscore={countryUnderscore}
+      setCountryUnderscore={setCountryUnderscore}
+      
+      />
+      </>)
+
   };
 
   return (

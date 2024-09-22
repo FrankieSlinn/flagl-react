@@ -1,4 +1,3 @@
-// Africa
 export const Algeria = require('../assets/images/Algeria.png');
 export const Angola = require('../assets/images/Angola.png');
 export const Burundi = require('../assets/images/Burundi.png');
@@ -56,8 +55,6 @@ export const Uganda = require('../assets/images/Uganda.png');
 export const Zanzibar = require('../assets/images/Zanzibar.png');
 export const Zambia = require('../assets/images/Zambia.png');
 export const Zimbabwe = require('../assets/images/Zimbabwe.png');
-
-// Asia
 export const Afghanistan = require('../assets/images/Afghanistan.png');
 export const Bahrain = require('../assets/images/Bahrain.png');
 export const Bangladesh = require('../assets/images/Bangladesh.png');
@@ -101,8 +98,6 @@ export const United_Arab_Emirates = require('../assets/images/United_Arab_Emirat
 export const Uzbekistan = require('../assets/images/Uzbekistan.png');
 export const Vietnam = require('../assets/images/Vietnam.png');
 export const Yemen = require('../assets/images/Yemen.png');
-
-// Europe
 export const Albania = require('../assets/images/Albania.png');
 export const Andorra = require('../assets/images/Andorra.png');
 export const Armenia = require('../assets/images/Armenia.png');
@@ -157,8 +152,6 @@ export const Switzerland = require('../assets/images/Switzerland.png');
 export const Turkey = require('../assets/images/Turkey.png');
 export const Ukraine = require('../assets/images/Ukraine.png');
 export const Wales = require('../assets/images/Wales.png');
-
-// Oceania
 export const American_Samoa = require('../assets/images/American_Samoa.png');
 export const Australia = require('../assets/images/Australia.png');
 export const Cook_Islands = require('../assets/images/Cook_Islands.png');
@@ -174,8 +167,6 @@ export const Solomon_Islands = require('../assets/images/Solomon_Islands.png');
 export const Tahiti = require('../assets/images/Tahiti.png');
 export const Tuvalu = require('../assets/images/Tuvalu.png');
 export const Vanuatu = require('../assets/images/Vanuatu.png');
-
-// South America
 export const Argentina = require('../assets/images/Argentina.png');
 export const Bolivia = require('../assets/images/Bolivia.png');
 export const Brazil = require('../assets/images/Brazil.png');
@@ -185,8 +176,6 @@ export const Ecuador = require('../assets/images/Ecuador.png');
 export const Paraguay = require('../assets/images/Paraguay.png');
 export const Uruguay = require('../assets/images/Uruguay.png');
 export const Venezuela = require('../assets/images/Venezuela.png');
-
-// Caribbean
 export const Anguilla = require('../assets/images/Anguilla.png');
 export const Aruba = require('../assets/images/Aruba.png');
 export const Antigua_and_Barbuda = require('../assets/images/Antigua_and_Barbuda.png');
@@ -230,8 +219,6 @@ export const Turks_and_Caicos = require('../assets/images/Turks_and_Caicos.png')
 export const United_Kingdom = require('../assets/images/United_Kingdom.png');
 export const United_States = require('../assets/images/United_States.png');
 export const Greenland = require('../assets/images/Greenland.png');
-
-// Asia (continued)
 export const Singapore = require('../assets/images/Singapore.png');
 export const Tonga = require('../assets/images/Tonga.png');
 export const Wallis_and_Futuna = require('../assets/images/Wallis_and_Futuna.png');
