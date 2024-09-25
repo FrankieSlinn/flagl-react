@@ -1,22 +1,36 @@
-import {s} from "../../App.style.js";
-import {Image, View} from "react-native";
+import { useEffect, useState } from "react";
+import { Image, View } from "react-native";
+import { s } from "../../App.style.js";
+
+import { StarIcon } from "react-native-heroicons/outline";
 
 
-export function Stars(){
+
+export function Stars({ correctAnswers, setCorrectAnswers }) {
 
 
-    return(<>
-       <View style={s.starsContainer}>
+
+
+  console.log("correctAnswers in Star", correctAnswers)
+
+  return (<>
+  
+    <View style={s.starsContainer}>
       {/* Render 5 stars */}
       {[...Array(5)].map((_, index) => (
-        <Image
-          key={index}
-          source={require('../../assets/images/star.png')}
-          style={s.star}
-        />
+ 
+        <StarIcon 
+       key={index}
+       fill={index <correctAnswers
+          ? "yellow" : "white"}
+        style={s.star}
+       
+        size={40} 
+       
+
+         />
       ))}
     </View>
-    
-    
-    </>)
+    </>
+  );
 }

@@ -82,6 +82,13 @@ starsContainer:{
     marginTop:-5,
 
 },
+star:{
+  color: "#a9a9a9",
+
+
+
+
+  },
 
 flagImage:{
     marginTop: 20,
@@ -143,6 +150,7 @@ countryButtonContainer: {
     textAlign: 'center',
 
   },
+
    footer:{
  
     height:70,

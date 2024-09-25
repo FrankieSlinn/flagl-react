@@ -24,6 +24,7 @@ export default function Index() {
   const [arrayDailyFlags, setArrayDailyFlags] = useState([]);
   const [score, setScore] = useState(0);
   const[countryUnderscore, setCountryUnderscore]=useState("");
+  const[correctAnswers, setCorrectAnswers]=useState(0);
   
 
 
@@ -113,6 +114,10 @@ export default function Index() {
         setTurns={setTurns}
         arrayDailyFlags={arrayDailyFlags}
         setArrayDailyFlags={setArrayDailyFlags}
+        correctAnswers ={correctAnswers}
+        setCorrectAnswers={setCorrectAnswers}
+        countryUnderscore={countryUnderscore}
+        setCountryUnderscore={setCountryUnderscore}
         />
         
         {}
@@ -138,6 +143,8 @@ export default function Index() {
    setScore={setScore}
    countryUnderscore={countryUnderscore}
    setCountryUnderscore={setCountryUnderscore}
+   correctAnswers ={correctAnswers}
+   setCorrectAnswers={setCorrectAnswers}
 
    
    />
@@ -155,6 +162,12 @@ export default function Index() {
       setScore={setScore}
       countryUnderscore={countryUnderscore}
       setCountryUnderscore={setCountryUnderscore}
+      turns={turns}
+      setTurns = {setTurns}
+      arrayDailyFlags = {arrayDailyFlags}
+      setArrayDailyFlags = {setArrayDailyFlags}
+      correctAnswers = {correctAnswers}
+      setCorrectAnswers = {setCorrectAnswers}
       
       />
       </>)

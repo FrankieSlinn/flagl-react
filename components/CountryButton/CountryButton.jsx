@@ -1,15 +1,19 @@
 import { Text, View, TouchableOpacity } from "react-native";
 import { s } from "../../App.style.js";
 
-export function CountryButton({ countryMatchingPredText, setCountryMatchingPredText, icon, setIcon, currentFlag, setCurrentFlag, country, setCountry }) {
+export function CountryButton({ countryMatchingPredText, setCountryMatchingPredText, icon, setIcon, 
+    currentFlag, setCurrentFlag, country, setCountry, turns, setTurns, countryUnderscore, arrayDailyFlags }) {
 
     function setIconToFeedback() {
         setIcon("feedback");
     }
 
+
     function handleButtonPress(country) {
+        
         setIconToFeedback();    // Set the icon to "feedback"
         setCountry(country);    // Set the selected country
+        
     }
 
     function mapCountryArrayToButtons(countryMatchingPredText) {

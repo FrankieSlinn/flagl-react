@@ -12,7 +12,7 @@ import * as allFlagImages from '../../utils/flagMappings';
 import {flags } from '../../utils/countryTerritoryNames';
 
 export function MainContent({icon, setIcon, currentFlag, setCurrentFlag, country, setCountry, turns, setTurns,
-  arrayDailyFlags, setArrayDailyFlags
+  arrayDailyFlags, setArrayDailyFlags, correctAnswers, setCorrectAnswers, countryUnderscore, setCountryUnderscore
 }) {
   let arrayFlagNames = []
 
@@ -27,7 +27,7 @@ export function MainContent({icon, setIcon, currentFlag, setCurrentFlag, country
     arrayFlagNames.push(flags[flag]);
    
   });
-  console.log("arrayFlagNames", arrayFlagNames)
+ // console.log("arrayFlagNames", arrayFlagNames)
 
   
   // Function to fetch or generate new flags based on the date
@@ -41,7 +41,7 @@ export function MainContent({icon, setIcon, currentFlag, setCurrentFlag, country
       if (storedFlags !== null && storedDate === today) {
         // If flags exist and were generated today, use them
         setArrayDailyFlags(JSON.parse(storedFlags));
-        console.log("Flags loaded from storage:", JSON.parse(storedFlags));
+       // console.log("Flags loaded from storage:", JSON.parse(storedFlags));
       } else {
         // If no flags are stored or it's a new day, generate new flags
         const newFlags = generateNewFlagsToPopulateArrayDailyFlags();
@@ -90,7 +90,10 @@ export function MainContent({icon, setIcon, currentFlag, setCurrentFlag, country
 
       <View style={s.mainContent}>
 
-      <Stars />
+      <Stars 
+      correctAnswers={correctAnswers}
+     setCorrectAnswers={setCorrectAnswers}
+     />
       <Text style={s.mainContentText}>
         Which Country or Territory Does this Flag Belong to?
       </Text>
@@ -121,14 +124,17 @@ export function MainContent({icon, setIcon, currentFlag, setCurrentFlag, country
 
           <View>
             <CountryButton 
+            arrayDailyFlags={arrayDailyFlags}
             countryMatchingPredText={countryMatchingPredText}
             setCountryMatchingPredText={setCountryMatchingPredText}
             icon={icon}
             setIcon={setIcon}
             currentFlag={currentFlag}
-            setcurrentFlag={setCurrentFlag}
+            setCurrentFlag={setCurrentFlag}
             country={country}
             setCountry={setCountry}
+            turns = {turns}
+            setTurns = {setTurns}
             
             />
 
