@@ -11,9 +11,9 @@ import {
 import * as allFlagImages from '../../utils/flagMappings';
 import {flags } from '../../utils/countryTerritoryNames';
 
-export function MainContent({icon, setIcon, currentFlag, setCurrentFlag, country, setCountry, turns, setTurns,
-  arrayDailyFlags, setArrayDailyFlags, correctAnswers, setCorrectAnswers, countryUnderscore, setCountryUnderscore
-}) {
+export function MainContent({icon, setIcon, currentFlag, setCurrentFlag, country, setCountry, turns, setTurns, 
+  arrayDailyFlags, setArrayDailyFlags, correctAnswers, setCorrectAnswers, countryUnderscore, setCountryUnderscore, score, setScore,
+haveAnswer, setHaveAnswer}) {
   let arrayFlagNames = []
 
 
@@ -28,6 +28,11 @@ export function MainContent({icon, setIcon, currentFlag, setCurrentFlag, country
    
   });
  // console.log("arrayFlagNames", arrayFlagNames)
+
+ useEffect(() => {
+  setHaveAnswer(false);
+setCountryUnderscore("");
+}, []); // Empty dependency array means this runs only once on mount
 
   
   // Function to fetch or generate new flags based on the date
@@ -59,31 +64,32 @@ export function MainContent({icon, setIcon, currentFlag, setCurrentFlag, country
   };
   
   useEffect(() => {
-    fetchOrGenerateFlags(); // Fetch or generate flags only once when the component mounts
+    fetchOrGenerateFlags(); 
+    // Fetch or generate flags only once when the component mounts
   }, []);
   
 
   useEffect(() => {
     // Update current flag when arrayDailyFlags or turns change
     let currentFlagNumber = arrayDailyFlags[turns]
-    console.log("arrayDailyFlags[turns]", arrayDailyFlags[turns])
+   // console.log("arrayDailyFlags[turns]", arrayDailyFlags[turns])
  
-    console.log("currentFlagNumber", currentFlagNumber);
-    console.log("flags, flags")
+   // console.log("currentFlagNumber", currentFlagNumber);
+    //console.log("flags, flags")
     if (arrayDailyFlags.length > 0) {
    
       let flagWithoutUnderscore = String(flags[currentFlagNumber]);
       //let flagWithoutUnderscore = flags[currentFlag];
       
       let flagWithUnderscore = flagWithoutUnderscore.replaceAll(" ", "_");
-      console.log("flagWithUnderscore", flagWithUnderscore)
+     // console.log("flagWithUnderscore", flagWithUnderscore)
       setCurrentFlag(flagWithUnderscore);
-      console.log("current Flag in useEffect", currentFlag)
+     // console.log("current Flag in useEffect", currentFlag)
       
     }
   }, [arrayDailyFlags, turns]);
 
-  console.log("allFlagImages[currentFlag]", allFlagImages[currentFlag])
+ // console.log("allFlagImages[currentFlag]", allFlagImages[currentFlag])
 
   return (
     <>
@@ -119,6 +125,8 @@ export function MainContent({icon, setIcon, currentFlag, setCurrentFlag, country
         setInputValue={setInputValue}
         countryMatchingPredText={countryMatchingPredText}
         setCountryMatchingPredText={setCountryMatchingPredText}
+        score={score}
+        setScore={setScore}
         />
         </View >
 
@@ -135,7 +143,14 @@ export function MainContent({icon, setIcon, currentFlag, setCurrentFlag, country
             setCountry={setCountry}
             turns = {turns}
             setTurns = {setTurns}
-            
+            countryUnderscore = {countryUnderscore}
+            setCountryUnderscore={setCountryUnderscore}
+            score = {score}
+            setScore={setScore}
+            correctAnswers={correctAnswers}
+            setCorrectAnswers={setCorrectAnswers}
+            haveAnswer={haveAnswer}
+            setHaveAnswer={setHaveAnswer}
             />
 
           </View>

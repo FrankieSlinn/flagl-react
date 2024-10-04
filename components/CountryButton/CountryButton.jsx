@@ -1,32 +1,82 @@
 import { Text, View, TouchableOpacity } from "react-native";
+import { useEffect, useCallback, useState } from "react";
 import { s } from "../../App.style.js";
 
-export function CountryButton({ countryMatchingPredText, setCountryMatchingPredText, icon, setIcon, 
-    currentFlag, setCurrentFlag, country, setCountry, turns, setTurns, countryUnderscore, arrayDailyFlags }) {
+export function CountryButton({ 
+    countryMatchingPredText, setCountryMatchingPredText, icon, setIcon, 
+    currentFlag, setCurrentFlag, country, setCountry, turns, setTurns, 
+    countryUnderscore, setCountryUnderscore, arrayDailyFlags, score, setScore, 
+    correctAnswers, setCorrectAnswers, haveAnswer, setHaveAnswer}) {
+   
 
-    function setIconToFeedback() {
-        setIcon("feedback");
+    const updateCountryUnderscore = useCallback((country) => {
+        const countryWithUnderscore = country.replaceAll(" ", "_");
+        // Only update if the value is actually different
+        setCountryUnderscore((prev) => {
+            if (prev !== countryWithUnderscore) {
+                console.log("Updated countryUnderscore:", countryWithUnderscore);
+                return countryWithUnderscore;
+            }
+            return prev;  // Don't update if it's the same value
+        });
+    }, []);
+
+    // Effect to update countryUnderscore when country state changes
+    useEffect(() => {
+
+        "useEffect meant to be based on country changing"
+        if (country) {
+            updateCountryUnderscore(country);
+        }
+    }, [country]);
+
+    // Effect to compare countryUnderscore with currentFlag after both are updated
+    useEffect(() => {
+        console.log("useEffect meant to be after countryUnderscore change")
+        if(countryUnderscore!="" && icon ===""){
+            console.log("useEffect after previous ones triggered", countryUnderscore);
+            setHaveAnswer(true);
+        // Set the icon to "feedback"
+      
+        if (countryUnderscore === currentFlag && countryUnderscore!== "") {
+            console.log("Correct Answer!!!!!!!!!");
+            setCorrectAnswers(prevCorrectAnswers => prevCorrectAnswers + 1);
+            setScore((prevScore) => prevScore + 20); // Increase the score by 20
+            console.log("score updated", score);
+        }}
+       
+    }, [countryUnderscore]);
+
+
+    useEffect(() => {
+        console.log("useEffect to change to feedback screen and have answer is true")
+        console.log("haveAnswer", haveAnswer)
+        if (haveAnswer ===true&& countryUnderscore!="") { setIcon("feedback"); 
+          
+        }
+    }, [haveAnswer]);
+
+    // Function to handle button press and update the country state
+    function handleButtonPress(selectedCountry) {
+        setCountry(selectedCountry);  // Update country, triggers the useEffect to update countryUnderscore
+        console.log("Button pressed, country updated to:", selectedCountry);
+       
+      
+        
     }
 
-
-    function handleButtonPress(country) {
-        
-        setIconToFeedback();    // Set the icon to "feedback"
-        setCountry(country);    // Set the selected country
-        
-    }
-
+    // Function to map country array to buttons
     function mapCountryArrayToButtons(countryMatchingPredText) {
         if (countryMatchingPredText.length > 0) {
             return countryMatchingPredText.map((country, index) => (
                 <View key={index} style={s.countryButtonContainer}>
                     <TouchableOpacity 
                         style={s.countryButton} 
-                        activeOpacity={0.7} // Optional: Improve responsiveness with opacity feedback
+                        activeOpacity={0.7} 
                         onPress={() => handleButtonPress(country)}
                     >
                         <Text style={s.countryButtonText}>
-                            {country} {/* Display the country name */}
+                            {country}
                         </Text>
                     </TouchableOpacity>
                 </View>

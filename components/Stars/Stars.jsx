@@ -6,7 +6,7 @@ import { StarIcon } from "react-native-heroicons/outline";
 
 
 
-export function Stars({ correctAnswers, setCorrectAnswers }) {
+export function Stars({ correctAnswers, setCorrectAnswers, turns, setTurns }) {
 
 
 
@@ -21,7 +21,7 @@ export function Stars({ correctAnswers, setCorrectAnswers }) {
  
         <StarIcon 
        key={index}
-       fill={index <correctAnswers
+       fill={index <correctAnswers 
           ? "yellow" : "white"}
         style={s.star}
        

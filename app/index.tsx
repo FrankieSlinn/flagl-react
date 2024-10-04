@@ -25,6 +25,7 @@ export default function Index() {
   const [score, setScore] = useState(0);
   const[countryUnderscore, setCountryUnderscore]=useState("");
   const[correctAnswers, setCorrectAnswers]=useState(0);
+  const [haveAnswer, setHaveAnswer] = useState(false);
   
 
 
@@ -118,9 +119,13 @@ export default function Index() {
         setCorrectAnswers={setCorrectAnswers}
         countryUnderscore={countryUnderscore}
         setCountryUnderscore={setCountryUnderscore}
+        score={score}
+        setScore={setScore}
+        haveAnswer = {haveAnswer}
+        setHaveAnswer = {setHaveAnswer}
         />
         
-        {}
+       
  
         </>
       );
@@ -145,6 +150,8 @@ export default function Index() {
    setCountryUnderscore={setCountryUnderscore}
    correctAnswers ={correctAnswers}
    setCorrectAnswers={setCorrectAnswers}
+   haveAnswer = {haveAnswer}
+   setHaveAnswer = {setHaveAnswer}
 
    
    />
