@@ -4,9 +4,8 @@ export const useCorrectAnswer = (countryUnderscore, currentFlag, score, setScore
   
   // Function for handling correct answer
   const handleCorrectAnswer = () => {
-    console.log("handleCorrectAnswer to add to score running");
-    setScore((prevScore) => prevScore + 20); // Increase the score by 20
-    console.log("score updated", score);
+    console.log("!!!!!!!!!!handleCorrectAnswer to add to score running");
+ 
     console.log("correct answer in useCorrectAnswer before increase in correct answer function", correctAnswers)
    // setCorrectAnswers((prevCorrectAnswers)=>prevCorrectAnswers+1);
     console.log("correct answer in useCorrectAnswer", correctAnswers)

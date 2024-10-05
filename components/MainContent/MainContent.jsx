@@ -27,11 +27,14 @@ haveAnswer, setHaveAnswer}) {
     arrayFlagNames.push(flags[flag]);
    
   });
- // console.log("arrayFlagNames", arrayFlagNames)
+ // set below variables to ensure that feedback screen not shown until country button pressed
 
  useEffect(() => {
-  setHaveAnswer(false);
+
+setCountry("");
+setHaveAnswer(false)
 setCountryUnderscore("");
+console.log("useEffect to set Haveanswer and countryUnderscore to false at beginning of MAIN SCREEN: setHaveAnswer and setCountryUnderscore", haveAnswer, countryUnderscore)
 }, []); // Empty dependency array means this runs only once on mount
 
   
@@ -70,9 +73,13 @@ setCountryUnderscore("");
   
 
   useEffect(() => {
+    setHaveAnswer(false);
+  
+    setCountryUnderscore("");
     // Update current flag when arrayDailyFlags or turns change
     let currentFlagNumber = arrayDailyFlags[turns]
    // console.log("arrayDailyFlags[turns]", arrayDailyFlags[turns])
+   console.log("flag name", flags[arrayDailyFlags[turns]])
  
    // console.log("currentFlagNumber", currentFlagNumber);
     //console.log("flags, flags")
@@ -83,8 +90,9 @@ setCountryUnderscore("");
       
       let flagWithUnderscore = flagWithoutUnderscore.replaceAll(" ", "_");
      // console.log("flagWithUnderscore", flagWithUnderscore)
+     console.log("turns in main", turns)
       setCurrentFlag(flagWithUnderscore);
-     // console.log("current Flag in useEffect", currentFlag)
+      console.log("current Flag in useEffect", currentFlag)
       
     }
   }, [arrayDailyFlags, turns]);

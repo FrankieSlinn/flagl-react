@@ -26,10 +26,7 @@ setCorrectAnswers,
 haveAnswer, setHaveAnswer
 }) {
   
-  useEffect(() => {
-    setHaveAnswer(false);
-  setCountryUnderscore("");
-}, []); // Empty dependency array means this runs only once on mount
+
 
 
 
@@ -51,7 +48,6 @@ haveAnswer, setHaveAnswer
 
 
 
-//useCorrectAnswer(countryUnderscore, currentFlag, setScore, correctAnswers, setCorrectAnswers);
 console.log("correctAnswers in Feedback Screen", correctAnswers)
 
   // Function called when the game is finished
@@ -63,7 +59,7 @@ console.log("correctAnswers in Feedback Screen", correctAnswers)
 
   }
 
-  //const handleCorrectAnswer = useCorrectAnswer(countryUnderscore, currentFlag, setScore, correctAnswers, setCorrectAnswers);
+ 
 
 function handleFeedbackButtonPress(){
 
@@ -83,7 +79,7 @@ function handleFeedbackButtonPress(){
 function newTurn() {
   console.log("newTurn function running")
   if(turns<=3){
-  console.log("Countrybutton pressed");
+
   if(countryUnderscore === currentFlag && countryUnderscore !=""){useCorrectAnswer()}
 
   

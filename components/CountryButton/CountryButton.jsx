@@ -49,17 +49,25 @@ export function CountryButton({
 
 
     useEffect(() => {
-        console.log("useEffect to change to feedback screen and have answer is true")
-        console.log("haveAnswer", haveAnswer)
-        if (haveAnswer ===true&& countryUnderscore!="") { setIcon("feedback"); 
-          
-        }
-    }, [haveAnswer]);
+        // Adding a small timeout to wait for state changes to propagate
+        const timeout = setTimeout(() => {
+            console.log("Checking if we should switch to feedback screen");
+            console.log("haveAnswer:", haveAnswer, "countryUnderscore:", countryUnderscore, "country:", country);
+    
+            if (haveAnswer === true && countryUnderscore !== "" && country !== "") {
+                console.log("Setting icon to feedback");
+                setIcon("feedback");
+            }
+        }, 0); // Run in the next event loop tick
+    
+        return () => clearTimeout(timeout); // Cleanup the timeout when the effect is rerun
+    }, [haveAnswer, country, countryUnderscore]);
 
     // Function to handle button press and update the country state
     function handleButtonPress(selectedCountry) {
         setCountry(selectedCountry);  // Update country, triggers the useEffect to update countryUnderscore
         console.log("Button pressed, country updated to:", selectedCountry);
+     
        
       
         
