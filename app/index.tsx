@@ -9,7 +9,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { s } from "../App.style";
 import { Header } from "../components/Header/Header";
 import { CloseButton } from "../components/CloseButton/CloseButton";
-
+import { Stats } from "../components/Stats/Stats";
 import { MainContent } from "../components/MainContent/MainContent";
 import { FeedbackScreen } from "../components/FeedbackScreen/FeedbackScreen";
 import {FinishGameScreen} from "../components/FinishGameScreen/FinishGameScreen";
@@ -26,6 +26,7 @@ export default function Index() {
   const[countryUnderscore, setCountryUnderscore]=useState("");
   const[correctAnswers, setCorrectAnswers]=useState(0);
   const [haveAnswer, setHaveAnswer] = useState(false);
+  const [gameCount, setGameCount] = useState(0);
   
 
 
@@ -92,12 +93,16 @@ export default function Index() {
     } else if (icon === "stats") {
       console.log("stats");
       return (
-        <>
-            <View style={s.closeButtonContainer}>
-        <CloseButton onPress={() => setIcon("")} />
-        </View>
-          <Text style={s.iconHeader}>FLAGL Statistics</Text>
-        </>
+        <Stats
+        icon={icon}
+        setIcon={setIcon}
+        correctAnswers={correctAnswers}
+        setCorrectAnswers={setCorrectAnswers}
+        turns={turns}
+        setTurns={setTurns}
+        score={score}
+        />
+
       );
     } else if (icon === "") {
       console.log("main");
@@ -175,6 +180,10 @@ export default function Index() {
       setArrayDailyFlags = {setArrayDailyFlags}
       correctAnswers = {correctAnswers}
       setCorrectAnswers = {setCorrectAnswers}
+      countryUnderscore={countryUnderscore}
+      setCountryUnderscore ={setCountryUnderscore}
+      gameCount={gameCount}
+      setGameCount={setGameCount}
       
       />
       </>)
