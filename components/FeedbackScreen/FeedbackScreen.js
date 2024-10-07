@@ -2,7 +2,7 @@ import { s } from "../../App.style.js";
 import { View, Text, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
 import { Stars } from "../Stars/Stars";
-import {useCorrectAnswer} from "../../utils/useCorrectAnswer"
+//import {useCorrectAnswer} from "../../utils/useCorrectAnswer"
 
 import {flags } from '../../utils/countryTerritoryNames';
 import { FaceSmileIcon } from "react-native-heroicons/outline";
@@ -80,7 +80,7 @@ function newTurn() {
   console.log("newTurn function running")
   if(turns<=3){
 
-  if(countryUnderscore === currentFlag && countryUnderscore !=""){useCorrectAnswer()}
+  //if(countryUnderscore === currentFlag && countryUnderscore !=""){useCorrectAnswer()}
 
   
  

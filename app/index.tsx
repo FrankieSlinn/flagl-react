@@ -101,6 +101,8 @@ export default function Index() {
         turns={turns}
         setTurns={setTurns}
         score={score}
+        gameCount={gameCount}
+        setGameCount={setGameCount}
         />
 
       );
