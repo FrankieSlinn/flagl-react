@@ -34,6 +34,7 @@ haveAnswer, setHaveAnswer}) {
 setCountry("");
 setHaveAnswer(false)
 setCountryUnderscore("");
+
 console.log("useEffect to set Haveanswer and countryUnderscore to false at beginning of MAIN SCREEN: setHaveAnswer and setCountryUnderscore", haveAnswer, countryUnderscore)
 }, []); // Empty dependency array means this runs only once on mount
 

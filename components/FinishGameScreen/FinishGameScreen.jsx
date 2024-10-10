@@ -6,16 +6,16 @@ import {flags } from '../../utils/countryTerritoryNames';
 import{useEffect} from "react";
 import { storeScore } from '../../utils/asyncStorageUtils'; // Adjust the path as per your project structure
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
-import { storeGameCount } from '../../utils/asyncStorageUtils'; // Adjust the path as per your project structure
+import { getStoredGameCount, storeGameCount} from '../../utils/asyncStorageUtils';
 
 export function FinishGameScreen({ country, currentFlag, score, setScore, correctAnswers, setCorrectAnswers, countryUnderscore, setCountryUnderscore,
-  gameCount, setGameCount
+  gameCount, setGameCount, arrayDailyFlags, storedGameCount, setStoredGameCount, turns, setTurns, icon
  }) {
-    // Use storeScore inside this component when needed
+  //   // Use storeScore inside this component when needed
 
-    useEffect(() => {
-      loadAndIncrementGameCount();
-  }, []); // Runs once on component load
+  //   useEffect(() => {
+  //     loadAndIncrementGameCount();
+  // }, []); // Runs once on component load
     
     useEffect(() => {
         if (score !== null && score !== undefined) {
@@ -23,25 +23,28 @@ export function FinishGameScreen({ country, currentFlag, score, setScore, correc
         }
     }, [score]);
 
-    // Function to retrieve and increment the game count
-    const loadAndIncrementGameCount = async () => {
-      try {
+    useEffect(() => {
+      const loadAndIncrementGameCount = async () => {
+        try {
           // Retrieve stored game count
-          const storedGameCount = await AsyncStorage.getItem("gameCount");
-          const parsedGameCount = storedGameCount ? JSON.parse(storedGameCount) : 0;
-
-          // Increment game count
-          const newGameCount = parsedGameCount + 1;
-
-          // Store the new game count back to AsyncStorage
-          await AsyncStorage.setItem("gameCount", JSON.stringify(newGameCount));
-
-          // Update state
-          setGameCount(newGameCount);
-      } catch (error) {
+          if (icon === "finish") {
+            const storedGameCount = await getStoredGameCount();
+            const incrementedGameCount = storedGameCount + 1;
+            console.log("getStoredGameCount in Finish Game", incrementedGameCount);
+            const storedGameCount1 = await getStoredGameCount();
+            console.log("getStoredGameCount1 in Finish Game", storedGameCount1);
+    
+            // Store the new game count back to AsyncStorage
+            await AsyncStorage.setItem("gameCount", JSON.stringify(incrementedGameCount));
+          }
+        } catch (error) {
           console.error("Error loading or updating game count:", error);
-      }
-  };
+        }
+      };
+    
+      loadAndIncrementGameCount();
+    }, [icon]);  // Removed extra brace, added "icon" to dependencies
+    
 
 
     return(
