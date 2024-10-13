@@ -27,7 +27,8 @@ export default function Index() {
   const[correctAnswers, setCorrectAnswers]=useState(0);
   const [haveAnswer, setHaveAnswer] = useState(false);
   const [gameCount, setGameCount] = useState(0);
-  const [storedGameCount, setStoredGameCount] = useState(null);
+  //const [storedGameCount, setStoredGameCount] = useState(null);
+  const[scoreArray, setScoreArray] = useState([])
   
 
 
@@ -105,8 +106,8 @@ export default function Index() {
         setScore={setScore}
         gameCount={gameCount}
         setGameCount={setGameCount}
-        storedGameCount={storedGameCount}
-        setStoredGameCount={setStoredGameCount}
+        scoreArray={scoreArray}
+        setScoreArray={setScoreArray}
         />
 
       );
@@ -163,8 +164,7 @@ export default function Index() {
    setCorrectAnswers={setCorrectAnswers}
    haveAnswer = {haveAnswer}
    setHaveAnswer = {setHaveAnswer}
-   storedGameCount={storedGameCount}
-   setStoredGameCount={setStoredGameCount}
+ 
    
    />
 </>
@@ -194,6 +194,8 @@ export default function Index() {
       turns={turns}
       setTurns={setTurns}
       icon={icon}
+      scoreArray={scoreArray}
+      setScoreArray={setScoreArray}
       
       />
       </>)

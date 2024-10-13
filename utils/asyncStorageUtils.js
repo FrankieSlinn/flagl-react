@@ -22,6 +22,27 @@ export const getStoredScore = async () => {
     }
 };
 
+export const storeAllScores = async (scoreArray) => {
+    try {
+        await AsyncStorage.setItem("scoreArray", JSON.stringify(scoreArray));
+        console.log("scoreArray stored successfully!");
+    } catch (error) {
+        console.error("Error saving scoreArray", error);
+    }
+};
+
+export const getAllStoredScores = async () => {
+    try {
+      const scoreArray = await AsyncStorage.getItem("scoreArray");
+      console.log("Raw scoreArray from AsyncStorage:", scoreArray); // Log what AsyncStorage returns
+      return scoreArray ? JSON.parse(scoreArray) : [];  // Return empty array if null
+    } catch (error) {
+      console.error("Error fetching scoreArray:", error);
+      return [];
+    }
+  };
+  
+
 
 
 export const storeGameCount = async (gameCount) => {

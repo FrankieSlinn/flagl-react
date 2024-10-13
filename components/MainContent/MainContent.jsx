@@ -31,12 +31,24 @@ haveAnswer, setHaveAnswer}) {
 
  useEffect(() => {
 
+  console.log("score in main", score)
+
 setCountry("");
 setHaveAnswer(false)
 setCountryUnderscore("");
 
 console.log("useEffect to set Haveanswer and countryUnderscore to false at beginning of MAIN SCREEN: setHaveAnswer and setCountryUnderscore", haveAnswer, countryUnderscore)
 }, []); // Empty dependency array means this runs only once on mount
+
+
+useEffect(() => {
+
+if(turns===0 && countryUnderscore==="")
+{setScore(0)}
+
+
+console.log("useEffect to set Haveanswer and countryUnderscore to false at beginning of MAIN SCREEN: setHaveAnswer and setCountryUnderscore", haveAnswer, countryUnderscore)
+}, [countryUnderscore]);
 
   
   // Function to fetch or generate new flags based on the date
