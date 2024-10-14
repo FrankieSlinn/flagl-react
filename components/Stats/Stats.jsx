@@ -61,7 +61,7 @@ export function Stats({ icon, setIcon, correctAnswers, setCorrectAnswers, turns,
     }, []);
     return (<>
     <View style={s.closeButtonContainer}>
-<CloseButton onPress={() => setIcon("")} />
+<CloseButton onPress={() => {turns===4?setIcon("finish"):setIcon("")}}/>
 </View>
   <Text style={s.iconHeader}>FLAGL Statistics</Text>
  

@@ -1,6 +1,6 @@
 import { s } from "../../App.style.js";
 import { Stars } from "../Stars/Stars";
-import {Text, View} from "react-native";
+import {Text, View, TouchableOpacity} from "react-native";
 //import {useCorrectAnswer} from "../../utils/useCorrectAnswer";
 import {flags } from '../../utils/countryTerritoryNames';
 import{useEffect} from "react";
@@ -9,7 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getStoredGameCount, storeAllScores, storeScore, getAllStoredScores, storeGameCount} from '../../utils/asyncStorageUtils';
 
 export function FinishGameScreen({ country, currentFlag, score, setScore, correctAnswers, setCorrectAnswers, countryUnderscore, setCountryUnderscore,
-  gameCount, setGameCount, arrayDailyFlags,  turns, setTurns, icon, scoreArray, setScoreArray
+  gameCount, setGameCount, arrayDailyFlags,  turns, setTurns, icon
  }) {
   //   // Use storeScore inside this component when needed
 
@@ -87,7 +87,12 @@ setCorrectAnswers={setCorrectAnswers}
 </Text>
 <Text style = {s.scoreText}>
     {`Your FLAGL Score is ${score}%`}
+    {'\n'}
 </Text>
+<TouchableOpacity>
+  <Text>FLAGL Practice Mode</Text>
+</TouchableOpacity>
+
 
 </View>
 
