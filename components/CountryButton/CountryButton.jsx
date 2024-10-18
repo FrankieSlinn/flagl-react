@@ -63,12 +63,18 @@ export function CountryButton({
   useEffect(() => {
     // Adding a small timeout to wait for state changes to propagate
     const timeout = setTimeout(() => {
+      console.log("turns in country button", turns)
  
 
       if (haveAnswer === true && countryUnderscore !== "" && country !== "") {
+        if(turns<4){
         console.log("Setting icon to feedback");
         setIcon("feedback");
       }
+     else  if(turns===4){
+        setIcon("finish")
+      }
+    }
     }, 0); // Run in the next event loop tick
 
     return () => clearTimeout(timeout); // Cleanup the timeout when the effect is rerun

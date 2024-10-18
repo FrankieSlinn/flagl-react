@@ -11,6 +11,7 @@ import { Header } from "../components/Header/Header";
 import { CloseButton } from "../components/CloseButton/CloseButton";
 import { Stats } from "../components/Stats/Stats";
 import { MainContent } from "../components/MainContent/MainContent";
+import { Practice } from "../components/Practice/Practice";
 import { FeedbackScreen } from "../components/FeedbackScreen/FeedbackScreen";
 import {FinishGameScreen} from "../components/FinishGameScreen/FinishGameScreen";
 import { useState } from "react";
@@ -18,7 +19,7 @@ import { useState } from "react";
 export default function Index() {
   const [content, setContent] = useState("This is the default content");
   const [icon, setIcon] = useState("");
-  const[currentFlag, setCurrentFlag] = useState("");
+  const[currentFlag, setCurrentFlag] = useState(0);
   const [country, setCountry] = useState("");
   const [turns, setTurns] = useState(0);
   const [arrayDailyFlags, setArrayDailyFlags] = useState([]);
@@ -27,7 +28,6 @@ export default function Index() {
   const[correctAnswers, setCorrectAnswers]=useState(0);
   const [haveAnswer, setHaveAnswer] = useState(false);
   const [gameCount, setGameCount] = useState(0);
-  //const [storedGameCount, setStoredGameCount] = useState(null);
   const[scoreArray, setScoreArray] = useState([])
   
 
@@ -68,7 +68,7 @@ export default function Index() {
             Want to get better at guessing flags? Try:{" "}
             <Text
               style={s.link}
-              onPress={() => Linking.openURL("../html/practice.html")}
+              onPress={() => setIcon("practice")}
             >
               Practice FLAGL
             </Text>
@@ -117,6 +117,37 @@ export default function Index() {
       return (
         <>
         <MainContent
+        icon={icon}
+        setIcon={setIcon}
+        currentFlag={currentFlag}
+        setCurrentFlag={setCurrentFlag}
+        country={country}
+        setCountry={setCountry}
+        turns={turns}
+        setTurns={setTurns}
+        arrayDailyFlags={arrayDailyFlags}
+        setArrayDailyFlags={setArrayDailyFlags}
+        correctAnswers ={correctAnswers}
+        setCorrectAnswers={setCorrectAnswers}
+        countryUnderscore={countryUnderscore}
+        setCountryUnderscore={setCountryUnderscore}
+        score={score}
+        setScore={setScore}
+        haveAnswer = {haveAnswer}
+        setHaveAnswer = {setHaveAnswer}
+        />
+        
+       
+ 
+        </>
+      );
+    }
+    else if (icon === "practice") {
+      console.log("practice");
+  
+      return (
+        <>
+        <Practice
         icon={icon}
         setIcon={setIcon}
         currentFlag={currentFlag}

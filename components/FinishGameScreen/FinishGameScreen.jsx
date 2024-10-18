@@ -9,7 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getStoredGameCount, storeAllScores, storeScore, getAllStoredScores, storeGameCount} from '../../utils/asyncStorageUtils';
 
 export function FinishGameScreen({ country, currentFlag, score, setScore, correctAnswers, setCorrectAnswers, countryUnderscore, setCountryUnderscore,
-  gameCount, setGameCount, arrayDailyFlags,  turns, setTurns, icon
+  gameCount, setGameCount, arrayDailyFlags,  turns, setTurns, icon, setIcon
  }) {
   //   // Use storeScore inside this component when needed
 
@@ -89,7 +89,7 @@ setCorrectAnswers={setCorrectAnswers}
     {`Your FLAGL Score is ${score}%`}
     {'\n'}
 </Text>
-<TouchableOpacity>
+<TouchableOpacity onPress ={()=>setIcon("practice")}>
   <Text>FLAGL Practice Mode</Text>
 </TouchableOpacity>
 

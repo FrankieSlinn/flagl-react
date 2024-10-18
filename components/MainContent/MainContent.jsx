@@ -11,6 +11,8 @@ import {
 import * as allFlagImages from '../../utils/flagMappings';
 import {flags } from '../../utils/countryTerritoryNames';
 
+import { getStoredGameCount,  storeTurns, getStoredTurns} from '../../utils/asyncStorageUtils';
+
 export function MainContent({icon, setIcon, currentFlag, setCurrentFlag, country, setCountry, turns, setTurns, 
   arrayDailyFlags, setArrayDailyFlags, correctAnswers, setCorrectAnswers, countryUnderscore, setCountryUnderscore, score, setScore,
 haveAnswer, setHaveAnswer}) {
@@ -27,9 +29,51 @@ haveAnswer, setHaveAnswer}) {
     arrayFlagNames.push(flags[flag]);
    
   });
+
+
+    // Store the updated turns in AsyncStorage whenever it changes
+    useEffect(() => {
+      const storeTurnsInAsyncStorage = async () => {
+        try {
+          const turnsStored = await AsyncStorage.setItem('turns', JSON.stringify(turns));
+          console.log("Turns stored in AsyncStorage: in main", turnsStored);
+
+        } catch (error) {
+          console.error("Error storing turns in AsyncStorage:", error);
+        }
+      };
+      if (turns !== null) {
+        storeTurnsInAsyncStorage();
+      }
+    }, [turns]);
+
+    
+  
+    // Load the stored turns from AsyncStorage when the component mounts
+    useEffect(() => {
+      const loadTurnsFromAsyncStorage = async () => {
+        try {
+          const storedTurns = await AsyncStorage.getItem('turns');
+          if (storedTurns !== null) {
+            setTurns(JSON.parse(storedTurns));
+            console.log("Turns loaded from AsyncStorage in Main content:", storedTurns);
+            if(storedTurns===5){
+              console.log("Setting icon to finish")
+              setIcon("finish");
+            }
+          }
+          
+          else{setTurns(0);}
+        } catch (error) {
+          console.error("Error loading turns from AsyncStorage:", error);
+        }
+      };
+      loadTurnsFromAsyncStorage();
+    }, []);
  // set below variables to ensure that feedback screen not shown until country button pressed
 
  useEffect(() => {
+
 
   console.log("score in main", score)
 
@@ -38,22 +82,37 @@ setHaveAnswer(false)
 setCountryUnderscore("");
 
 console.log("useEffect to set Haveanswer and countryUnderscore to false at beginning of MAIN SCREEN: setHaveAnswer and setCountryUnderscore", haveAnswer, countryUnderscore)
+  
 }, []); // Empty dependency array means this runs only once on mount
 
-
+let storedTurns
 useEffect(() => {
+ storedTurns = 
+  async () => {
+    try {
 
-if(turns===0 && countryUnderscore==="")
-{setScore(0)}
+       storedTurns = await getStoredTurns();
+        if(turns===0 && countryUnderscore==="")
+          {setScore(0)}
 
 
-console.log("useEffect to set Haveanswer and countryUnderscore to false at beginning of MAIN SCREEN: setHaveAnswer and setCountryUnderscore", haveAnswer, countryUnderscore)
-}, [countryUnderscore]);
+      }
+    catch (error) {
+      console.error("Error loading turn count: in main", error);
+    }
+  }
+
+
+
+
+
+}, [turns]);
 
   
   // Function to fetch or generate new flags based on the date
   const fetchOrGenerateFlags = async () => {
     try {
+     
       const storedFlags = await AsyncStorage.getItem('arrayDailyFlags'); // Retrieve stored flags
       const storedDate = await AsyncStorage.getItem('flagGenerationDate'); // Retrieve the stored generation date
   
@@ -83,34 +142,22 @@ console.log("useEffect to set Haveanswer and countryUnderscore to false at begin
     fetchOrGenerateFlags(); 
     // Fetch or generate flags only once when the component mounts
   }, []);
-  
 
   useEffect(() => {
-    setHaveAnswer(false);
+  if(turns===0){
+    let currentFlagNumber = arrayDailyFlags[turns];
+    let flagWithoutUnderscore = String(flags[currentFlagNumber]);
+    let flagWithUnderscore = flagWithoutUnderscore.replaceAll(" ", "_");
+    setCurrentFlag(flagWithUnderscore);
+  }
+})
   
-    setCountryUnderscore("");
-    // Update current flag when arrayDailyFlags or turns change
-    let currentFlagNumber = arrayDailyFlags[turns]
-   // console.log("arrayDailyFlags[turns]", arrayDailyFlags[turns])
-   console.log("flag name", flags[arrayDailyFlags[turns]])
- 
-   // console.log("currentFlagNumber", currentFlagNumber);
-    //console.log("flags, flags")
-    if (arrayDailyFlags.length > 0) {
-   
-      let flagWithoutUnderscore = String(flags[currentFlagNumber]);
-      //let flagWithoutUnderscore = flags[currentFlag];
-      
-      let flagWithUnderscore = flagWithoutUnderscore.replaceAll(" ", "_");
-     // console.log("flagWithUnderscore", flagWithUnderscore)
-     console.log("turns in main", turns)
-      setCurrentFlag(flagWithUnderscore);
-      console.log("current Flag in useEffect", currentFlag)
-      
-    }
-  }, [arrayDailyFlags, turns]);
+
+
+
 
  // console.log("allFlagImages[currentFlag]", allFlagImages[currentFlag])
+
 
   return (
     <>

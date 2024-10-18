@@ -1,5 +1,28 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
 
+export const storeTurns = async (turns) => {
+    try {
+        await AsyncStorage.setItem("score", JSON.stringify(turns));
+        console.log("Turnsstored successfully!");
+    } catch (error) {
+        console.error("Error saving turns", error);
+    }
+};
+
+export const getStoredTurns = async () => {
+    try {
+        const value = await AsyncStorage.getItem("turns");
+        if (value !== null) {
+            return JSON.parse(value);  // If there is a score, parse it
+        }
+        return null;  // If no score is stored, return null
+    } catch (error) {
+        console.error("Error retrieving turns", error);
+        return null;
+    }
+};
+
+
 export const storeScore = async (score) => {
     try {
         await AsyncStorage.setItem("score", JSON.stringify(score));
