@@ -25,6 +25,9 @@ export function CountryButton({
   countryButtonVisible,
   setCountryButtonVisible,
 }) {
+
+console.log("country Button visible in country button component", countryButtonVisible)
+
   const updateCountryUnderscore = useCallback((country) => {
     const countryWithUnderscore = country.replaceAll(" ", "_");
     // Only update if the value is actually different

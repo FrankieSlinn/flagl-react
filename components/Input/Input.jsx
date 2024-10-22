@@ -6,6 +6,9 @@ import {flags} from '../../utils/countryTerritoryNames.js';
 export function Input({countryButtonVisible, setCountryButtonVisible, inputValue, setInputValue, countryMatchingPredText, setCountryMatchingPredText}){
 
     function populateCountryArray(inputValue){
+        
+     
+        console.log("countrybutton visible", countryButtonVisible)
         let arrayFlagNames=[]
         let lowerCaseInput = String(inputValue).toLowerCase();
     
@@ -27,6 +30,7 @@ export function Input({countryButtonVisible, setCountryButtonVisible, inputValue
         
         // Set the reduced array into state
         setCountryMatchingPredText(arrayFlagNames);
+ 
         console.log("matching flag Names reduced to 5", arrayFlagNames);
 
         

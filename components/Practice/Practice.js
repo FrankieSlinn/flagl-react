@@ -1,7 +1,8 @@
 
 
 import {Text, View, Image, TouchableOpacity} from "react-native";
-import { s } from "../../App.style.js";
+import {useEffect, useState} from "react"
+ import { s } from "../../App.style.js";
 import * as allFlagImages from '../../utils/flagMappings';
 import {flags } from '../../utils/countryTerritoryNames';
 import  { useScreenContext } from '../../utils/helpLastScreen';
@@ -14,6 +15,24 @@ export function Practice({icon, setIcon, currentFlag, setCurrentFlag, country, s
     arrayDailyFlags, setArrayDailyFlags, correctAnswers, setCorrectAnswers, countryUnderscore, setCountryUnderscore, score, setScore,
   haveAnswer, setHaveAnswer, countryButtonVisible, setCountryButtonVisible, inputValue, setInputValue, countryMatchingPredText, setCountryMatchingPredText,
 }){
+
+console.log("countryButtonVisible in practice", countryButtonVisible)
+
+
+  function randomNumberPractice() {
+    return Math.abs(Math.floor(Math.random() * flags.length - 1));
+  }
+
+  useEffect(() => {
+    getPracticeFlagName();
+  }, []);
+
+
+  function getPracticeFlagName() {
+    console.log("getPracticeFlagName running");
+   setCurrentFlag(String(flags[randomNumberPractice()]));
+
+  }
 
 
 return(
@@ -72,6 +91,8 @@ return(
             setCorrectAnswers={setCorrectAnswers}
             haveAnswer={haveAnswer}
             setHaveAnswer={setHaveAnswer}
+            countryButtonVisible={countryButtonVisible}
+            setCountryButtonVisible={setCountryButtonVisible}
             />
 
           </View>
