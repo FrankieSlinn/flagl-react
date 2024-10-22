@@ -4,6 +4,7 @@ import {Text, View, TouchableOpacity} from "react-native";
 //import {useCorrectAnswer} from "../../utils/useCorrectAnswer";
 import {flags } from '../../utils/countryTerritoryNames';
 import{useEffect} from "react";
+import  { useScreenContext } from '../../utils/helpLastScreen';
 
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
 import { getStoredGameCount, storeAllScores, storeScore, getAllStoredScores, storeGameCount} from '../../utils/asyncStorageUtils';
@@ -11,11 +12,13 @@ import { getStoredGameCount, storeAllScores, storeScore, getAllStoredScores, sto
 export function FinishGameScreen({ country, currentFlag, score, setScore, correctAnswers, setCorrectAnswers, countryUnderscore, setCountryUnderscore,
   gameCount, setGameCount, arrayDailyFlags,  turns, setTurns, icon, setIcon
  }) {
-  //   // Use storeScore inside this component when needed
 
-  //   useEffect(() => {
-  //     loadAndIncrementGameCount();
-  // }, []); // Runs once on component load
+  const { lastScreen, setLastScreen } = useScreenContext();
+
+
+  useEffect(() => {
+    setLastScreen("finish")
+    }, []);
     
     useEffect(() => {
         if (score !== null && score !== undefined) {

@@ -5,6 +5,7 @@ import {Logo} from "../Logo/Logo";
 import {HelpIcon} from "../HelpIcon/HelpIcon";
 import {StatsIcon} from "../StatsIcon/StatsIcon";
 export function Header({content, setContent, icon, setIcon, onPress}){
+    
 
 
 return <>

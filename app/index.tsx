@@ -8,13 +8,15 @@ import {
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { s } from "../App.style";
 import { Header } from "../components/Header/Header";
-import { CloseButton } from "../components/CloseButton/CloseButton";
+
 import { Stats } from "../components/Stats/Stats";
+import { Help} from "../components/Help/Help";
 import { MainContent } from "../components/MainContent/MainContent";
 import { Practice } from "../components/Practice/Practice";
 import { FeedbackScreen } from "../components/FeedbackScreen/FeedbackScreen";
 import {FinishGameScreen} from "../components/FinishGameScreen/FinishGameScreen";
 import { useState } from "react";
+import { ScreenProvider } from '../utils/helpLastScreen';
 
 export default function Index() {
   const [content, setContent] = useState("This is the default content");
@@ -29,6 +31,7 @@ export default function Index() {
   const [haveAnswer, setHaveAnswer] = useState(false);
   const [gameCount, setGameCount] = useState(0);
   const[scoreArray, setScoreArray] = useState([])
+  //const[lastScreen, setLastScreen]=useState("")
   
 
 
@@ -36,61 +39,11 @@ export default function Index() {
     if (icon === "help") {
       console.log("help");
       return (
-        <>
-        <View style={s.closeButtonContainer}>
-          <CloseButton 
-          onPress={() => setIcon("")} />
-          </View>
-          <Text style={s.iconHeader}>The Daily Flag Quiz</Text>
-          <Text style={s.helpBody}>
-            {"\n"}
-            <Text style={s.helpGuess}>Guess the Flag</Text>
-            {"\n"}
-            {"\n"}Every day you will see the same flags as all the other FLAGL
-            players. The goal of course is to correctly identify as many flags
-            as you can. All you need to do is to start typing in the box under
-            the flag to get a list of countries and territories. Click on one of
-            the country or territory buttons to make your choice.
-            {"\n\n"}
-            At the end of the flag quiz you will see what percentage of flags
-            you got right. The statistics section on the top right shows your
-            average score per game so you can see if you're improving. Share and
-            compare your score with friends by selecting the "Share Results"
-            button in the statistics section. {"\n"}
-            They might be wowed by your flag guessing ability. Or maybe not.
-            There's only one way of telling.
-            {"\n"}
-            {"\n"}
-            Does this format look familiar? The game is inspired by the
-            brilliant game Worlde created by the talented Josh Wardle.
-            {"\n"}
-            {"\n"}
-            Want to get better at guessing flags? Try:{" "}
-            <Text
-              style={s.link}
-              onPress={() => setIcon("practice")}
-            >
-              Practice FLAGL
-            </Text>
-            .{"\n\n"}
-            For a wider geography quiz see:{" "}
-            <Text
-              style={s.link}
-              onPress={() => Linking.openURL("https://geografiend.com/")}
-            >
-              geografiend.com
-            </Text>
-            .{"\n\n"}
-            Love tough word games? Go to:{" "}
-            <Text
-              style={s.link}
-              onPress={() => Linking.openURL("https://wordominoes.net/")}
-            >
-              wordominoes.net
-            </Text>
-            .
-          </Text>
-        </>
+        <Help
+        icon={icon}
+        setIcon = {setIcon}
+        />
+       
       );
     } else if (icon === "stats") {
       console.log("stats");
@@ -135,6 +88,8 @@ export default function Index() {
         setScore={setScore}
         haveAnswer = {haveAnswer}
         setHaveAnswer = {setHaveAnswer}
+        //lastScreen={lastScreen}
+       // setLastScreen={setLastScreen}
         />
         
        
@@ -195,6 +150,8 @@ export default function Index() {
    setCorrectAnswers={setCorrectAnswers}
    haveAnswer = {haveAnswer}
    setHaveAnswer = {setHaveAnswer}
+  // lastScreen={lastScreen}
+   //setLastScreen={setLastScreen}
  
    
    />
@@ -227,6 +184,8 @@ export default function Index() {
       icon={icon}
       scoreArray={scoreArray}
       setScoreArray={setScoreArray}
+      //lastScreen={lastScreen}
+      //setLastScreen={setLastScreen}
       
       />
       </>)
@@ -237,6 +196,7 @@ export default function Index() {
     <>
       <SafeAreaProvider>
         <SafeAreaView style={s.app}>
+          <ScreenProvider>
           <View style={s.header}>
             <Header
               content={content}
@@ -250,6 +210,7 @@ export default function Index() {
               {renderContent()}
             </ScrollView>
           </View>
+          </ScreenProvider>
         </SafeAreaView>
       </SafeAreaProvider>
       <View style={s.footer}>

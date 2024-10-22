@@ -1,11 +1,12 @@
 import { s } from "../../App.style.js";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, useContext } from "react-native";
 import { useEffect, useState } from "react";
 import { Stars } from "../Stars/Stars";
 //import {useCorrectAnswer} from "../../utils/useCorrectAnswer"
 
 import { flags } from "../../utils/countryTerritoryNames";
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
+import  { useScreenContext }from '../../utils/helpLastScreen';
 import { getStoredGameCount, storeAllScores, storeScore, getAllStoredScores, storeGameCount, storeTurns, getStoredTurns} from '../../utils/asyncStorageUtils';
 
 export function FeedbackScreen({
@@ -25,16 +26,17 @@ export function FeedbackScreen({
   setCorrectAnswers,
   haveAnswer,
   setHaveAnswer,
+ // lastScreen,
+ // setLastScreen
 }) {
-  // // Effect to handle when turns exceed 4
-  // useEffect(() => {
-  //   if (turns === 4) {
-  //     console.log("turns in finishgame use effect", turns);
-  //     console.log("Turns are 4. Ending game...");
+  const { lastScreen, setLastScreen } = useScreenContext();
 
-  //     handleFinishGame();
-  //   }
-  // }, [turns]);
+
+  useEffect(() => {
+setLastScreen("feedback")
+console.log("last Screen in feedback", lastScreen)
+}, []);
+
 
   console.log("correctAnswers in Feedback Screen", correctAnswers);
 
@@ -61,11 +63,7 @@ export function FeedbackScreen({
   }
 };
 
-// useEffect(() => {
-//   setTheCurrentFlag(); 
 
-//   // Fetch or generate flags only once when the component mounts
-// }, [turns]);
   function handleFinishGame() {
     setIcon("finish");
     console.log("Game Finished. Current Icon:", icon);
@@ -119,14 +117,10 @@ export function FeedbackScreen({
       catch (error) {
           console.error("Error loading or updating turn count:", error);
         }
-       // setCurrentFlag(arrayDailyFlags[turns + 1]); // Use the next turn's index
+     
       }
     
-      //if(countryUnderscore === currentFlag && countryUnderscore !=""){useCorrectAnswer()}
-
-      //setTurns((prevTurns) => prevTurns + 1); // Use the functional updater to ensure correct state}
-
-      // Update the current flag if the game is still within the allowed turns
+   
       loadAndIncrementTurns();
   
 
@@ -142,6 +136,8 @@ export function FeedbackScreen({
 
     }
   }
+
+
 
  
 

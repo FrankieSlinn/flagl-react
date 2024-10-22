@@ -1,6 +1,6 @@
 import { s } from "../../App.style.js";
 import { Text, Image, View } from "react-native";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
 import { Stars } from "../Stars/Stars";
 import { Input } from "../Input/Input";
@@ -10,6 +10,8 @@ import {
 } from "../../utils/practiceAndDaily.js";
 import * as allFlagImages from '../../utils/flagMappings';
 import {flags } from '../../utils/countryTerritoryNames';
+import  { useScreenContext } from '../../utils/helpLastScreen';
+
 
 import { getStoredGameCount,  storeTurns, getStoredTurns} from '../../utils/asyncStorageUtils';
 
@@ -23,12 +25,19 @@ haveAnswer, setHaveAnswer}) {
   const [inputValue, setInputValue] = useState("");
   const[countryMatchingPredText, setCountryMatchingPredText]=useState([])
 
+  const { lastScreen, setLastScreen } = useScreenContext();
+
    let currentFlagNumber ;
 
   arrayDailyFlags.forEach((flag, index) => {
     arrayFlagNames.push(flags[flag]);
    
   });
+
+  useEffect(() => {
+    setLastScreen("")
+    console.log("last screen main", )
+    }, []);
 
 
     // Store the updated turns in AsyncStorage whenever it changes
@@ -92,8 +101,9 @@ useEffect(() => {
     try {
 
        storedTurns = await getStoredTurns();
-        if(turns===0 && countryUnderscore==="")
+        if(turns===0 && countryUnderscore===""||arrayDailyFlags===null)
           {setScore(0)}
+        console.log("score  updated to 0 in main")
 
 
       }

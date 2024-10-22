@@ -51,6 +51,7 @@ export function Stats({ icon, setIcon, correctAnswers, setCorrectAnswers, turns,
           setScoreArray(scoreArrayInStats);
           console.log("scorearray that was set in stats", scoreArray)
           
+          
  
           //setStoredGameCount(gameCount);  // Set the game count in state
       };
