@@ -229,6 +229,8 @@ useEffect(() => {
             setCorrectAnswers={setCorrectAnswers}
             haveAnswer={haveAnswer}
             setHaveAnswer={setHaveAnswer}
+            countryButtonVisible={countryButtonVisible}
+            setCountryButtonVisible={setCountryButtonVisible}
             />
 
           </View>

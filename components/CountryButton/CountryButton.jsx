@@ -22,6 +22,8 @@ export function CountryButton({
   setCorrectAnswers,
   haveAnswer,
   setHaveAnswer,
+  countryButtonVisible,
+  setCountryButtonVisible,
 }) {
   const updateCountryUnderscore = useCallback((country) => {
     const countryWithUnderscore = country.replaceAll(" ", "_");
@@ -94,6 +96,8 @@ export function CountryButton({
   // Function to handle button press and update the country state
   function handleButtonPress(selectedCountry) {
     setCountry(selectedCountry); // Update country, triggers the useEffect to update countryUnderscore
+    setCountryButtonVisible(false)
+ 
     console.log("country after selected by pressing country button", country)
 
   }
@@ -103,13 +107,14 @@ export function CountryButton({
     if (countryMatchingPredText.length > 0) {
       return countryMatchingPredText.map((country, index) => (
         <View key={index} style={s.countryButtonContainer}>
+             {countryButtonVisible && (
           <TouchableOpacity
             style={s.countryButton}
             activeOpacity={0.7}
             onPress={() => handleButtonPress(country)}
           >
             <Text style={s.countryButtonText}>{country}</Text>
-          </TouchableOpacity>
+          </TouchableOpacity>)}
         </View>
       ));
     } else {
