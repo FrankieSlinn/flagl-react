@@ -23,6 +23,7 @@ export default function Index() {
   const [content, setContent] = useState("This is the default content");
   const [icon, setIcon] = useState("");
   const[currentFlag, setCurrentFlag] = useState(0);
+  const[currentPracticeFlag, setCurrentPracticeFlag] = useState(0);
   const [country, setCountry] = useState("");
   const [turns, setTurns] = useState(0);
   const [arrayDailyFlags, setArrayDailyFlags] = useState([]);
@@ -112,8 +113,8 @@ export default function Index() {
         <Practice
         icon={icon}
         setIcon={setIcon}
-        currentFlag={currentFlag}
-        setCurrentFlag={setCurrentFlag}
+    currentPracticeFlag={currentPracticeFlag}
+    setCurrentPracticeFlag = {setCurrentPracticeFlag}
         country={country}
         setCountry={setCountry}
         turns={turns}
@@ -134,6 +135,7 @@ export default function Index() {
         setInputValue={setInputValue}
         countryButtonVisible={countryButtonVisible}
         setCountryButtonVisible={setCountryButtonVisible}
+
         />
         
        
@@ -149,8 +151,8 @@ export default function Index() {
         <PracticeFeedback
         icon={icon}
         setIcon={setIcon}
-        currentFlag={currentFlag}
-        setCurrentFlag={setCurrentFlag}
+        currentPracticeFlag={currentPracticeFlag}
+        setCurrentPracticeFlag = {setCurrentPracticeFlag}
         country={country}
         setCountry={setCountry}
         turns={turns}

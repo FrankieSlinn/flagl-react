@@ -9,6 +9,8 @@ export function CountryButton({
   setIcon,
   currentFlag,
   setCurrentFlag,
+  currentPracticeFlag,
+  setCurrentPracticeFlag,
   country,
   setCountry,
   turns,

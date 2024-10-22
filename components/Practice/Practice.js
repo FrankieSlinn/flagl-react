@@ -11,17 +11,20 @@ import { PracticeHeading} from "../PracticeHeading/PracticeHeading";
 import {Input} from "../Input/Input";
 import {CountryButton} from "../CountryButton/CountryButton";
 
-export function Practice({icon, setIcon, currentFlag, setCurrentFlag, country, setCountry, turns, setTurns, 
+export function Practice({icon, setIcon, currentPracticeFlag, setCurrentPracticeFlag, country, setCountry, turns, setTurns, 
     arrayDailyFlags, setArrayDailyFlags, correctAnswers, setCorrectAnswers, countryUnderscore, setCountryUnderscore, score, setScore,
   haveAnswer, setHaveAnswer, countryButtonVisible, setCountryButtonVisible, inputValue, setInputValue, countryMatchingPredText, setCountryMatchingPredText,
 }){
 
 console.log("countryButtonVisible in practice", countryButtonVisible)
 
+useEffect(()=>{randomNumberPractice()}
+ ,[])
 
-  function randomNumberPractice() {
-    return Math.abs(Math.floor(Math.random() * flags.length - 1));
-  }
+function randomNumberPractice() {
+
+  return Math.abs(Math.floor(Math.random() * flags.length - 1));
+}
 
   useEffect(() => {
     getPracticeFlagName();
@@ -29,8 +32,9 @@ console.log("countryButtonVisible in practice", countryButtonVisible)
 
 
   function getPracticeFlagName() {
-    console.log("getPracticeFlagName running");
-   setCurrentFlag(String(flags[randomNumberPractice()]));
+  
+   setCurrentPracticeFlag(String(flags[randomNumberPractice()]));
+   console.log("current Flag in practice", currentPracticeFlag)
 
   }
 
@@ -45,14 +49,12 @@ return(
       </Text>
 
       <View>
-        {currentFlag && allFlagImages[currentFlag] ? (
+      
           <Image
-            source={allFlagImages[currentFlag]}
+            source={allFlagImages[currentPracticeFlag]}
             style={s.flagImage}
           />
-        ) : (
-          <Text >Loading...</Text> // Show a loading message if currentFlag is not available
-        )}
+      
       </View>
       <View>
         <Text style={s.mainContentText}>Type and Select the Name of a Country or Territory</Text>
@@ -77,8 +79,8 @@ return(
             setCountryMatchingPredText={setCountryMatchingPredText}
             icon={icon}
             setIcon={setIcon}
-            currentFlag={currentFlag}
-            setCurrentFlag={setCurrentFlag}
+            currentPracticeFlag={currentPracticeFlag}
+            setCurrentPracticeFlag={setCurrentPracticeFlag}
             country={country}
             setCountry={setCountry}
             turns = {turns}
@@ -99,7 +101,7 @@ return(
         
 
 
-<Text >FLAGL Practice</Text>
+
 
 </View>
 </>

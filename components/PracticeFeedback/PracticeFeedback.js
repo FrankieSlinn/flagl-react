@@ -1,6 +1,7 @@
 
 
 import {Text, View, Image, TouchableOpacity} from "react-native";
+import{useEffect, useState} from "react";
 import { s } from "../../App.style.js";
 import * as allFlagImages from '../../utils/flagMappings';
 import {flags } from '../../utils/countryTerritoryNames';
@@ -10,27 +11,47 @@ import { PracticeHeading} from "../PracticeHeading/PracticeHeading";
 import {Input} from "../Input/Input";
 import {CountryButton} from "../CountryButton/CountryButton";
 
-export function PracticeFeedback({icon, setIcon, currentFlag, setCurrentFlag, country, setCountry, 
+export function PracticeFeedback({icon, setIcon,  country, setCountry, 
     arrayDailyFlags, correctAnswers, setCorrectAnswers, countryUnderscore, setCountryUnderscore, 
   haveAnswer, setHaveAnswer, countryButtonVisible, setCountryButtonVisible, inputValue, setInputValue, countryMatchingPredText, setCountryMatchingPredText,
+  currentPracticeFlag,
+  setCurrentPracticeFlag
 }){
 
+  console.log("Countryundescore in practicefeedback", countryUnderscore, "currentPracticeFlag in practicefeedback", currentPracticeFlag);
+
   function handleFeedbackButtonPress(){
+    setCountry("");
+    setHaveAnswer(false)
+    setCountryUnderscore("");
     setIcon("practice")
+    console.log("icon after have another go pressed", icon)
+
+
+    // useEffect(() => {
+
+
+
+    
+
+    
+    // console.log("useEffect to set Haveanswer and countryUnderscore to false at beginning of MAIN SCREEN: setHaveAnswer and setCountryUnderscore", haveAnswer, countryUnderscore)
+      
+    // }, []);
   }
     return(
         <>
-            <View style={s.mainContent} backgroundColor="">
+            <View style={s.mainContent}>
 
       <Text style={s.mainContentText}>Feedback</Text>
 
       <Text style={s.mainContentText}>
-        {countryUnderscore === currentFlag
+        {countryUnderscore === currentPracticeFlag
           ? `Congratulations. You Are Right. The Answer Is ${
-              country
+              currentPracticeFlag
             }.`
           : `Unlucky. That Was Not Correct. The Answer Is ${
-             country
+             currentPracticeFlag
             }.`}
         {"\n"}
       </Text>
@@ -44,7 +65,7 @@ export function PracticeFeedback({icon, setIcon, currentFlag, setCurrentFlag, co
         </TouchableOpacity>
 
       
-              <Text>Feedback</Text>
+              <Text>Practice Feedback</Text>
     </View>
         
         </>
