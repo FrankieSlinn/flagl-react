@@ -17,13 +17,13 @@ import { getStoredGameCount,  storeTurns, getStoredTurns} from '../../utils/asyn
 
 export function MainContent({icon, setIcon, currentFlag, setCurrentFlag, country, setCountry, turns, setTurns, 
   arrayDailyFlags, setArrayDailyFlags, correctAnswers, setCorrectAnswers, countryUnderscore, setCountryUnderscore, score, setScore,
-haveAnswer, setHaveAnswer}) {
+haveAnswer, setHaveAnswer, countryMatchingPredText, setCountryMatchingPredText, inputValue, setInputValue, 
+countryButtonVisible, setCountryButtonVisible}) {
   let arrayFlagNames = []
 
 
-  const[countryButtonVisible, setCountryButtonVisible] = useState(false)
-  const [inputValue, setInputValue] = useState("");
-  const[countryMatchingPredText, setCountryMatchingPredText]=useState([])
+
+
 
   const { lastScreen, setLastScreen } = useScreenContext();
 
@@ -166,7 +166,7 @@ useEffect(() => {
 
 
 
- // console.log("allFlagImages[currentFlag]", allFlagImages[currentFlag])
+
 
 
   return (

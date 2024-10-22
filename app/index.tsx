@@ -13,6 +13,7 @@ import { Stats } from "../components/Stats/Stats";
 import { Help} from "../components/Help/Help";
 import { MainContent } from "../components/MainContent/MainContent";
 import { Practice } from "../components/Practice/Practice";
+import { PracticeFeedback} from "../components/PracticeFeedback/PracticeFeedback";
 import { FeedbackScreen } from "../components/FeedbackScreen/FeedbackScreen";
 import {FinishGameScreen} from "../components/FinishGameScreen/FinishGameScreen";
 import { useState } from "react";
@@ -31,7 +32,9 @@ export default function Index() {
   const [haveAnswer, setHaveAnswer] = useState(false);
   const [gameCount, setGameCount] = useState(0);
   const[scoreArray, setScoreArray] = useState([])
-  //const[lastScreen, setLastScreen]=useState("")
+  const[countryMatchingPredText, setCountryMatchingPredText]=useState([])
+  const[countryButtonVisible, setCountryButtonVisible] = useState(false)
+  const [inputValue, setInputValue] = useState("");
   
 
 
@@ -88,8 +91,12 @@ export default function Index() {
         setScore={setScore}
         haveAnswer = {haveAnswer}
         setHaveAnswer = {setHaveAnswer}
-        //lastScreen={lastScreen}
-       // setLastScreen={setLastScreen}
+      countryMatchingPredText={countryMatchingPredText}
+      setCountryMatchingPredText={setCountryMatchingPredText}
+      inputValue={inputValue}
+      setInputValue={setInputValue}
+      countryButtonVisible={countryButtonVisible}
+      setCountryButtonVisible={setCountryButtonVisible}
         />
         
        
@@ -121,6 +128,49 @@ export default function Index() {
         setScore={setScore}
         haveAnswer = {haveAnswer}
         setHaveAnswer = {setHaveAnswer}
+        countryMatchingPredText={countryMatchingPredText}
+        setCountryMatchingPredText={setCountryMatchingPredText}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        countryButtonVisible={countryButtonVisible}
+        setCountryButtonVisible={setCountryButtonVisible}
+        />
+        
+       
+ 
+        </>
+      );
+    }
+    else if (icon === "practiceFeedback") {
+      console.log("practiceFeedback");
+  
+      return (
+        <>
+        <PracticeFeedback
+        icon={icon}
+        setIcon={setIcon}
+        currentFlag={currentFlag}
+        setCurrentFlag={setCurrentFlag}
+        country={country}
+        setCountry={setCountry}
+        turns={turns}
+        setTurns={setTurns}
+        arrayDailyFlags={arrayDailyFlags}
+        setArrayDailyFlags={setArrayDailyFlags}
+        correctAnswers ={correctAnswers}
+        setCorrectAnswers={setCorrectAnswers}
+        countryUnderscore={countryUnderscore}
+        setCountryUnderscore={setCountryUnderscore}
+        score={score}
+        setScore={setScore}
+        haveAnswer = {haveAnswer}
+        setHaveAnswer = {setHaveAnswer}
+        countryMatchingPredText={countryMatchingPredText}
+        setCountryMatchingPredText={setCountryMatchingPredText}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        countryButtonVisible={countryButtonVisible}
+        setCountryButtonVisible={setCountryButtonVisible}
         />
         
        
@@ -194,8 +244,11 @@ export default function Index() {
 
   return (
     <>
-      <SafeAreaProvider>
-        <SafeAreaView style={s.app}>
+   
+      <SafeAreaProvider >
+      <SafeAreaView 
+  style={[s.app, { backgroundColor: icon === "practice" || icon === "practiceFeedback" ? "#e7feff" : "white" }]}
+>
           <ScreenProvider>
           <View style={s.header}>
             <Header
@@ -211,11 +264,13 @@ export default function Index() {
             </ScrollView>
           </View>
           </ScreenProvider>
-        </SafeAreaView>
-      </SafeAreaProvider>
-      <View style={s.footer}>
+          <View style={s.footer}>
         <Text>Footer</Text>
       </View>
+        </SafeAreaView>
+      </SafeAreaProvider>
+
+ 
     </>
   );
 }

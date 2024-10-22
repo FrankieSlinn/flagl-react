@@ -144,17 +144,32 @@ countryButtonContainer: {
     fontSize: 16, // Text size
     fontWeight: 'bold', // Bold text
   },
+
+  practiceHeading:{
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  
+    fontFamily: "Arial",
+  
+  },
+  practiceHeadingTitle:{
+    fontSize: 25,
+    padding: 15,
+  },
   scoreText:{
     fontWeight: 'bold', 
     fontSize:25,
     textAlign: 'center',
 
   },
+  
 
    footer:{
  
     height:70,
-    backgroundColor: "white",
+
     },
 
 

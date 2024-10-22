@@ -71,6 +71,7 @@ console.log("last Screen in feedback", lastScreen)
   }
 
   function handleFeedbackButtonPress() {
+
     // Reset icon
     newTurn();
     console.log("resetting icon to main content");

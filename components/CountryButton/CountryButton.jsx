@@ -46,12 +46,12 @@ export function CountryButton({
   // Effect to compare countryUnderscore with currentFlag after both are updated
   useEffect(() => {
     console.log("useEffect meant to be after countryUnderscore change");
-    if (countryUnderscore != "" && icon === "") {
+    if (countryUnderscore != "" && (icon === ""||icon==="practice")) {
       console.log("useEffect after previous ones triggered", countryUnderscore);
       setHaveAnswer(true);
       // Set the icon to "feedback"
 
-      if (countryUnderscore === currentFlag && countryUnderscore !== "") {
+      if (countryUnderscore === currentFlag && countryUnderscore !== ""&& icon==="") {
         console.log("Correct Answer!!!!!!!!!");
         setCorrectAnswers((prevCorrectAnswers) => prevCorrectAnswers + 1);
         setScore((prevScore) => prevScore + 20); // Increase the score by 20
@@ -61,15 +61,26 @@ export function CountryButton({
   }, [countryUnderscore]);
 
   useEffect(() => {
+    console.log("icon in Country Button", icon)
     // Adding a small timeout to wait for state changes to propagate
     const timeout = setTimeout(() => {
       console.log("turns in country button", turns)
+      console.log("country", country, "countryUnderscore", countryUnderscore, "haveAnswer", haveAnswer)
  
 
       if (haveAnswer === true && countryUnderscore !== "" && country !== "") {
+
+        if(icon==="practice"){
+
+          console.log("Setting icon to feedback practice");
+          setIcon("practiceFeedback");
+
+      }
         if(turns<4){
+          if(icon===""){
         console.log("Setting icon to feedback");
-        setIcon("feedback");
+        setIcon("feedback");}
+
       }
      else  if(turns===4){
         setIcon("finish")
@@ -83,6 +94,7 @@ export function CountryButton({
   // Function to handle button press and update the country state
   function handleButtonPress(selectedCountry) {
     setCountry(selectedCountry); // Update country, triggers the useEffect to update countryUnderscore
+    console.log("country after selected by pressing country button", country)
 
   }
 
