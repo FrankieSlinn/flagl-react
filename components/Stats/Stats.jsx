@@ -3,6 +3,7 @@ import { Image, View, Text } from "react-native";
 import { s } from "../../App.style.js";
 import { CloseButton } from "../CloseButton/CloseButton";
 import { storeGameCount, getStoredGameCount, storeScore, getStoredScore, getAllStoredScores} from '../../utils/asyncStorageUtils';
+import  { useScreenContext } from '../../utils/helpLastScreen';
 
 
 
@@ -12,6 +13,10 @@ import { storeGameCount, getStoredGameCount, storeScore, getStoredScore, getAllS
 export function Stats({ icon, setIcon, correctAnswers, setCorrectAnswers, turns, setTurns, score , setScore, gameCount, setGameCount,
   scoreArray, setScoreArray
 }) {
+  const { lastScreen, setLastScreen } = useScreenContext();
+
+
+
   const[averageScore, setAverageScore] = useState(0);
 
 
@@ -21,7 +26,7 @@ export function Stats({ icon, setIcon, correctAnswers, setCorrectAnswers, turns,
         const fetchScore = async () => {
             const score = await getStoredScore();
             console.log("Score in stats", score)
-            setScore(score);  // Set the score in state
+           // setScore(score);  // Set the score in state
         };
 
         fetchScore();
@@ -62,7 +67,7 @@ export function Stats({ icon, setIcon, correctAnswers, setCorrectAnswers, turns,
     }, []);
     return (<>
     <View style={s.closeButtonContainer}>
-<CloseButton onPress={() => {turns===4?setIcon("finish"):setIcon("")}}/>
+<CloseButton onPress={() => {lastScreen!=null?setIcon(lastScreen):null} }/>
 </View>
   <Text style={s.iconHeader}>FLAGL Statistics</Text>
  
