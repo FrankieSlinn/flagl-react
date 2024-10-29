@@ -3,14 +3,14 @@ import {s} from "../../App.style.js";
 
 import {flags} from '../../utils/countryTerritoryNames.js';
 
-export function Input({countryButtonVisible, setCountryButtonVisible,
+export function PracticeInput({practiceCountryButtonVisible, setPracticeCountryButtonVisible, 
     inputValue, setInputValue, countryMatchingPredText, setCountryMatchingPredText, icon, setIcon}){
 
     function populateCountryArray(inputValue){
         
      
-        console.log("countrybutton visible", countryButtonVisible)
-      
+
+        console.log("practice countrybutton visible in Input", practiceCountryButtonVisible)
 
         let arrayFlagNames=[]
         let lowerCaseInput = String(inputValue).toLowerCase();
@@ -50,12 +50,12 @@ placeholder = "Type and buttons will appear"
 
 
 
-onChangeText = {(text)=>{
-setInputValue(text);
-setCountryButtonVisible(text.length > 0)
-console.log("in input check which icon //is country button visible?", icon, countryButtonVisible)
+onChangeText = {(practiceText)=>{
+setInputValue(practiceText);
+setPracticeCountryButtonVisible(practiceText.length > 0); 
+console.log("practice country button in input just after change visible?", practiceCountryButtonVisible)
 
-populateCountryArray(text);
+populateCountryArray(practiceText);
 
 
 }

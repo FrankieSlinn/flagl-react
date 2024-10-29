@@ -7,7 +7,9 @@ import { Stars } from "../Stars/Stars";
 import { flags } from "../../utils/countryTerritoryNames";
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
 import  { useScreenContext }from '../../utils/helpLastScreen';
-import { getStoredGameCount, storeAllScores, storeScore, getAllStoredScores, storeGameCount, storeTurns, getStoredTurns} from '../../utils/asyncStorageUtils';
+import { getStoredGameCount, storeAllScores, storeScore, getAllStoredScores, storeGameCount, storeTurns, getStoredTurns,
+  getStoredCountryUnderscore, storeCountryUnderscore
+} from '../../utils/asyncStorageUtils';
 
 export function FeedbackScreen({
   currentFlag,
@@ -26,16 +28,28 @@ export function FeedbackScreen({
   setCorrectAnswers,
   haveAnswer,
   setHaveAnswer,
- // lastScreen,
- // setLastScreen
+  score, 
+  setScore,
+
 }) {
   const { lastScreen, setLastScreen } = useScreenContext();
 
 
   useEffect(() => {
 setLastScreen("feedback")
+
 console.log("last Screen in feedback", lastScreen)
 }, []);
+
+useEffect(() => {
+  const fetchCountryunderscore = async () => {
+      const countryUnderscore = await getStoredCountryUnderscore();
+      console.log("Score in stats", score)
+      setCountryUnderscore(countryUnderscore);  // Set the countryUnderscore in state
+  };
+
+  fetchCountryunderscore();
+},[]);
 
 
   console.log("correctAnswers in Feedback Screen", correctAnswers);
@@ -75,7 +89,7 @@ console.log("last Screen in feedback", lastScreen)
     // Reset icon
     newTurn();
     console.log("resetting icon to main content");
-    console.log("setHaveAnswer", setHaveAnswer);
+    console.log("setHaveAnswer",haveAnswer);
     
 
   }

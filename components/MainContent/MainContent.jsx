@@ -18,7 +18,8 @@ import { getStoredGameCount,  storeTurns, getStoredTurns} from '../../utils/asyn
 export function MainContent({icon, setIcon, currentFlag, setCurrentFlag, country, setCountry, turns, setTurns, 
   arrayDailyFlags, setArrayDailyFlags, correctAnswers, setCorrectAnswers, countryUnderscore, setCountryUnderscore, score, setScore,
 haveAnswer, setHaveAnswer, countryMatchingPredText, setCountryMatchingPredText, inputValue, setInputValue, 
-countryButtonVisible, setCountryButtonVisible}) {
+countryButtonVisible, setCountryButtonVisible, practiceCountry, setPracticeCountry, practiceCountryUnderscore, setPracticeCountryUnderscore,
+practiceHaveAnswer, setPracticeHaveAnswer,practiceCountryButtonVisible, setPracticeCountryButtonVisible,}) {
   let arrayFlagNames = []
 
 
@@ -205,6 +206,11 @@ useEffect(() => {
         setCountryMatchingPredText={setCountryMatchingPredText}
         score={score}
         setScore={setScore}
+        icon={icon}
+        setIcon={setIcon}
+        practiceCountryButtonVisible = {practiceCountryButtonVisible}
+        setPracticeCountryButtonVisible={setPracticeCountryButtonVisible}
+      
         />
         </View >
 
@@ -229,8 +235,14 @@ useEffect(() => {
             setCorrectAnswers={setCorrectAnswers}
             haveAnswer={haveAnswer}
             setHaveAnswer={setHaveAnswer}
+            practiceHaveAnswer={practiceHaveAnswer}
+            setPracticeHaveAnswer={setPracticeHaveAnswer}
             countryButtonVisible={countryButtonVisible}
             setCountryButtonVisible={setCountryButtonVisible}
+            practiceCountryUnderscore={practiceCountryUnderscore}
+            setPracticeCountryUnderscore={setPracticeCountryUnderscore}
+            practiceCountry={practiceCountry}
+            setPracticeCountry = {setPracticeCountry}
             />
 
           </View>

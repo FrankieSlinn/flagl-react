@@ -5,27 +5,61 @@ import{useEffect, useState} from "react";
 import { s } from "../../App.style.js";
 import * as allFlagImages from '../../utils/flagMappings';
 import {flags } from '../../utils/countryTerritoryNames';
-import  { useScreenContext } from '../../utils/helpLastScreen';
-import { StarIcon } from "react-native-heroicons/outline";
 import { PracticeHeading} from "../PracticeHeading/PracticeHeading";
 import {Input} from "../Input/Input";
 import {CountryButton} from "../CountryButton/CountryButton";
+import  { useScreenContext }from '../../utils/helpLastScreen';
 
-export function PracticeFeedback({icon, setIcon,  country, setCountry, 
+export function PracticeFeedback({icon, setIcon,  
     arrayDailyFlags, correctAnswers, setCorrectAnswers, countryUnderscore, setCountryUnderscore, 
   haveAnswer, setHaveAnswer, countryButtonVisible, setCountryButtonVisible, inputValue, setInputValue, countryMatchingPredText, setCountryMatchingPredText,
   currentPracticeFlag,
-  setCurrentPracticeFlag
+  setCurrentPracticeFlag,
+  practiceCountry, 
+  setPracticeCountry,
+  practiceCountryUnderscore,
+  setPracticeCountryUnderscore,
+  practiceHaveAnswer,
+  setPracticeHaveAnswer,
+
 }){
 
-  console.log("Countryundescore in practicefeedback", countryUnderscore, "currentPracticeFlag in practicefeedback", currentPracticeFlag);
+
+  const { lastScreen, setLastScreen } = useScreenContext();
+
+  useEffect(() => {
+    setLastScreen("practiceFeedback")
+    console.log("last screen practiceFeedback", )
+    }, []);
+
+    useEffect(() => {
+ 
+          const practiceCountryUnderscore = practiceCountry.replace(" ", "_");
+
+          setPracticeCountryUnderscore(practiceCountryUnderscore);  // Set the countryUnderscore in state
+      
+
+    },[]);
+
+
+
+
+  console.log("Countryundescore in practicefeedback", practiceCountryUnderscore, "currentPracticeFlag in practicefeedback", currentPracticeFlag);
 
   function handleFeedbackButtonPress(){
-    setCountry("");
-    setHaveAnswer(false)
-    setCountryUnderscore("");
+    setPracticeCountry("");
+    setPracticeHaveAnswer(false)
+    setPracticeCountryUnderscore("");
     setIcon("practice")
     console.log("icon after have another go pressed", icon)
+
+    
+
+
+
+
+
+  
 
 
     // useEffect(() => {
@@ -46,7 +80,7 @@ export function PracticeFeedback({icon, setIcon,  country, setCountry,
       <Text style={s.mainContentText}>Feedback</Text>
 
       <Text style={s.mainContentText}>
-        {countryUnderscore === currentPracticeFlag
+        {practiceCountryUnderscore === currentPracticeFlag
           ? `Congratulations. You Are Right. The Answer Is ${
               currentPracticeFlag
             }.`

@@ -9,16 +9,31 @@ import  { useScreenContext } from '../../utils/helpLastScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
 import { getStoredGameCount, storeAllScores, storeScore, getAllStoredScores, storeGameCount} from '../../utils/asyncStorageUtils';
 
-export function FinishGameScreen({ country, currentFlag, score, setScore, correctAnswers, setCorrectAnswers, countryUnderscore, setCountryUnderscore,
+export function FinishGameScreen({ country, setCountry, currentFlag, setCurrentFlag, score, setScore, correctAnswers, setCorrectAnswers, countryUnderscore, setCountryUnderscore,
   gameCount, setGameCount, arrayDailyFlags,  turns, setTurns, icon, setIcon
  }) {
 
   const { lastScreen, setLastScreen } = useScreenContext();
 
 
+
+
   useEffect(() => {
     setLastScreen("finish")
     }, []);
+
+
+
+    useEffect(() => {
+      const fetchCountryunderscore = async () => {
+          const countryUnderscore = await getCountryUnderscore();
+          console.log("Score in stats", score)
+          setCountryunderscore(countryUnderscore);  // Set the countryUnderscore in state
+          setCountry(countryUnderscore.replace("_", " ")); // Set the countryUnderscore in
+      };
+    
+      fetchCountryunderscore();
+    },[]);
     
     useEffect(() => {
         if (score !== null && score !== undefined) {
@@ -43,9 +58,9 @@ export function FinishGameScreen({ country, currentFlag, score, setScore, correc
           console.error("Error loading or updating game count:", error);
         }
       };
-    
-      loadAndIncrementGameCount();
-    }, [icon]);  
+    if(icon==="finish"){
+      loadAndIncrementGameCount();}
+    }, []);  
     useEffect(() => {
       const loadAndIncrementScoreArray = async () => {
         try {
@@ -54,7 +69,7 @@ export function FinishGameScreen({ country, currentFlag, score, setScore, correc
             console.log("Existing score array before adding new score:", storedScoreArray);
             
             // Add the new score
-            const incrementedScoreArray = storedScoreArray ? storedScoreArray.concat(score) : [score];
+            const incrementedScoreArray = storedScoreArray ? "[]" :score //storedScoreArray.concat(score) : [score];
             console.log("Updated score array in Finish Game with new score:", incrementedScoreArray);
             
             // Store the new score array in AsyncStorage
@@ -70,9 +85,17 @@ export function FinishGameScreen({ country, currentFlag, score, setScore, correc
           console.error("Error loading or updating score array:", error);
         }
       };
-    
-      loadAndIncrementScoreArray();
-    }, [icon]); // Removed extra brace, added "icon" to dependencies
+    if(icon==="finish"){
+      loadAndIncrementScoreArray();}
+    }, []); // Removed extra brace, added "icon" to dependencies
+
+    function practiceButtonPress(){
+      setCountryUnderscore("")
+      setCountry("")
+      setCurrentFlag("")
+      setIcon("practice");
+      console.log("Set to practice from finish", icon)
+    }
     
 
 
@@ -85,14 +108,14 @@ setCorrectAnswers={setCorrectAnswers}
       <Text style={s.mainContentText}>
       {countryUnderscore === currentFlag
     ? `Congratulations. You Are Right. The Answer Is ${country}.`
-    : `Unlucky. That Was Not Correct. The Answer Is ${flags[arrayDailyFlags[turns]]}.`}
+    : `Unlucky. That Was Not Correct. The Answer Is ${country}.`}
   {'\n'}
 </Text>
 <Text style = {s.scoreText}>
     {`Your FLAGL Score is ${score}%`}
     {'\n'}
 </Text>
-<TouchableOpacity onPress ={()=>setIcon("practice")}>
+<TouchableOpacity onPress ={practiceButtonPress}>
   <Text>FLAGL Practice Mode</Text>
 </TouchableOpacity>
 

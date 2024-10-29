@@ -25,17 +25,37 @@ export default function Index() {
   const[currentFlag, setCurrentFlag] = useState(0);
   const[currentPracticeFlag, setCurrentPracticeFlag] = useState(0);
   const [country, setCountry] = useState("");
+  const[practiceCountry, setPracticeCountry] = useState("");
   const [turns, setTurns] = useState(0);
   const [arrayDailyFlags, setArrayDailyFlags] = useState([]);
   const [score, setScore] = useState(0);
   const[countryUnderscore, setCountryUnderscore]=useState("");
+  const[practiceCountryUnderscore, setPracticeCountryUnderscore] = useState("");
   const[correctAnswers, setCorrectAnswers]=useState(0);
   const [haveAnswer, setHaveAnswer] = useState(false);
+  const [practiceHaveAnswer, setPracticeHaveAnswer] = useState(false);
   const [gameCount, setGameCount] = useState(0);
   const[scoreArray, setScoreArray] = useState([])
   const[countryMatchingPredText, setCountryMatchingPredText]=useState([])
   const[countryButtonVisible, setCountryButtonVisible] = useState(false)
+  const[practiceCountryButtonVisible, setPracticeCountryButtonVisible] = useState(false)
   const [inputValue, setInputValue] = useState("");
+
+
+  /*Changes:
+  Make input easier
+  Add clipboard
+  Add timing
+  Layout
+  Landscape view
+  Switch between modes
+  Make sure flag alway displays
+  Put country in async storage
+  Put currentFlag in async storage
+  seperate practice country
+  separate currentFlag practice
+  */
+
   
 
 
@@ -92,12 +112,15 @@ export default function Index() {
         setScore={setScore}
         haveAnswer = {haveAnswer}
         setHaveAnswer = {setHaveAnswer}
+        practiceHaveAnswer={practiceHaveAnswer}
+        setPracticeHaveAnswer={setPracticeHaveAnswer}
       countryMatchingPredText={countryMatchingPredText}
       setCountryMatchingPredText={setCountryMatchingPredText}
       inputValue={inputValue}
       setInputValue={setInputValue}
       countryButtonVisible={countryButtonVisible}
       setCountryButtonVisible={setCountryButtonVisible}
+   
         />
         
        
@@ -115,26 +138,30 @@ export default function Index() {
         setIcon={setIcon}
     currentPracticeFlag={currentPracticeFlag}
     setCurrentPracticeFlag = {setCurrentPracticeFlag}
-        country={country}
-        setCountry={setCountry}
+        practiceCountry={practiceCountry}
+        setPracticeCountry={setPracticeCountry}
         turns={turns}
         setTurns={setTurns}
         arrayDailyFlags={arrayDailyFlags}
         setArrayDailyFlags={setArrayDailyFlags}
         correctAnswers ={correctAnswers}
         setCorrectAnswers={setCorrectAnswers}
-        countryUnderscore={countryUnderscore}
-        setCountryUnderscore={setCountryUnderscore}
+        practiceCountryUnderscore={practiceCountryUnderscore}
+        setPracticeCountryUnderscore={setPracticeCountryUnderscore}
         score={score}
         setScore={setScore}
-        haveAnswer = {haveAnswer}
-        setHaveAnswer = {setHaveAnswer}
+        practiceHaveAnswer = {practiceHaveAnswer}
+        setPracticeHaveAnswer = {setPracticeHaveAnswer}
         countryMatchingPredText={countryMatchingPredText}
         setCountryMatchingPredText={setCountryMatchingPredText}
         inputValue={inputValue}
         setInputValue={setInputValue}
         countryButtonVisible={countryButtonVisible}
         setCountryButtonVisible={setCountryButtonVisible}
+        practiceCountryButtonVisible={practiceCountryButtonVisible}
+        setPracticeCountryButtonVisible={setPracticeCountryButtonVisible}
+
+
 
         />
         
@@ -153,20 +180,18 @@ export default function Index() {
         setIcon={setIcon}
         currentPracticeFlag={currentPracticeFlag}
         setCurrentPracticeFlag = {setCurrentPracticeFlag}
-        country={country}
-        setCountry={setCountry}
+        practiceCountry={practiceCountry}
+        setPracticeCountry={setPracticeCountry}
         turns={turns}
         setTurns={setTurns}
         arrayDailyFlags={arrayDailyFlags}
         setArrayDailyFlags={setArrayDailyFlags}
         correctAnswers ={correctAnswers}
         setCorrectAnswers={setCorrectAnswers}
-        countryUnderscore={countryUnderscore}
-        setCountryUnderscore={setCountryUnderscore}
-        score={score}
-        setScore={setScore}
-        haveAnswer = {haveAnswer}
-        setHaveAnswer = {setHaveAnswer}
+        practiceCountryUnderscore={practiceCountryUnderscore}
+        setPracticeCountryUnderscore={setPracticeCountryUnderscore}
+        practiceHaveAnswer = {haveAnswer}
+        setPracticeHaveAnswer = {setHaveAnswer}
         countryMatchingPredText={countryMatchingPredText}
         setCountryMatchingPredText={setCountryMatchingPredText}
         inputValue={inputValue}
@@ -216,7 +241,9 @@ export default function Index() {
       return(<>
       <FinishGameScreen
       country={country}
+      setCountry={setCountry}
       currentFlag = {currentFlag}
+      setCurrentFlag={setCurrentFlag}
       score={score}
       setScore={setScore}
       countryUnderscore={countryUnderscore}
@@ -234,6 +261,7 @@ export default function Index() {
       turns={turns}
       setTurns={setTurns}
       icon={icon}
+      setIcon={setIcon}
       scoreArray={scoreArray}
       setScoreArray={setScoreArray}
       //lastScreen={lastScreen}
