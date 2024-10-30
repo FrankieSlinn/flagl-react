@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Image, View, Text } from "react-native";
 import { s } from "../../App.style.js";
 import { CloseButton } from "../CloseButton/CloseButton";
-import { storeGameCount, getStoredGameCount, storeScore, getStoredScore, getAllStoredScores} from '../../utils/asyncStorageUtils';
+import {  storeScore, getStoredScore, getAllStoredScores} from '../../utils/asyncStorageUtils';
 import  { useScreenContext } from '../../utils/helpLastScreen';
 
 
@@ -26,29 +26,23 @@ export function Stats({ icon, setIcon, correctAnswers, setCorrectAnswers, turns,
         const fetchScore = async () => {
             const score = await getStoredScore();
             console.log("Score in stats", score)
-           // setScore(score);  // Set the score in state
+         / setScore(score);  // Set the score in state
         };
 
         fetchScore();
 
-        const fetchGameCount = async () => {
-            const gameCountInStats = await getStoredGameCount();
-            console.log("get game Count in Stats", gameCountInStats)
-            console.log("getStoredGameCount in Stats", getStoredGameCount())
-            setGameCount(gameCountInStats);
-            
-   
-            //setStoredGameCount(gameCount);  // Set the game count in state
-        };
 
-        fetchGameCount();
+   
 
         const fetchScoreArray= async () => {
           const scoreArrayInStats = await getAllStoredScores();
+          console.log("await getg allstoredscores in stats", scoreArrayInStats)
+          setGameCount(scoreArrayInStats.length)
+          console.log("gameCount from allstoredscores array in stats", scoreArrayInStats.length)
           const totalScore = scoreArrayInStats.reduce((acc, score) => acc + score, 0);
           console.log("Total score", totalScore)
 
-          const average = totalScore/scoreArrayInStats.length; 
+          const average = (totalScore / scoreArrayInStats.length).toFixed(2);
           setAverageScore(average)
           console.log("averageScore: ", averageScore)
           console.log("get score Array in Stats", scoreArrayInStats)

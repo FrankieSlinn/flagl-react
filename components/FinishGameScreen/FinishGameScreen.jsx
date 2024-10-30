@@ -7,7 +7,7 @@ import{useEffect} from "react";
 import  { useScreenContext } from '../../utils/helpLastScreen';
 
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
-import { getStoredGameCount, storeAllScores, storeScore, getAllStoredScores, storeGameCount} from '../../utils/asyncStorageUtils';
+import { getStoredGameCount, storeAllScores, storeScore, getAllStoredScores, storeGameCount, getStoredCountryUnderscore} from '../../utils/asyncStorageUtils';
 
 export function FinishGameScreen({ country, setCountry, currentFlag, setCurrentFlag, score, setScore, correctAnswers, setCorrectAnswers, countryUnderscore, setCountryUnderscore,
   gameCount, setGameCount, arrayDailyFlags,  turns, setTurns, icon, setIcon
@@ -26,7 +26,7 @@ export function FinishGameScreen({ country, setCountry, currentFlag, setCurrentF
 
     useEffect(() => {
       const fetchCountryunderscore = async () => {
-          const countryUnderscore = await getCountryUnderscore();
+          const countryUnderscore = await getStoredCountryUnderscore();
           console.log("Score in stats", score)
           setCountryunderscore(countryUnderscore);  // Set the countryUnderscore in state
           setCountry(countryUnderscore.replace("_", " ")); // Set the countryUnderscore in
@@ -69,7 +69,8 @@ export function FinishGameScreen({ country, setCountry, currentFlag, setCurrentF
             console.log("Existing score array before adding new score:", storedScoreArray);
             
             // Add the new score
-            const incrementedScoreArray = storedScoreArray ? "[]" :score //storedScoreArray.concat(score) : [score];
+            const incrementedScoreArray = Array.isArray(storedScoreArray) ? storedScoreArray.concat([score]) : [score];
+            console.log("[score]", [score])
             console.log("Updated score array in Finish Game with new score:", incrementedScoreArray);
             
             // Store the new score array in AsyncStorage
