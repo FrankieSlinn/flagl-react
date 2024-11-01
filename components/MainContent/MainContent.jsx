@@ -198,6 +198,8 @@ useEffect(() => {
       </View>
         <View style={s.inputView}>
         <Input 
+          autoCorrect={false} // Disables predictive text
+  autoComplete="off"
         countryButtonVisible={countryButtonVisible}
         setCountryButtonVisible={setCountryButtonVisible}
         inputValue={inputValue}

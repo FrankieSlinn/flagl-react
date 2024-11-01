@@ -9,7 +9,8 @@ import  { useScreenContext } from '../../utils/helpLastScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
 import { getStoredGameCount, storeAllScores, storeScore, getAllStoredScores, storeGameCount, getStoredCountryUnderscore} from '../../utils/asyncStorageUtils';
 
-export function FinishGameScreen({ country, setCountry, currentFlag, setCurrentFlag, score, setScore, correctAnswers, setCorrectAnswers, countryUnderscore, setCountryUnderscore,
+export function FinishGameScreen({ country, setCountry, currentFlag, setCurrentFlag, score, setScore, correctAnswers, setCorrectAnswers, 
+  countryUnderscore, setCountryUnderscore,
   gameCount, setGameCount, arrayDailyFlags,  turns, setTurns, icon, setIcon
  }) {
 
@@ -28,7 +29,7 @@ export function FinishGameScreen({ country, setCountry, currentFlag, setCurrentF
       const fetchCountryunderscore = async () => {
           const countryUnderscore = await getStoredCountryUnderscore();
           console.log("Score in stats", score)
-          setCountryunderscore(countryUnderscore);  // Set the countryUnderscore in state
+          setCountryUnderscore(countryUnderscore);  // Set the countryUnderscore in state
           setCountry(countryUnderscore.replace("_", " ")); // Set the countryUnderscore in
       };
     
@@ -41,26 +42,26 @@ export function FinishGameScreen({ country, setCountry, currentFlag, setCurrentF
         }
     }, [score]);
 
-    useEffect(() => {
-      const loadAndIncrementGameCount = async () => {
-        try {
-          // Retrieve stored game count
-          if (icon === "finish") {
-            const storedGameCount = await getStoredGameCount();
-            const incrementedGameCount = storedGameCount + 1;
-            console.log("getStoredGameCount in Finish Game", incrementedGameCount);
+    // useEffect(() => {
+    //   const loadAndIncrementGameCount = async () => {
+    //     try {
+    //       // Retrieve stored game count
+    //       if (icon === "finish") {
+    //         const storedGameCount = await getStoredGameCount();
+    //         const incrementedGameCount = storedGameCount + 1;
+    //         console.log("getStoredGameCount in Finish Game", incrementedGameCount);
     
     
-            // Store the new game count back to AsyncStorage
-            await AsyncStorage.setItem("gameCount", JSON.stringify(incrementedGameCount));
-          }
-        } catch (error) {
-          console.error("Error loading or updating game count:", error);
-        }
-      };
-    if(icon==="finish"){
-      loadAndIncrementGameCount();}
-    }, []);  
+    //         // Store the new game count back to AsyncStorage
+    //         await AsyncStorage.setItem("gameCount", JSON.stringify(incrementedGameCount));
+    //       }
+    //     } catch (error) {
+    //       console.error("Error loading or updating game count:", error);
+    //     }
+    //   };
+    // if(icon==="finish"){
+    //   loadAndIncrementGameCount();}
+    // }, []);  
     useEffect(() => {
       const loadAndIncrementScoreArray = async () => {
         try {

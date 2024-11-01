@@ -41,14 +41,7 @@ return ( <>
     brilliant game Worlde created by the talented Josh Wardle.
     {"\n"}
     {"\n"}
-    Want to get better at guessing flags? Try:{" "}
-    <Text
-      style={s.link}
-      onPress={() => setIcon("practice")}
-    >
-      Practice FLAGL
-    </Text>
-    .{"\n\n"}
+
     For a wider geography quiz see:{" "}
     <Text
       style={s.link}

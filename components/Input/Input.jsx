@@ -52,7 +52,8 @@ placeholder = "Type and buttons will appear"
 
 onChangeText = {(text)=>{
 setInputValue(text);
-setCountryButtonVisible(text.length > 0)
+setCountryButtonVisible(inputValue.length > 0)
+
 console.log("in input check which icon //is country button visible?", icon, countryButtonVisible)
 
 populateCountryArray(text);
