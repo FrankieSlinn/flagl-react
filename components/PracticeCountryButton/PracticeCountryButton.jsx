@@ -82,6 +82,7 @@ console.log("practice country Button visible in country button component", pract
 
   , []); // Add dependencies, such as setCountryUnderscore if it's from props or state
   
+  
 // updateCountryUnderscore();
 
   // Effect to compare countryUnderscore with currentFlag after both are updated
@@ -130,10 +131,10 @@ console.log("practice country Button visible in country button component", pract
     setPracticeCountry(selectedCountry); // Update country, triggers the useEffect to update countryUnderscore
     //setNewCountryUnderscore(selectedCountry);
     setPracticeCountryButtonVisible(false)
-    console.log("country in country button after press", country)
+    console.log("country in practice country button after press", practiceCountry)
     
- 
-    console.log("country after selected by pressing country button", country)}
+    }
+
 
 
 

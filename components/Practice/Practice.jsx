@@ -49,15 +49,18 @@ export function Practice({icon, setIcon, currentPracticeFlag, setCurrentPractice
   function randomNumberPractice() {
     return Math.abs(Math.floor(Math.random() * (flags.length - 1)));
   }
-
   useEffect(() => {
-    getPracticeFlagName();
+    setRandomPracticeFlag();
   }, []);
 
-  function getPracticeFlagName() {
-    const randomFlag = flags[randomNumberPractice()];
-    setCurrentPracticeFlag(String(randomFlag));
-    console.log("current Flag in practice", randomFlag);
+
+  function setRandomPracticeFlag() {
+    const randomIndex = Math.floor(Math.random() * flags.length);
+    const randomFlag = flags[randomIndex];
+    const stringRandomFlag=(String(randomFlag));
+    setCurrentPracticeFlag(stringRandomFlag);
+    console.log("currentPracticeFlag set to:", randomFlag);
+    setPracticeCountryUnderscore(stringRandomFlag.replace(" ", "_"));
   }
 
 //go to correct game mode screen determined by turn
@@ -88,7 +91,7 @@ export function Practice({icon, setIcon, currentPracticeFlag, setCurrentPractice
 
         <View>
           <Image
-            source={allFlagImages[currentPracticeFlag]}
+            source={allFlagImages[practiceCountryUnderscore]}
             style={s.flagImage}
           />
         </View>
