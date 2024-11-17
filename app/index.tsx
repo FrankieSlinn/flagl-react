@@ -1,9 +1,9 @@
 import {
   View,
-  ScrollView,
   Text,
-  TouchableOpacity,
-  Linking,
+  ScrollView, 
+  KeyboardAvoidingView,
+  Platform, Keyboard
 } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { s } from "../App.style";
@@ -16,7 +16,7 @@ import { Practice } from "../components/Practice/Practice";
 import { PracticeFeedback} from "../components/PracticeFeedback/PracticeFeedback";
 import { FeedbackScreen } from "../components/FeedbackScreen/FeedbackScreen";
 import {FinishGameScreen} from "../components/FinishGameScreen/FinishGameScreen";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ScreenProvider } from '../utils/helpLastScreen';
 
 export default function Index() {
@@ -40,23 +40,63 @@ export default function Index() {
   const[countryButtonVisible, setCountryButtonVisible] = useState(false)
   const[practiceCountryButtonVisible, setPracticeCountryButtonVisible] = useState(false)
   const [inputValue, setInputValue] = useState("");
-
-
+   const [keyboardOffset, setKeyboardOffset] = useState(0);
   /*Changes:
   Make input easier
   Add clipboard
   Add timing
   Layout
   Landscape view
-  Switch between modes
-  Make sure flag alway displays
-  Put country in async storage
-  Put currentFlag in async storage
-  seperate practice country
-  separate currentFlag practice
+  Switch between modes - Prob not necessary.
+  Make sure flag alway displays - Prob done. 
+  Put country in async storage - Prob not necessary
+  Put currentFlag in async storage - Prob not necessary
+  seperate practice country - Done
+  separate currentFlag practice - Prob not necessary
+  If don't get word show message, type in valid country name
   */
 
+
+  useEffect(() => {
+   
+    // const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', (event) => {
+    //   const height = event.endCoordinates.height;
+    //   // Move the screen up by 100 pixels when the keyboard is shown
+    //   Animated.timing(keyboardHeight, {
+    //     toValue: -height, // Move up by 250 pixels
+    //     duration: 0,
+    //     useNativeDriver: true
+    //   }).start(
+   
+    //   );
+    // });
+
+    // const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
+    //   // Reset the screen position when the keyboard is hidden
+    //   Animated.timing(keyboardHeight, {
+    //     toValue: 0,
+    //     duration: 0,
+    //     useNativeDriver: true,
+    //   }).start();
+    // });
+
+    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', (event) => {
+      setKeyboardOffset(-event.endCoordinates.height);
+    });
+
+    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
+      setKeyboardOffset(0);
+    });
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
+
+
   
+
 
 
   const renderContent = () => {
@@ -120,6 +160,7 @@ export default function Index() {
       setInputValue={setInputValue}
       countryButtonVisible={countryButtonVisible}
       setCountryButtonVisible={setCountryButtonVisible}
+      //scrollViewRef={scrollViewRef}
    
         />
         
@@ -140,12 +181,10 @@ export default function Index() {
     setCurrentPracticeFlag = {setCurrentPracticeFlag}
         practiceCountry={practiceCountry}
         setPracticeCountry={setPracticeCountry}
-        turns={turns}
-        setTurns={setTurns}
+
         arrayDailyFlags={arrayDailyFlags}
         setArrayDailyFlags={setArrayDailyFlags}
-        correctAnswers ={correctAnswers}
-        setCorrectAnswers={setCorrectAnswers}
+
         practiceCountryUnderscore={practiceCountryUnderscore}
         setPracticeCountryUnderscore={setPracticeCountryUnderscore}
         score={score}
@@ -160,6 +199,7 @@ export default function Index() {
         setCountryButtonVisible={setCountryButtonVisible}
         practiceCountryButtonVisible={practiceCountryButtonVisible}
         setPracticeCountryButtonVisible={setPracticeCountryButtonVisible}
+       // scrollViewRef={scrollViewRef}
 
 
 
@@ -264,20 +304,20 @@ export default function Index() {
       setIcon={setIcon}
       scoreArray={scoreArray}
       setScoreArray={setScoreArray}
-      //lastScreen={lastScreen}
-      //setLastScreen={setLastScreen}
-      
+
       />
       </>)
 
   };
+
 
   return (
     <>
    
       <SafeAreaProvider >
       <SafeAreaView 
-  style={[s.app, { backgroundColor: icon === "practice" || icon === "practiceFeedback" ? "#e7feff" : "white" }]}
+  style={[s.app, { backgroundColor: icon === "practice" || icon === "practiceFeedback" ? "#e7feff" : "white", flex: 1, transform: [{ translateY: keyboardOffset }] }, ]}
+  //[s.mainContent, { flex: 1, transform: [{ translateY: keyboardOffset }] }]}  
 >
           <ScreenProvider>
           <View style={s.header}>
@@ -289,9 +329,20 @@ export default function Index() {
             />
           </View>
           <View style={s.body}>
-            <ScrollView showsVerticalScrollIndicator={false}>
+          {/* <KeyboardAvoidingView
+  style={{ flex: 1 }}
+  behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+  keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
+    > */}
+            <ScrollView showsVerticalScrollIndicator={false} 
+              keyboardShouldPersistTaps={true}
+          
+               keyboardDismissMode="interactive"
+ 
+    contentContainerStyle={{ flexGrow: 1 }}>
               {renderContent()}
             </ScrollView>
+            {/* </KeyboardAvoidingView> */}
           </View>
           </ScreenProvider>
           <View style={s.footer}>

@@ -109,8 +109,8 @@ setCorrectAnswers={setCorrectAnswers}
 />
       <Text style={s.mainContentText}>
       {countryUnderscore === currentFlag
-    ? `Congratulations. You Are Right. The Answer Is ${country}.`
-    : `Unlucky. That Was Not Correct. The Answer Is ${country}.`}
+    ? `Congratulations. You Are Right. The Answer Is ${currentFlag.replace("_", " ")}.`
+    : `Unlucky. That Was Not Correct. The Answer Is ${currentFlag.replace("_", " ")}.`}
   {'\n'}
 </Text>
 <Text style = {s.scoreText}>

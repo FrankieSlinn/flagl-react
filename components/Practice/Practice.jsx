@@ -25,6 +25,7 @@ export function Practice({icon, setIcon, currentPracticeFlag, setCurrentPractice
     setPracticeCountryButtonVisible,
     practiceCountryMatchingPredText,
     setPracticeCountryMatchingPredText,
+    scrollViewRef
 
 }){
 
@@ -37,11 +38,6 @@ export function Practice({icon, setIcon, currentPracticeFlag, setCurrentPractice
     setLastScreen("practice")
     console.log("last screen practice", )
     }, []);
-
-
-
-
-
 
 
   useEffect(() => { randomNumberPractice(); }, []);
@@ -104,12 +100,12 @@ export function Practice({icon, setIcon, currentPracticeFlag, setCurrentPractice
           <PracticeInput 
           practiceCountryButtonVisible={practiceCountryButtonVisible}
           setPracticeCountryButtonVisible={setPracticeCountryButtonVisible}
-            //countryButtonVisible={countryButtonVisible}
-            //setCountryButtonVisible={setCountryButtonVisible}
+
             inputValue={inputValue}
             setInputValue={setInputValue}
             countryMatchingPredText={countryMatchingPredText}
             setCountryMatchingPredText={setCountryMatchingPredText}
+            scrollViewRef={scrollViewRef}
        
           />
         </View>
@@ -134,6 +130,7 @@ export function Practice({icon, setIcon, currentPracticeFlag, setCurrentPractice
             setPracticeHaveAnswer={setPracticeHaveAnswer}
   practiceCountryButtonVisible={practiceCountryButtonVisible}
   setPracticeCountryButtonVisible={setPracticeCountryButtonVisible}
+  scrollViewRef={scrollViewRef}
   />
         </View>
 
