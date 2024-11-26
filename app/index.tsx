@@ -6,6 +6,7 @@ import {
   Platform, Keyboard
 } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import { s } from "../App.style";
 import { Header } from "../components/Header/Header";
 
@@ -40,7 +41,10 @@ export default function Index() {
   const[countryButtonVisible, setCountryButtonVisible] = useState(false)
   const[practiceCountryButtonVisible, setPracticeCountryButtonVisible] = useState(false)
   const [inputValue, setInputValue] = useState("");
-   const [keyboardOffset, setKeyboardOffset] = useState(0);
+   //May Need Later!!!! const [keyboardOffset, setKeyboardOffset] = useState(0);
+
+
+
   /*Changes:
   Make input easier
   Add clipboard
@@ -55,45 +59,35 @@ export default function Index() {
   separate currentFlag practice - Prob not necessary
   If don't get word show message, type in valid country name
   */
-
+  const keyboardOffset = useSharedValue(0);
 
   useEffect(() => {
-   
-    // const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', (event) => {
-    //   const height = event.endCoordinates.height;
-    //   // Move the screen up by 100 pixels when the keyboard is shown
-    //   Animated.timing(keyboardHeight, {
-    //     toValue: -height, // Move up by 250 pixels
-    //     duration: 0,
-    //     useNativeDriver: true
-    //   }).start(
-   
-    //   );
-    // });
+    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', (event) => {
+      keyboardOffset.value = withSpring(-event.endCoordinates.height, {
+        damping: 20,
+        stiffness: 100,
+      });
+    });
+    
 
     // const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
-    //   // Reset the screen position when the keyboard is hidden
-    //   Animated.timing(keyboardHeight, {
-    //     toValue: 0,
-    //     duration: 0,
-    //     useNativeDriver: true,
-    //   }).start();
+    //   keyboardOffset.value = withSpring(0, {
+    //     damping: 20,
+    //     stiffness: 100,
+    //   });
     // });
-
-    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', (event) => {
-      setKeyboardOffset(-event.endCoordinates.height);
-    });
-
-    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
-      setKeyboardOffset(0);
-    });
 
     return () => {
       keyboardDidShowListener.remove();
-      keyboardDidHideListener.remove();
+     // keyboardDidHideListener.remove();
     };
   }, []);
 
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateY: keyboardOffset.value }],
+    };
+  });
 
   
 
@@ -160,6 +154,7 @@ export default function Index() {
       setInputValue={setInputValue}
       countryButtonVisible={countryButtonVisible}
       setCountryButtonVisible={setCountryButtonVisible}
+      keyboardOffset={keyboardOffset}
       //scrollViewRef={scrollViewRef}
    
         />
@@ -316,8 +311,10 @@ export default function Index() {
    
       <SafeAreaProvider >
       <SafeAreaView 
-  style={[s.app, { backgroundColor: icon === "practice" || icon === "practiceFeedback" ? "#e7feff" : "white", flex: 1, transform: [{ translateY: keyboardOffset }] }, ]}
+  style={[s.app, animatedStyle, 
+    { backgroundColor: icon === "practice" || icon === "practiceFeedback" ? "#e7feff" : "white", flex: 1, transform: [{ translateY: icon===""?keyboardOffset.value:0 }],}, ]}
   //[s.mainContent, { flex: 1, transform: [{ translateY: keyboardOffset }] }]}  
+  //style={[s.app, animatedStyle]
 >
           <ScreenProvider>
           <View style={s.header}>
@@ -339,7 +336,7 @@ export default function Index() {
           
                keyboardDismissMode="interactive"
  
-    contentContainerStyle={{ flexGrow: 1 }}>
+    >
               {renderContent()}
             </ScrollView>
             {/* </KeyboardAvoidingView> */}

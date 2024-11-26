@@ -49,6 +49,7 @@ export function MainContent({
   setPracticeHaveAnswer,
   practiceCountryButtonVisible,
   setPracticeCountryButtonVisible,
+  keyboardOffset
 
 }) {
   let arrayFlagNames = [];
@@ -60,7 +61,9 @@ export function MainContent({
 
   const scrollViewRef = useRef(null);
 
-  const [keyboardOffset, setKeyboardOffset] = useState(0);
+ 
+
+  //const [keyboardOffset, setKeyboardOffset] = useState(0);
 
 
 
@@ -243,7 +246,8 @@ export function MainContent({
    // keyboardDismissMode="interactive"
     > */}
        
-        <View style={[s.mainContent, { flex: 1, transform: [{ translateY: keyboardOffset }] }]}    >
+        <View style={[s.mainContent, { flex: 1 }]}    >
+     
         <Stars
           correctAnswers={correctAnswers}
           setCorrectAnswers={setCorrectAnswers}
@@ -320,6 +324,8 @@ export function MainContent({
             practiceCountry={practiceCountry}
             setPracticeCountry={setPracticeCountry}
             scrollViewRef={scrollViewRef}
+            keyboardOffset={keyboardOffset}
+            //setKeyboardOffset={setKeyboardOffset}
           />
         </View>
   

@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, useContext } from "react-native";
 import { useEffect, useState } from "react";
 import { Stars } from "../Stars/Stars";
 //import {useCorrectAnswer} from "../../utils/useCorrectAnswer"
-
+import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import { flags } from "../../utils/countryTerritoryNames";
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
 import  { useScreenContext }from '../../utils/helpLastScreen';
@@ -34,12 +34,37 @@ export function FeedbackScreen({
 }) {
   const { lastScreen, setLastScreen } = useScreenContext();
 
+  const [translateY, setTranslateY] = useState(0);
+
+  const moveToNormalPosition = () => {
+    
+    setTranslateY(0); // Reset translateY to 0
+    console.log("Moving screen back to original position", translateY);
+  };
+
+  //NOTE: withTiming instead of withSpring could be good
+
+
+  // const moveScreenBack = useAnimatedStyle(() => {
+  //   return {
+  //     transform: [{ screenMoveDown.value: 0}],
+  //   };
+  // });
+
 
   useEffect(() => {
 setLastScreen("feedback")
 
 console.log("last Screen in feedback", lastScreen)
 }, []);
+
+// useEffect(()=>{
+//   screenMoveDown.value = withSpring(0, {
+//     damping: 20,
+//     stiffness: 100,
+//   });
+
+// })
 
 useEffect(() => {
   const fetchCountryunderscore = async () => {
@@ -157,7 +182,7 @@ useEffect(() => {
  
 
   return (
-    <View style={s.mainContent}>
+    <View style={[s.mainContent, { transform: [{ translateY }] }]}>
       <Stars
         correctAnswers={correctAnswers}
         setCorrectAnswers={setCorrectAnswers}

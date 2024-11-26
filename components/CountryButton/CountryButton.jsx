@@ -1,9 +1,10 @@
 import { Text, View, TouchableOpacity, Animated, Keyboard } from "react-native";
 import { useEffect, useCallback, useState , useLayoutEffect} from "react";
-
+//import { useShared } from '../../SharedContext';
 import { s } from "../../App.style.js";
 import { flags } from "../../utils/countryTerritoryNames";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import { useScreenContext } from "../../utils/helpLastScreen";
 import {
   getStoredGameCount,
@@ -42,6 +43,8 @@ export function CountryButton({
   countryButtonVisible,
   setCountryButtonVisible,
   scrollViewRef,
+  keyboardOffset,
+  translateY,
 }) {
   console.log(
     "country Button visible in country button component",
@@ -49,6 +52,17 @@ export function CountryButton({
   );
 
   const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
+  const moveScreenBack = useAnimatedStyle(() => {
+    return {
+      transform: [{ moveYBack: 0}],
+    };
+  });
+
+
+
+  // const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
+
+  // });
 
 
 
@@ -141,7 +155,12 @@ export function CountryButton({
 
   // Function to handle button press and update the country state
   function handleButtonPress(selectedCountry) {
+    keyboardOffset.value = withSpring(0, {
+      damping: 20,
+      stiffness: 100,
+    });
     if (icon === "") {
+ 
       Keyboard.dismiss()
      
       setCountry(selectedCountry); // Update country, triggers the useEffect to update countryUnderscore
