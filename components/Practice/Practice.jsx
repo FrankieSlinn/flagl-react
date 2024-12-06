@@ -25,7 +25,7 @@ export function Practice({icon, setIcon, currentPracticeFlag, setCurrentPractice
     setPracticeCountryButtonVisible,
     practiceCountryMatchingPredText,
     setPracticeCountryMatchingPredText,
-    scrollViewRef
+
 
 }){
 
@@ -57,6 +57,7 @@ export function Practice({icon, setIcon, currentPracticeFlag, setCurrentPractice
     setCurrentPracticeFlag(stringRandomFlag);
     console.log("currentPracticeFlag set to:", randomFlag);
     setPracticeCountryUnderscore(stringRandomFlag.replace(" ", "_"));
+    console.log("practiceCountryUnderscore", practiceCountryUnderscore)
   }
 
 //go to correct game mode screen determined by turn
@@ -105,7 +106,7 @@ export function Practice({icon, setIcon, currentPracticeFlag, setCurrentPractice
             setInputValue={setInputValue}
             countryMatchingPredText={countryMatchingPredText}
             setCountryMatchingPredText={setCountryMatchingPredText}
-            scrollViewRef={scrollViewRef}
+
        
           />
         </View>
@@ -130,7 +131,7 @@ export function Practice({icon, setIcon, currentPracticeFlag, setCurrentPractice
             setPracticeHaveAnswer={setPracticeHaveAnswer}
   practiceCountryButtonVisible={practiceCountryButtonVisible}
   setPracticeCountryButtonVisible={setPracticeCountryButtonVisible}
-  scrollViewRef={scrollViewRef}
+
   />
         </View>
 

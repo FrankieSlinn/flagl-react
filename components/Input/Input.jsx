@@ -15,33 +15,7 @@ export function Input({
 
 }) {
 
-  // const [keyboardHeight] = useState(new Animated.Value(0));
 
-  // const scrollViewRef = useRef(null);
-
-
-  // useEffect(() => {
-  //   const keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", (event) => {
-  //     Animated.timing(keyboardHeight, {
-  //       toValue: -event.endCoordinates.height +200, // Move up by keyboard height
-  //       duration: 300,
-  //       useNativeDriver: false,
-  //     }).start();
-  //   });
-
-  //   const keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", () => {
-  //     Animated.timing(keyboardHeight, {
-  //       toValue: 0,
-  //       duration: 300,
-  //       useNativeDriver: false,
-  //     }).start();
-  //   });
-
-  //   return () => {
-  //     keyboardDidShowListener.remove();
-  //     //keyboardDidHideListener.remove();
-  //   };
-  // }, []);
 
   function populateCountryArray(inputValue) {
     console.log("countrybutton visible", countryButtonVisible);
@@ -71,24 +45,7 @@ export function Input({
     console.log("matching flag Names reduced to 5", arrayFlagNames);
   }
 
-//   const handleInputFocus = () => {
-//     scrollViewRef.current?.scrollTo({ y: -200, animated: true }); // Adjust `y` to the position you want
-//   };
 
-// useEffect(() => {
-//     const keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", () => {
-//       scrollViewRef.current?.scrollTo({ y: 100, animated: true }); // Adjust `y` as needed
-//     });
-
-//     const keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", () => {
-//       scrollViewRef.current?.scrollTo({ y: 0, animated: true });
-//     });
-
-//     return () => {
-//       keyboardDidShowListener.remove();
-//       keyboardDidHideListener.remove();
-//     };
-//   }, [scrollViewRef]);
 
 
 
@@ -100,21 +57,18 @@ export function Input({
    
    
         <TextInput
-              // onFocus={() => {
-              //   scrollViewRef.current?.scrollTo({ y: -150, animated: true });
-              // }}
+            
           style={s.inputText}
           placeholder="Type and buttons will appear"
           autoCorrect={false} // Disables autocorrect
           autoComplete="one-time-code"
-          //onSubmitEditing={()=> Keyboard.dismiss()}
-          //secureTextEntry={true} //this worked for no suggestions but doesn't show letters
+
           textContentType="none"
           keyboardType="visible-password"
           spellCheck={false}
           onChangeText={(text) => {
             setInputValue(text);
-           // setCountryButtonVisible(inputValue.length > 0);
+         
 
             console.log(
               "in input check which icon //is country button visible?",

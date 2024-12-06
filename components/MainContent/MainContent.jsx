@@ -63,8 +63,6 @@ export function MainContent({
 
  
 
-
-
   let currentFlagNumber;
 
   arrayDailyFlags.forEach((flag, index) => {

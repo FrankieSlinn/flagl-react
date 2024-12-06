@@ -42,7 +42,6 @@ export function CountryButton({
 
   countryButtonVisible,
   setCountryButtonVisible,
-  scrollViewRef,
   keyboardOffset,
   translateY,
 }) {

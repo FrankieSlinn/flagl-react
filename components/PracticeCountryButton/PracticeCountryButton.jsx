@@ -42,7 +42,7 @@ export function PracticeCountryButton({
     []
   ); 
 
-  const scrollViewRef = useRef(null);
+  //const scrollViewRef = useRef(null);
 
 
   // Effect to compare countryUnderscore with currentFlag after both are updated
@@ -95,7 +95,7 @@ export function PracticeCountryButton({
 
   function practiceHandleButtonPress(selectedCountry) {
     if (icon === "practice") {
-      scrollViewRef.current?.scrollTo({ y: 0, animated: true });
+     // scrollViewRef.current?.scrollTo({ y: 0, animated: true });
       setPracticeCountry(selectedCountry); // Update country, triggers the useEffect to update countryUnderscore
       //setNewCountryUnderscore(selectedCountry);
       setPracticeCountryButtonVisible(false);
@@ -110,22 +110,28 @@ export function PracticeCountryButton({
   function mapCountryArrayToButtons(countryMatchingPredText) {
     if (countryMatchingPredText.length > 0) {
       return countryMatchingPredText.map((country, index) => (
-        <View key={index} style={s.countryButtonContainer}>
-          {practiceCountryButtonVisible && (
+    
+          practiceCountryButtonVisible && (
             <TouchableOpacity
+            key={index}
               style={s.countryButton}
               activeOpacity={0.7}
               onPress={() => practiceHandleButtonPress(country)}
             >
               <Text style={s.countryButtonText}>{country}</Text>
             </TouchableOpacity>
-          )}
-        </View>
+          )
+   
       ));
     } else {
       return null;
     }
   }
-
-  return <>{mapCountryArrayToButtons(countryMatchingPredText)}</>;
+ 
+  return <>
+   <View style={s.countryButtonContainer}>
+  {mapCountryArrayToButtons(countryMatchingPredText)}
+  </View>
+  </>;
 }
+
