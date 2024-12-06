@@ -53,7 +53,7 @@ export function Input({
     setCountryButtonVisible(inputValue.length > 0);
 
     console.log("inputLength", inputLength);
-    for (i = 0; i < flags.length; i++) {
+    for (let i = 0; i < flags.length; i++) {
       if (lowerCaseInput === flags[i].substring(0, inputLength).toLowerCase()) {
         arrayFlagNames.push(flags[i]);
       }

@@ -6,7 +6,7 @@ import {
   Platform, Keyboard
 } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
+import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import { s } from "../App.style";
 import { Header } from "../components/Header/Header";
 
@@ -63,7 +63,7 @@ export default function Index() {
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', (event) => {
-      keyboardOffset.value = withSpring(-event.endCoordinates.height, {
+      keyboardOffset.value = withSpring(-event.endCoordinates.height+70, {
         damping: 20,
         stiffness: 100,
       });
@@ -309,8 +309,7 @@ export default function Index() {
   return (
     <>
    
-     <SafeAreaProvider >
-      <SafeAreaView 
+     <Animated.View
   style={[s.app, animatedStyle, 
     { backgroundColor: icon === "practice" || icon === "practiceFeedback" ? "#e7feff" : "white", flex: 1, transform: [{ translateY: icon===""?keyboardOffset.value:0 }],}, ]}
   //[s.mainContent, { flex: 1, transform: [{ translateY: keyboardOffset }] }]}  
@@ -343,8 +342,7 @@ export default function Index() {
           </View>
           </ScreenProvider>
  
-        </SafeAreaView>
-      </SafeAreaProvider>
+   </Animated.View>>
       <View style={s.footer}>
         <Text>Footer</Text>
       </View>
