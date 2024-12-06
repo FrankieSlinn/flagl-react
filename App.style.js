@@ -6,8 +6,9 @@ export const s = StyleSheet.create({
 
     app:{
   flex:1,
-    
-        padding: 15,
+  paddingTop: 15, // Add padding to the top
+  paddingLeft: 15, // Add padding to the left
+  paddingRight: 15,
         color: "#353839",
         fontSize: 30, // Roughly equivalent to 1.25rem (20px)
         backgroundColor: "white", // Background color for text container
@@ -28,7 +29,9 @@ export const s = StyleSheet.create({
     body:{
         marginTop: -50,
         flex:6,
-        padding: 16,
+        paddingTop: 15, // Add padding to the top
+  paddingLeft: 15, // Add padding to the left
+  paddingRight: 15,
         textAlign: "center",
 
 
@@ -127,6 +130,12 @@ inputText:{
 
 },
 countryButtonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 20, // Adjust as necessary
     alignItems: 'center', // Center the button horizontally
   },
@@ -138,6 +147,8 @@ countryButtonContainer: {
     borderWidth: 1, // Border width
     borderColor: '#388E3C', // Border color
     alignItems: 'center', // Center the text inside the button
+   margin: 5,
+
   },
   countryButtonText: {
     color: '#FFFFFF', // Text color
@@ -168,7 +179,8 @@ countryButtonContainer: {
 
    footer:{
  
-    height:70,
+    height:15,
+    backgroundColor: "orange"
 
     },
 

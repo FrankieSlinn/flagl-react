@@ -177,10 +177,12 @@ export function CountryButton({
   // Function to map country array to buttons
   function mapCountryArrayToButtons(countryMatchingPredText) {
     if (countryMatchingPredText.length > 0) {
+ 
       return countryMatchingPredText.map((country, index) => (
-        <View key={index} style={s.countryButtonContainer}>
-          {countryButtonVisible && (
+    
+          countryButtonVisible && (
             <TouchableOpacity
+            key={index} 
               style={s.countryButton}
               activeOpacity={0.7}
               onPress={() => handleButtonPress(country)}
@@ -189,13 +191,18 @@ export function CountryButton({
             >
               <Text style={s.countryButtonText}>{country}</Text>
             </TouchableOpacity>
-          )}
-        </View>
+          )
+ 
       ));
+    
     } else {
       return null;
     }
   }
 
-  return <>{mapCountryArrayToButtons(countryMatchingPredText)}</>;
+  return <>
+       <View style={s.countryButtonContainer}>
+  {mapCountryArrayToButtons(countryMatchingPredText)};
+  </View>
+  </>
 }

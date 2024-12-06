@@ -63,46 +63,7 @@ export function MainContent({
 
  
 
-  //const [keyboardOffset, setKeyboardOffset] = useState(0);
 
-
-
-  // useEffect(() => {
-   
-  //   // const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', (event) => {
-  //   //   const height = event.endCoordinates.height;
-  //   //   // Move the screen up by 100 pixels when the keyboard is shown
-  //   //   Animated.timing(keyboardHeight, {
-  //   //     toValue: -height, // Move up by 250 pixels
-  //   //     duration: 0,
-  //   //     useNativeDriver: true
-  //   //   }).start(
-   
-  //   //   );
-  //   // });
-
-  //   // const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
-  //   //   // Reset the screen position when the keyboard is hidden
-  //   //   Animated.timing(keyboardHeight, {
-  //   //     toValue: 0,
-  //   //     duration: 0,
-  //   //     useNativeDriver: true,
-  //   //   }).start();
-  //   // });
-
-  //   const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', (event) => {
-  //     setKeyboardOffset(-event.endCoordinates.height);
-  //   });
-
-  //   const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
-  //     setKeyboardOffset(0);
-  //   });
-
-  //   return () => {
-  //     keyboardDidShowListener.remove();
-  //     keyboardDidHideListener.remove();
-  //   };
-  // }, []);
 
   let currentFlagNumber;
 

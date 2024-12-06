@@ -70,16 +70,16 @@ export default function Index() {
     });
     
 
-    // const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
-    //   keyboardOffset.value = withSpring(0, {
-    //     damping: 20,
-    //     stiffness: 100,
-    //   });
-    // });
+    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
+      keyboardOffset.value = withSpring(0, {
+        damping: 20,
+        stiffness: 100,
+      });
+    });
 
     return () => {
       keyboardDidShowListener.remove();
-     // keyboardDidHideListener.remove();
+     keyboardDidHideListener.remove();
     };
   }, []);
 
@@ -309,7 +309,7 @@ export default function Index() {
   return (
     <>
    
-      <SafeAreaProvider >
+     <SafeAreaProvider >
       <SafeAreaView 
   style={[s.app, animatedStyle, 
     { backgroundColor: icon === "practice" || icon === "practiceFeedback" ? "#e7feff" : "white", flex: 1, transform: [{ translateY: icon===""?keyboardOffset.value:0 }],}, ]}
@@ -342,11 +342,12 @@ export default function Index() {
             {/* </KeyboardAvoidingView> */}
           </View>
           </ScreenProvider>
-          <View style={s.footer}>
-        <Text>Footer</Text>
-      </View>
+ 
         </SafeAreaView>
       </SafeAreaProvider>
+      <View style={s.footer}>
+        <Text>Footer</Text>
+      </View>
 
  
     </>
