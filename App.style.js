@@ -114,7 +114,7 @@ inputContainer:{
     justifyContent: "center",
     alignItems: "center",
 
-    marginTop:20,
+    marginTop:10,
     height: 40,
     width: 300,
     borderColor: "#353839",// Color of the border
@@ -136,8 +136,8 @@ countryButtonContainer: {
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20, // Adjust as necessary
-    alignItems: 'center', // Center the button horizontally
+    marginTop: 10, 
+    alignItems: 'center', 
   },
   countryButton: {
     backgroundColor:"#053e4c",// Button background color
@@ -147,7 +147,7 @@ countryButtonContainer: {
     borderWidth: 1, // Border width
     borderColor: '#388E3C', // Border color
     alignItems: 'center', // Center the text inside the button
-   margin: 5,
+   margin: 3,
 
   },
   countryButtonText: {

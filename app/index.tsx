@@ -63,8 +63,8 @@ export default function Index() {
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', (event) => {
-      keyboardOffset.value = withSpring(-event.endCoordinates.height+70, {
-        damping: 20,
+      keyboardOffset.value = withSpring(-event.endCoordinates.height+85, {
+        damping: 100,
         stiffness: 100,
       });
     });
@@ -194,7 +194,7 @@ export default function Index() {
         setCountryButtonVisible={setCountryButtonVisible}
         practiceCountryButtonVisible={practiceCountryButtonVisible}
         setPracticeCountryButtonVisible={setPracticeCountryButtonVisible}
-       // scrollViewRef={scrollViewRef}
+
 
 
 
@@ -312,8 +312,7 @@ export default function Index() {
      <Animated.View
   style={[s.app, animatedStyle, 
     { backgroundColor: icon === "practice" || icon === "practiceFeedback" ? "#e7feff" : "white", flex: 1, transform: [{ translateY: icon===""?keyboardOffset.value:0 }],}, ]}
-  //[s.mainContent, { flex: 1, transform: [{ translateY: keyboardOffset }] }]}  
-  //style={[s.app, animatedStyle]
+
 >
           <ScreenProvider>
           <View style={s.header}>
@@ -325,11 +324,7 @@ export default function Index() {
             />
           </View>
           <View style={s.body}>
-          {/* <KeyboardAvoidingView
-  style={{ flex: 1 }}
-  behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-  keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
-    > */}
+
             <ScrollView showsVerticalScrollIndicator={false} 
               keyboardShouldPersistTaps={true}
           
