@@ -56,7 +56,7 @@ export function Practice({icon, setIcon, currentPracticeFlag, setCurrentPractice
     const stringRandomFlag=(String(randomFlag));
     setCurrentPracticeFlag(stringRandomFlag);
     console.log("currentPracticeFlag set to:", randomFlag);
-    setPracticeCountryUnderscore(stringRandomFlag.replace(" ", "_"));
+    setPracticeCountryUnderscore(stringRandomFlag.replaceAll(" ", "_"));
     console.log("practiceCountryUnderscore", practiceCountryUnderscore)
   }
 
