@@ -58,6 +58,9 @@ export default function Index() {
   seperate practice country - Done
   separate currentFlag practice - Prob not necessary
   If don't get word show message, type in valid country name
+  Check democratic republic of Congo - Changed to capitalise Of
+  Check Flags with spaces(practice)
+  Peru didn't display in Practice
   */
   const keyboardOffset = useSharedValue(0);
 

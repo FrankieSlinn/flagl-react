@@ -123,8 +123,8 @@ export function Practice({icon, setIcon, currentPracticeFlag, setCurrentPractice
             practiceCountry={practiceCountry}
             setPracticeCountry={setPracticeCountry}
          
-            practiceCountryUnderscore={countryUnderscore}
-            setPracticeCountryUnderscore={setCountryUnderscore}
+            practiceCountryUnderscore={practiceCountryUnderscore}
+            setPracticeCountryUnderscore={setPracticeCountryUnderscore}
             correctAnswers={correctAnswers}
             setCorrectAnswers={setCorrectAnswers}
             practiceHaveAnswer={practiceHaveAnswer}

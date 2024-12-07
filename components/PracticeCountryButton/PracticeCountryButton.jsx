@@ -26,6 +26,7 @@ export function PracticeCountryButton({
 
   const setNewPracticeCountryUnderscore = useCallback(
     (practiceCountry) => {
+      console.log("practiceCountry in callback", practiceCountry);
       const practiceCountryWithUnderscore = practiceCountry.replaceAll(
         " ",
         "_"
@@ -41,8 +42,38 @@ export function PracticeCountryButton({
 
     []
   ); 
+ 
+  // const setNewCountryUnderscore = useCallback(
+  //   (country) => {
+  //     if (icon === "") {
+  //       const countryWithUnderscore = country.replaceAll(" ", "_");
+  //       const saveCountryUnderscore = async () => {
+  //         try {
+  //           await AsyncStorage.setItem(
+  //             "countryUnderscore",
+  //             JSON.stringify(countryWithUnderscore)
+  //           );
+  //           console.log("Saved countryUnderscore:", countryWithUnderscore);
+  //         } catch (error) {
+  //           console.error("Error saving country underscore:", error);
+  //         }
+  //       };
+  //       saveCountryUnderscore();
+  //       // Save to async storage and update state if different
+  //       setCountryUnderscore((prev) => {
+  //         if (prev !== countryWithUnderscore) {
+  //           console.log("Updated countryUnderscore:", countryWithUnderscore);
 
-  //const scrollViewRef = useRef(null);
+  //           return countryWithUnderscore;
+  //         }
+  //         return prev; // Don't update if it's the same value
+  //       });
+  //     }
+  //   },
+
+  //   [setCountryUnderscore]
+  // ); // Add dependencies, such as setCountryUnderscore if it's from props or state
+
 
 
   // Effect to compare countryUnderscore with currentFlag after both are updated
@@ -103,6 +134,7 @@ export function PracticeCountryButton({
         "country in practice country button after press",
         practiceCountry
       );
+      setNewPracticeCountryUnderscore(practiceCountry);
     }
   }
 
