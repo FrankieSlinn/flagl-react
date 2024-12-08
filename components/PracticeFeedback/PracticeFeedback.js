@@ -37,6 +37,7 @@ export function PracticeFeedback({icon, setIcon,
           const practiceCountryUnderscore = practiceCountry.replace(" ", "_");
 
           setPracticeCountryUnderscore(practiceCountryUnderscore);  // Set the countryUnderscore in state
+         // setCurrentPracticeFlag(currentPracticeFlag.replaceAll(" ", "_"));
       
 
     },[]);
@@ -80,7 +81,7 @@ export function PracticeFeedback({icon, setIcon,
       <Text style={s.mainContentText}>Feedback</Text>
 
       <Text style={s.mainContentText}>
-        {practiceCountryUnderscore === currentPracticeFlag
+        {practiceCountryUnderscore === currentPracticeFlag.replace(" ", "_")
           ? `Congratulations. You Are Right. The Answer Is ${
               currentPracticeFlag
             }.`
