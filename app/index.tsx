@@ -60,6 +60,7 @@ export default function Index() {
   If don't get word show message, type in valid country name
   Check democratic republic of Congo - Changed to capitalise Of
 East Timor - country buttons displayed before input
+Return to game mode - last country name disappeared.
   */
   const keyboardOffset = useSharedValue(0);
 
