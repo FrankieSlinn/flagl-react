@@ -7,16 +7,21 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import { useScreenContext } from "../../utils/helpLastScreen";
 import {
-  getStoredGameCount,
-  storeAllScores,
+
   storeScore,
-  getAllStoredScores,
-  storeGameCount,
-  storeTurns,
-  getStoredTurns,
-  getStoredCountryunderscore,
-  storeCountryunderscore,
+
 } from "../../utils/asyncStorageUtils";
+// import {
+//   getStoredGameCount,
+//   storeAllScores,
+//   storeScore,
+//   getAllStoredScores,
+//   storeGameCount,
+//   storeTurns,
+//   getStoredTurns,
+//   getStoredCountryunderscore,
+//   storeCountryunderscore,
+// } from "../../utils/asyncStorageUtils";
 
 export function CountryButton({
   countryMatchingPredText,
@@ -51,6 +56,7 @@ export function CountryButton({
   );
 
   const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
+  const { lastScreen, setLastScreen } = useScreenContext();
   const moveScreenBack = useAnimatedStyle(() => {
     return {
       transform: [{ moveYBack: 0}],
@@ -58,14 +64,6 @@ export function CountryButton({
   });
 
 
-
-  // const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
-
-  // });
-
-
-
-  //To ensure countryUnderscore stays the same when switch from practice to game mode
   const setNewCountryUnderscore = useCallback(
     (country) => {
       if (icon === "") {
@@ -102,10 +100,7 @@ export function CountryButton({
     console.log("useEffect meant to be after countryUnderscore change");
     if (icon === "") {
       if (countryUnderscore != "") {
-        console.log(
-          "useEffect after previous ones triggered",
-          countryUnderscore
-        );
+
         setHaveAnswer(true);
         // Set the icon to "feedback"
 
@@ -113,11 +108,12 @@ export function CountryButton({
           countryUnderscore === currentFlag &&
           countryUnderscore !== "" &&
           icon === ""
+          && lastScreen != "popup"
         ) {
-          console.log("Correct Answer!!!!!!!!!");
+          console.log("Correct Answer!!");
           setCorrectAnswers((prevCorrectAnswers) => prevCorrectAnswers + 1);
           setScore((prevScore) => prevScore + 20); // Increase the score by 20
-          console.log("score updated", score);
+          console.log("score updated!!!!!", score);
         }
       }
     }

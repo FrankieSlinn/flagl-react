@@ -1,6 +1,18 @@
 import { s } from "../../App.style.js";
-import { Text, Image, View, KeyboardAvoidingView, ScrollView, Animated, Keyboard, LayoutAnimation, Platform, UIManager, Dimensions} from "react-native";
-import { useState, useEffect, useContext , useRef} from "react";
+import {
+  Text,
+  Image,
+  View,
+  KeyboardAvoidingView,
+  ScrollView,
+  Animated,
+  Keyboard,
+  LayoutAnimation,
+  Platform,
+  UIManager,
+  Dimensions,
+} from "react-native";
+import { useState, useEffect, useContext, useRef } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Stars } from "../Stars/Stars";
 import { Input } from "../Input/Input";
@@ -9,9 +21,18 @@ import { generateNewFlagsToPopulateArrayDailyFlags } from "../../utils/practiceA
 import * as allFlagImages from "../../utils/flagMappings";
 import { flags } from "../../utils/countryTerritoryNames";
 import { useScreenContext } from "../../utils/helpLastScreen";
+// import {
+//   getStoredGameCount,
+//   storeAllScores,
+//   storeScore,
+//   getAllStoredScores,
+//   storeGameCount,
+//   getStoredCountryUnderscore,
+// } from "../../utils/asyncStorageUtils";
 
 import {
   getStoredGameCount,
+  storeScore,
   storeTurns,
   getStoredTurns,
 } from "../../utils/asyncStorageUtils";
@@ -49,25 +70,27 @@ export function MainContent({
   setPracticeHaveAnswer,
   practiceCountryButtonVisible,
   setPracticeCountryButtonVisible,
-  keyboardOffset
-
+  keyboardOffset,
 }) {
   let arrayFlagNames = [];
 
   const { lastScreen, setLastScreen } = useScreenContext();
 
-
   const [keyboardHeight] = useState(new Animated.Value(0));
 
   const scrollViewRef = useRef(null);
-
- 
 
   let currentFlagNumber;
 
   arrayDailyFlags.forEach((flag, index) => {
     arrayFlagNames.push(flags[flag]);
   });
+
+  // useEffect(() => {
+  //   if (score !== null && score !== undefined) {
+  //     storeScore(score);
+  //   }
+  // }, [score]);
 
   useEffect(() => {
     setLastScreen("");
@@ -89,8 +112,15 @@ export function MainContent({
     };
     if (turns !== null) {
       storeTurnsInAsyncStorage();
-    }
-  }, [turns]);
+    } })
+
+  useEffect(() => {
+    if (turns===0){
+      //storeScore(0);
+      setScore(0)
+      storeScore(0)
+      console.log("SCORE SET TO 0 IN MAIN")
+    }}, [turns])
 
   // Load the stored turns from AsyncStorage when the component mounts
   useEffect(() => {
@@ -194,24 +224,12 @@ export function MainContent({
 
   return (
     <>
-  
-        {/* <Animated.View style={{ flex: 1, transform: [{ translateY: keyboardHeight }] } } pointerEvents="box-none"> */}
-
-{/* 
-        <ScrollView  scrollEnabled={true}
-  showsVerticalScrollIndicator={true}
-  keyboardShouldPersistTaps={true}
-  keyboardDismissMode='on-drag'
-   // keyboardDismissMode="interactive"
-    > */}
-       
-        <View style={[s.mainContent, { flex: 1 }]}    >
-     
+      <View style={[s.mainContent, { flex: 1 }]}>
         <Stars
           correctAnswers={correctAnswers}
           setCorrectAnswers={setCorrectAnswers}
         />
-      
+
         <Text style={s.mainContentText}>
           Which Country or Territory Does this Flag Belong to?
         </Text>
@@ -228,9 +246,7 @@ export function MainContent({
             Type and Select the Name of a Country or Territory
           </Text>
         </View>
-    
 
-      
         <View style={s.inputView}>
           <Input
             autoCorrect={false} // Disables predictive text
@@ -250,8 +266,6 @@ export function MainContent({
             scrollViewRef={scrollViewRef}
           />
         </View>
-      
-
 
         <View>
           <CountryButton
@@ -287,13 +301,9 @@ export function MainContent({
             //setKeyboardOffset={setKeyboardOffset}
           />
         </View>
-  
-
-
       </View>
       {/* </ScrollView> */}
       {/* </Animated.View> */}
-
     </>
   );
 }

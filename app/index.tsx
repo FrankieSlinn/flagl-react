@@ -340,7 +340,7 @@ Return to game mode - last country name disappeared.
           </View>
           </ScreenProvider>
  
-   </Animated.View>>
+   </Animated.View>
       <View style={s.footer}>
         <Text>Footer</Text>
       </View>
