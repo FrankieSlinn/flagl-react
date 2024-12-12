@@ -30,25 +30,23 @@ export function CountryButton({
   setIcon,
   currentFlag,
   setCurrentFlag,
-
   country,
   setCountry,
   turns,
-  setTurns,
   countryUnderscore,
   setCountryUnderscore,
-  arrayDailyFlags,
   score,
   setScore,
-  correctAnswers,
   setCorrectAnswers,
   haveAnswer,
   setHaveAnswer,
-
   countryButtonVisible,
   setCountryButtonVisible,
   keyboardOffset,
-  translateY,
+resultsArray,
+setResultsArray, 
+validateCorrect,
+setValidateCorrect
 }) {
   console.log(
     "country Button visible in country button component",
@@ -83,47 +81,60 @@ export function CountryButton({
         // Save to async storage and update state if different
         setCountryUnderscore((prev) => {
           if (prev !== countryWithUnderscore) {
-            console.log("Updated countryUnderscore:", countryWithUnderscore);
-
+        
             return countryWithUnderscore;
           }
           return prev; // Don't update if it's the same value
         });
       }
+      setValidateCorrect(false)
+      console.log("setValidateCorrect", setValidateCorrect)
     },
 
     [setCountryUnderscore]
-  ); // Add dependencies, such as setCountryUnderscore if it's from props or state
+  ); 
 
   // Effect to compare countryUnderscore with currentFlag after both are updated
   useLayoutEffect(() => {
     console.log("useEffect meant to be after countryUnderscore change");
     if (icon === "") {
-      if (countryUnderscore != "") {
+      if (countryUnderscore != ""&& validateCorrect===false) {
 
         setHaveAnswer(true);
-        // Set the icon to "feedback"
 
-        if (
+        if(countryUnderscore !=currentFlag  ){
+          setResultsArray((prevResultsArray)=>prevResultsArray.concat("wrong"))
+          console.log("countryUnderscore for wrong answer", countryUnderscore, "currentFlag", currentFlag)
+          console.log("resultsArray after wrong answer", resultsArray)
+          setValidateCorrect(true)
+        
+
+        }
+
+        else if (
           countryUnderscore === currentFlag &&
-          countryUnderscore !== "" &&
-          icon === ""
-          && lastScreen != "popup"
+      
+          lastScreen != "popup"
         ) {
           console.log("Correct Answer!!");
+          setResultsArray((prevResultsArray)=>prevResultsArray.concat("right"))
           setCorrectAnswers((prevCorrectAnswers) => prevCorrectAnswers + 1);
           setScore((prevScore) => prevScore + 20); // Increase the score by 20
           console.log("score updated!!!!!", score);
+          console.log("resultsArray after right answer", resultsArray)
+          setValidateCorrect(true)
+         
         }
+
       }
     }
-  }, [countryUnderscore]);
+  }, [countryUnderscore, currentFlag]);
 
   useEffect(() => {
-    console.log("icon in Country Button", icon);
+
     // Adding a small timeout to wait for state changes to propagate
     const timeout = setTimeout(() => {
-      console.log("turns in country button", turns);
+    
       console.log(
         "country",
         country,

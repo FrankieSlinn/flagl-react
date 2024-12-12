@@ -1,15 +1,13 @@
 import { s } from "../../App.style.js";
 import { Stars } from "../Stars/Stars";
 import { Text, View, TouchableOpacity } from "react-native";
-//import {useCorrectAnswer} from "../../utils/useCorrectAnswer";
-import { flags } from "../../utils/countryTerritoryNames";
+
 import { useEffect } from "react";
 import { useScreenContext } from "../../utils/helpLastScreen";
-
+import * as Clipboard from 'expo-clipboard';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
-  getStoredGameCount,
-  storeAllScores,
+
   storeScore,
   getAllStoredScores,
   storeGameCount,
@@ -27,13 +25,11 @@ export function FinishGameScreen({
   setCorrectAnswers,
   countryUnderscore,
   setCountryUnderscore,
-  gameCount,
-  setGameCount,
-  arrayDailyFlags,
-  turns,
-  setTurns,
+
   icon,
   setIcon,
+  resultsArray, 
+  setResultsArray
 }) {
   const { lastScreen, setLastScreen } = useScreenContext();
 
@@ -99,6 +95,7 @@ export function FinishGameScreen({
     };
     if (icon === "finish") {
       loadAndIncrementScoreArray();
+      console.log("resultArray in finish", resultsArray)
     }
   }, []); // Removed extra brace, added "icon" to dependencies
 
@@ -106,7 +103,7 @@ export function FinishGameScreen({
     setCountryUnderscore("");
     setCountry("");
     setIcon("practice");
-    console.log("Set to practice from finish", icon);
+    
   }
 
   return (

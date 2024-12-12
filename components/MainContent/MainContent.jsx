@@ -3,14 +3,9 @@ import {
   Text,
   Image,
   View,
-  KeyboardAvoidingView,
-  ScrollView,
+
   Animated,
-  Keyboard,
-  LayoutAnimation,
-  Platform,
-  UIManager,
-  Dimensions,
+
 } from "react-native";
 import { useState, useEffect, useContext, useRef } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -21,19 +16,12 @@ import { generateNewFlagsToPopulateArrayDailyFlags } from "../../utils/practiceA
 import * as allFlagImages from "../../utils/flagMappings";
 import { flags } from "../../utils/countryTerritoryNames";
 import { useScreenContext } from "../../utils/helpLastScreen";
-// import {
-//   getStoredGameCount,
-//   storeAllScores,
-//   storeScore,
-//   getAllStoredScores,
-//   storeGameCount,
-//   getStoredCountryUnderscore,
-// } from "../../utils/asyncStorageUtils";
+
 
 import {
-  getStoredGameCount,
+
   storeScore,
-  storeTurns,
+
   getStoredTurns,
 } from "../../utils/asyncStorageUtils";
 
@@ -71,6 +59,10 @@ export function MainContent({
   practiceCountryButtonVisible,
   setPracticeCountryButtonVisible,
   keyboardOffset,
+  resultsArray, 
+  setResultsArray, 
+  validateCorrect, 
+  setValidateCorrect
 }) {
   let arrayFlagNames = [];
 
@@ -119,7 +111,10 @@ export function MainContent({
       //storeScore(0);
       setScore(0)
       storeScore(0)
+      
       console.log("SCORE SET TO 0 IN MAIN")
+      setResultsArray([]);
+      console.log("Resultsarray with zero turns", resultsArray)
     }}, [turns])
 
   // Load the stored turns from AsyncStorage when the component mounts
@@ -298,7 +293,10 @@ export function MainContent({
             setPracticeCountry={setPracticeCountry}
             scrollViewRef={scrollViewRef}
             keyboardOffset={keyboardOffset}
-            //setKeyboardOffset={setKeyboardOffset}
+            resultsArray = {resultsArray}
+            setResultsArray={setResultsArray}
+            validateCorrect={validateCorrect}
+      setValidateCorrect={setValidateCorrect}
           />
         </View>
       </View>

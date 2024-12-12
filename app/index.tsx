@@ -41,26 +41,25 @@ export default function Index() {
   const[countryButtonVisible, setCountryButtonVisible] = useState(false)
   const[practiceCountryButtonVisible, setPracticeCountryButtonVisible] = useState(false)
   const [inputValue, setInputValue] = useState("");
-   //May Need Later!!!! const [keyboardOffset, setKeyboardOffset] = useState(0);
+  const [resultsArray, setResultsArray] = useState([]);
+  const [validateCorrect, setValidateCorrect] = useState(false);
+
 
 
 
   /*Changes:
-  Make input easier
+
   Add clipboard
   Add timing
   Layout
   Landscape view
-  Switch between modes - Prob not necessary.
+
   Make sure flag alway displays - Prob done. 
-  Put country in async storage - Prob not necessary
-  Put currentFlag in async storage - Prob not necessary
-  seperate practice country - Done
-  separate currentFlag practice - Prob not necessary
+
   If don't get word show message, type in valid country name
   Check democratic republic of Congo - Changed to capitalise Of
 East Timor - country buttons displayed before input
-Return to game mode - last country name disappeared.
+
   */
   const keyboardOffset = useSharedValue(0);
 
@@ -122,6 +121,8 @@ Return to game mode - last country name disappeared.
         setGameCount={setGameCount}
         scoreArray={scoreArray}
         setScoreArray={setScoreArray}
+        resultsArray = {resultsArray}
+        setResultsArray={setResultsArray}
         />
 
       );
@@ -158,7 +159,10 @@ Return to game mode - last country name disappeared.
       countryButtonVisible={countryButtonVisible}
       setCountryButtonVisible={setCountryButtonVisible}
       keyboardOffset={keyboardOffset}
-      //scrollViewRef={scrollViewRef}
+      resultsArray = {resultsArray}
+      setResultsArray={setResultsArray}
+      validateCorrect={validateCorrect}
+      setValidateCorrect={setValidateCorrect}
    
         />
         
@@ -265,9 +269,9 @@ Return to game mode - last country name disappeared.
    setCorrectAnswers={setCorrectAnswers}
    haveAnswer = {haveAnswer}
    setHaveAnswer = {setHaveAnswer}
-  // lastScreen={lastScreen}
-   //setLastScreen={setLastScreen}
- 
+   validateCorrect={validateCorrect}
+   setValidateCorrect={setValidateCorrect}
+
    
    />
 </>
@@ -302,6 +306,8 @@ Return to game mode - last country name disappeared.
       setIcon={setIcon}
       scoreArray={scoreArray}
       setScoreArray={setScoreArray}
+      resultsArray = {resultsArray}
+      setResultsArray={setResultsArray}
 
       />
       </>)
