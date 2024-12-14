@@ -106,6 +106,13 @@ export function FinishGameScreen({
     
   }
 
+  function clipboardButtonPress(){
+
+    const copyToClipboard = async () => {
+      await Clipboard.setStringAsync(resulsArray);
+    };
+  }
+
   return (
     <View>
       <Stars
@@ -128,6 +135,13 @@ export function FinishGameScreen({
         {`Your FLAGL Score is ${score}%`}
         {"\n"}
       </Text>
+      <View style={s.shareScoreButtonContainer}>
+      <TouchableOpacity style={s.shareScoreButton}>
+        <Text style={s.shareScoreButtonText}>Share FLAGL Score</Text>
+      </TouchableOpacity>
+      </View>
+  
+      <Text>To Get Better At Guessing Flags Visit</Text>
       <TouchableOpacity onPress={practiceButtonPress}>
         <Text>FLAGL Practice Mode</Text>
       </TouchableOpacity>

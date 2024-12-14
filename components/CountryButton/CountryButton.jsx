@@ -112,9 +112,9 @@ setValidateCorrect
         }
 
         else if (
-          countryUnderscore === currentFlag &&
+          countryUnderscore === currentFlag 
       
-          lastScreen != "popup"
+          
         ) {
           console.log("Correct Answer!!");
           setResultsArray((prevResultsArray)=>prevResultsArray.concat("right"))

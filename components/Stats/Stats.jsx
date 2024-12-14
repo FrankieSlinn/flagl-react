@@ -1,23 +1,18 @@
 import { useEffect, useState } from "react";
-import { Image, View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { s } from "../../App.style.js";
 import { CloseButton } from "../CloseButton/CloseButton";
 import {
-  storeScore,
   getStoredScore,
   getAllStoredScores,
 } from "../../utils/asyncStorageUtils";
 import { useScreenContext } from "../../utils/helpLastScreen";
+import * as Clipboard from "expo-clipboard";
 
 export function Stats({
-  icon,
   setIcon,
-  correctAnswers,
-  setCorrectAnswers,
   turns,
-  setTurns,
   score,
-  setScore,
   gameCount,
   setGameCount,
   scoreArray,
@@ -31,7 +26,7 @@ export function Stats({
   useEffect(() => {
     const fetchScore = async () => {
       const score = await getStoredScore();
-      console.log("Score in stats", score) // setScore(score); // Set the score in state
+      console.log("Score in stats", score); // setScore(score); // Set the score in state
     };
 
     fetchScore();
@@ -54,11 +49,9 @@ export function Stats({
       setAverageScore(average);
       console.log("averageScore: ", averageScore);
       console.log("get score Array in Stats", scoreArrayInStats);
-  
+
       setScoreArray(scoreArrayInStats);
       console.log("scorearray that was set in stats", scoreArray);
-
-
     };
 
     fetchScoreArray();
@@ -69,7 +62,7 @@ export function Stats({
       setIcon(lastScreen);
     }
     setLastScreen("popup");
-    console.log("last screen in stats", lastScreen)
+    console.log("last screen in stats", lastScreen);
   }
 
   return (
@@ -77,7 +70,7 @@ export function Stats({
       <View style={s.closeButtonContainer}>
         <CloseButton
           onPress={() => {
-            handleCloseButtonPress()
+            handleCloseButtonPress();
           }}
         />
       </View>
@@ -85,7 +78,7 @@ export function Stats({
 
       <Text>
         {" "}
-        {turns ===4
+        {turns === 4
           ? `Today's FLAGL Game Score Is: ${score}%`
           : "Finsh A Game To Get Today's FLAGL Score"}
       </Text>
@@ -101,6 +94,14 @@ export function Stats({
           ? `Your Average Score Is: ${averageScore}`
           : "Start Playing Games To Get An Average Score"}
       </Text>
+      {"\n"}
+      {"\n"}
+      {"\n"}
+      <View style={s.shareScoreButtonContainer}>
+        <TouchableOpacity style={s.shareScoreButton}>
+          <Text style={s.shareScoreButtonText}>Share FLAGL Score</Text>
+        </TouchableOpacity>
+      </View>
     </>
   );
 }
