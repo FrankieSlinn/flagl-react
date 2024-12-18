@@ -74,6 +74,8 @@ export function MainContent({
 
   let currentFlagNumber;
 
+  console.log("is rsultsArray array?", Array.isArray(resultsArray)) 
+
   arrayDailyFlags.forEach((flag, index) => {
     arrayFlagNames.push(flags[flag]);
   });
@@ -300,8 +302,7 @@ export function MainContent({
           />
         </View>
       </View>
-      {/* </ScrollView> */}
-      {/* </Animated.View> */}
+
     </>
   );
 }

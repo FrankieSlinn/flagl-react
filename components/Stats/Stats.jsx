@@ -1,5 +1,7 @@
+
+import * as Clipboard from "expo-clipboard";
 import { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image} from "react-native";
 import { s } from "../../App.style.js";
 import { CloseButton } from "../CloseButton/CloseButton";
 import {
@@ -7,7 +9,9 @@ import {
   getAllStoredScores,
 } from "../../utils/asyncStorageUtils";
 import { useScreenContext } from "../../utils/helpLastScreen";
-import * as Clipboard from "expo-clipboard";
+import {daysElapsed} from "../../utils/daysElapsed";
+import {copyResultsToClipboard} from "../../utils/copyResultsToClipboard";
+
 
 export function Stats({
   setIcon,
@@ -17,10 +21,17 @@ export function Stats({
   setGameCount,
   scoreArray,
   setScoreArray,
+  resultsArray
 }) {
   const { lastScreen, setLastScreen } = useScreenContext();
 
   const [averageScore, setAverageScore] = useState(0);
+
+  console.log("resultsArray in Stats", resultsArray)
+  console.log("is rsultsArray in Stats", Array.isArray(resultsArray)) 
+
+  console.log("days elapsed", daysElapsed)
+ 
 
   // Fetch the stored score when the component mounts
   useEffect(() => {
@@ -65,6 +76,16 @@ export function Stats({
     console.log("last screen in stats", lastScreen);
   }
 
+  const handleCopy = async () => {
+    try {
+      await copyResultsToClipboard(resultsArray, daysElapsed); // Pass `resultsArray` as an argument
+    } catch (error) {
+      console.error("Failed to copy results to clipboard:", error);
+    }
+  };
+
+
+
   return (
     <>
       <View style={s.closeButtonContainer}>
@@ -98,7 +119,7 @@ export function Stats({
       {"\n"}
       {"\n"}
       <View style={s.shareScoreButtonContainer}>
-        <TouchableOpacity style={s.shareScoreButton}>
+        <TouchableOpacity style={s.shareScoreButton} onPress={handleCopy}>
           <Text style={s.shareScoreButtonText}>Share FLAGL Score</Text>
         </TouchableOpacity>
       </View>

@@ -1,37 +1,32 @@
 import { s } from "../../App.style.js";
 import { Stars } from "../Stars/Stars";
 import { Text, View, TouchableOpacity } from "react-native";
-
 import { useEffect } from "react";
 import { useScreenContext } from "../../utils/helpLastScreen";
-import * as Clipboard from 'expo-clipboard';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
-
   storeScore,
   getAllStoredScores,
-  storeGameCount,
   getStoredCountryUnderscore,
 } from "../../utils/asyncStorageUtils";
+import {copyResultsToClipboard} from "../../utils/copyResultsToClipboard";
 
 export function FinishGameScreen({
-  country,
   setCountry,
   currentFlag,
-  setCurrentFlag,
   score,
-  setScore,
   correctAnswers,
   setCorrectAnswers,
   countryUnderscore,
   setCountryUnderscore,
-
   icon,
   setIcon,
-  resultsArray, 
-  setResultsArray
+  resultsArray
 }) {
   const { lastScreen, setLastScreen } = useScreenContext();
+
+  console.log("resultsArray in Finish game", resultsArray)
+  console.log("is rsultsArray in Finish game", Array.isArray(resultsArray)) 
 
   useEffect(() => {
     setLastScreen("finish");
@@ -96,6 +91,7 @@ export function FinishGameScreen({
     if (icon === "finish") {
       loadAndIncrementScoreArray();
       console.log("resultArray in finish", resultsArray)
+      console.log("is rsultsArray in finish game array?", Array.isArray(resultsArray)) 
     }
   }, []); // Removed extra brace, added "icon" to dependencies
 
@@ -106,12 +102,14 @@ export function FinishGameScreen({
     
   }
 
-  function clipboardButtonPress(){
 
-    const copyToClipboard = async () => {
-      await Clipboard.setStringAsync(resulsArray);
-    };
-  }
+  const handleCopy = async () => {
+    try {
+      await copyResultsToClipboard(resultsArray, daysElapsed); // Pass `resultsArray` as an argument
+    } catch (error) {
+      console.error("Failed to copy results to clipboard:", error);
+    }
+  };
 
   return (
     <View>
@@ -136,13 +134,13 @@ export function FinishGameScreen({
         {"\n"}
       </Text>
       <View style={s.shareScoreButtonContainer}>
-      <TouchableOpacity style={s.shareScoreButton}>
+      <TouchableOpacity style={s.shareScoreButton} onPress={copyResultsToClipboard}>
         <Text style={s.shareScoreButtonText}>Share FLAGL Score</Text>
       </TouchableOpacity>
       </View>
   
       <Text>To Get Better At Guessing Flags Visit</Text>
-      <TouchableOpacity onPress={practiceButtonPress}>
+      <TouchableOpacity onPress={handleCopy}>
         <Text>FLAGL Practice Mode</Text>
       </TouchableOpacity>
     </View>
