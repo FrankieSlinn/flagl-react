@@ -1,7 +1,7 @@
 import { s } from "../../App.style.js";
 import { Stars } from "../Stars/Stars";
 import { Text, View, TouchableOpacity } from "react-native";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useScreenContext } from "../../utils/helpLastScreen";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
@@ -25,12 +25,36 @@ export function FinishGameScreen({
   resultsArray
 }) {
   const { lastScreen, setLastScreen } = useScreenContext();
+  const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
 
   console.log("resultsArray in Finish game", resultsArray)
   console.log("is rsultsArray in Finish game", Array.isArray(resultsArray)) 
 
   useEffect(() => {
     setLastScreen("finish");
+  }, []);
+
+
+  // Calculate time left until 12 am UK time
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const now = new Date();
+      const midnightUK = new Date();
+      midnightUK.setUTCHours(0, 0, 0, 0); // Set time to 12 am UTC
+      if (now > midnightUK) {
+        midnightUK.setUTCDate(midnightUK.getUTCDate() + 1); // Move to next day
+      }
+      const timeDifference = midnightUK - now;
+      const hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
+      const seconds = Math.floor((timeDifference / 1000) % 60);
+      setTimeLeft({ hours, minutes, seconds });
+    };
+
+    calculateTimeLeft(); // Initial calculation
+    const interval = setInterval(calculateTimeLeft, 1000); // Update every second
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
   }, []);
 
   useEffect(() => {
@@ -112,8 +136,7 @@ export function FinishGameScreen({
       console.error("Failed to copy results to clipboard:", error);
     }
   };
-
-  handleCopy(resultsArray);
+  
 
   return (
     <View>
@@ -142,9 +165,14 @@ export function FinishGameScreen({
         <Text style={s.shareScoreButtonText}>Share FLAGL Score</Text>
       </TouchableOpacity>
       </View>
+      <View>
+     <Text>FLAGL Will Reset In {timeLeft.hours} Hours {timeLeft.minutes} Minutes{" "}
+      {timeLeft.seconds} Seconds
+      </Text> 
+      </View>
   
       <Text>To Get Better At Guessing Flags Visit</Text>
-      <TouchableOpacity onPress={handleCopy}>
+      <TouchableOpacity     onPress={() => handleCopy(resultsArray)}>
         <Text>FLAGL Practice Mode</Text>
       </TouchableOpacity>
     </View>
