@@ -9,6 +9,7 @@ import {
   getAllStoredScores,
   getStoredCountryUnderscore,
 } from "../../utils/asyncStorageUtils";
+import {daysElapsed} from "../../utils/daysElapsed";
 import {copyResultsToClipboard} from "../../utils/copyResultsToClipboard";
 
 export function FinishGameScreen({
@@ -102,14 +103,17 @@ export function FinishGameScreen({
     
   }
 
-
-  const handleCopy = async () => {
+  const handleCopy = async (arrayToCopy) => {
     try {
-      await copyResultsToClipboard(resultsArray, daysElapsed); // Pass `resultsArray` as an argument
+      console.log("Array.isArray(arrayToCopy)", Array.isArray(arrayToCopy));
+      console.log("arrayToCopy:", arrayToCopy);
+      await copyResultsToClipboard(arrayToCopy, daysElapsed);
     } catch (error) {
       console.error("Failed to copy results to clipboard:", error);
     }
   };
+
+  handleCopy(resultsArray);
 
   return (
     <View>

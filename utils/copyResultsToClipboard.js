@@ -6,6 +6,8 @@ export const copyResultsToClipboard = async (resultsArray, daysElapsed) => {
   try {
     // Check if resultsArray is an array and not undefined
     if (!Array.isArray(resultsArray)) {
+      console.log("resultsArray in handleCopy function is it anArray?", Array.isArray(resultsArray))
+      console.log("resultsArray", resultsArray)
       throw new Error("Invalid resultsArray data");
     }
 
