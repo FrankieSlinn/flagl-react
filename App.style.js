@@ -184,6 +184,14 @@ export const s = StyleSheet.create({
   
   },
 
+  practiceText:{
+    marginTop: 15,
+    fontSize: 20,
+    textAlign: "center",
+    fontWeight: "bold"
+
+  },
+
   practiceButton:{
     width: 200,
     backgroundColor: "#053e4c",
