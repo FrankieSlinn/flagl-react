@@ -146,11 +146,11 @@ export function FinishGameScreen({
       />
       <Text style={s.mainContentText}>
         {countryUnderscore === currentFlag
-          ? `Congratulations. You Are Right. The Answer Is ${currentFlag.replace(
+          ? `Congratulations. You Are Right. The Answer Is ${currentFlag.replaceAll(
               "_",
               " "
             )}.`
-          : `Unlucky. That Was Not Correct. The Answer Is ${currentFlag.replace(
+          : `Unlucky. That Was Not Correct. The Answer Is ${currentFlag.replaceAll(
               "_",
               " "
             )}.`}

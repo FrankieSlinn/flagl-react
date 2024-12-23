@@ -153,7 +153,7 @@ export function FeedbackScreen({
         correctAnswers={correctAnswers}
         setCorrectAnswers={setCorrectAnswers}
       />
-      <Text style={s.mainContentText}>Feedback</Text>
+  
 
       <Text style={s.mainContentText}>
         {countryUnderscore === currentFlag
