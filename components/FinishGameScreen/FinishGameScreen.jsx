@@ -161,20 +161,24 @@ export function FinishGameScreen({
         {"\n"}
       </Text>
       <View style={s.shareScoreButtonContainer}>
-      <TouchableOpacity style={s.shareScoreButton} onPress={copyResultsToClipboard}>
+      <TouchableOpacity style={s.shareScoreButton} onPress={() => handleCopy(resultsArray)}>
         <Text style={s.shareScoreButtonText}>Share FLAGL Score</Text>
       </TouchableOpacity>
       </View>
-      <View>
-     <Text>FLAGL Will Reset In {timeLeft.hours} Hours {timeLeft.minutes} Minutes{" "}
-      {timeLeft.seconds} Seconds
-      </Text> 
+      <View style={s.timerContainer}>
+      <Text style={s.mainContentText}>
+  FLAGL Will Reset In {""}
+  <Text style={{ fontWeight: 'bold' }}>{ timeLeft.hours}</Text> Hours {""}
+  <Text style={{ fontWeight: 'bold' }}>{timeLeft.minutes}</Text> Minutes {""}
+  <Text style={{ fontWeight: 'bold' }}>{timeLeft.seconds}</Text> Seconds
+</Text>
       </View>
-  
-      <Text>To Get Better At Guessing Flags Visit</Text>
-      <TouchableOpacity     onPress={() => handleCopy(resultsArray)}>
-        <Text>FLAGL Practice Mode</Text>
+  <View style={s.practiceButtonContainer}>
+      <Text style={s.mainContentText}>To Get Better At Guessing Flags Visit</Text>
+      <TouchableOpacity style={s.practiceButton} >
+        <Text style={s.shareScoreButtonText}>Practice FLAGL</Text>
       </TouchableOpacity>
+      </View>
     </View>
   );
 }

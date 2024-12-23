@@ -87,14 +87,12 @@ export const s = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-
     marginTop: 10,
     height: 40,
     width: 300,
     borderColor: "#353839", // Color of the border
     borderWidth: 2, // Border width
     borderRadius: 10, // Rounded corners
-
     fontSize: 20, // Font size
     textAlign: "center", //
   },
@@ -127,6 +125,23 @@ export const s = StyleSheet.create({
     fontWeight: "bold", // Bold text
   },
 
+  timerContainer:{
+    // flex: 1,
+    // justifyContent: "center",
+    // alignItems: "center",
+    marginTop: 10,
+    marginBottom: 10,
+    borderWidth: 3, 
+  borderColor: "#053e4c", 
+  backgroundColor: "#e0e8e8",
+  borderRadius: 15,  // Optional: Set rounded corners if needed
+  padding: 10,  // Optional: Add padding inside the container
+  height: 100,
+
+
+
+  },
+
   shareScoreButtonContainer: {
 
     flex: 1,
@@ -149,12 +164,39 @@ export const s = StyleSheet.create({
     borderWidth: 1, // Border width
     borderColor: "#388E3C", // Border color
     alignItems: "center", // Center the text inside the button
-    margin: 3,
+   marginTop: -15,
   },
   shareScoreButtonText: {
     color: "#FFFFFF", // Text color
     fontSize: 16, // Text size
     fontWeight: "bold", // Bold text
+  },
+
+ practiceButtonContainer: {
+
+    flex: 1,
+    flexDirection: "column",
+   //flexWrap: "wrap",
+    justifyContent: "center",
+   // marginTop: 10,
+    marginBottom: 20, 
+    alignItems: "center",
+  
+  },
+
+  practiceButton:{
+    width: 200,
+    backgroundColor: "#053e4c",
+    paddingVertical: 10, // Vertical padding
+    paddingHorizontal: 20,
+    borderRadius: 8, // Rounded corners
+    borderWidth: 1, // Border width
+    borderColor: "#388E3C", // Border color
+    alignItems: "center", // Center the text inside the button
+   // margin: 3,
+   marginTop: 17,
+
+
   },
 
   practiceHeading: {
