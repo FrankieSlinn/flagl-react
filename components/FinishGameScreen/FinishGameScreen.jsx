@@ -174,7 +174,7 @@ export function FinishGameScreen({
 </Text>
       </View>
   <View style={s.practiceButtonContainer}>
-      <Text style={s.practiceText}>To Get Better At Guessing Flags Visit</Text>
+      <Text style={s.practiceText}>To Improve Your Game Go To</Text>
       <TouchableOpacity style={s.practiceButton} >
         <Text style={s.shareScoreButtonText}>Practice FLAGL</Text>
       </TouchableOpacity>

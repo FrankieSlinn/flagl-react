@@ -95,34 +95,52 @@ export function Stats({
           }}
         />
       </View>
-      <Text style={s.iconHeader}>FLAGL Statistics</Text>
+      <View style={s.statsContainer}>
+      <Text style={s.iconHeader}>FLAGL Statistics
+      {"\n"}
 
-      <Text>
-        {" "}
-        {turns === 4
-          ? `Today's FLAGL Game Score Is: ${score}%`
-          : "Finsh A Game To Get Today's FLAGL Score"}
       </Text>
-      <Text>
-        {" "}
-        {gameCount !== null
-          ? `You Have Played ${gameCount} Game/s So Far`
-          : "No Games Played Yet"}
-      </Text>
-      <Text>
+
+<View style={s.statsBody}>
+      <Text style={s.statsText}>
+  {turns === 4 ? (
+    <>
+      Today's FLAGL Game Score Is:{" "}
+      <Text style={{ fontWeight: 'bold' }}>{score}%</Text>
+    </>
+  ) : (
+    "Play A Game To Get Today's Score"
+  )}
+  {"\n"}
+</Text>
+<Text style={s.statsText}>
+  {gameCount !== null ? (
+    <>
+      You Have Played{" "}
+      <Text style={{ fontWeight: 'bold' }}>{gameCount}</Text> Game/s 
+    </>
+  ) : (
+    "No Games Played Yet"
+  )}
+  {"\n"}
+</Text>
+      <Text style={s.statsText}>
         {" "}
         {scoreArray !== null
-          ? `Your Average Score Is: ${averageScore}`
+          ? (<>Your Average Score Is: {" "}<Text style={{ fontWeight: 'bold' }}>{averageScore}</Text></>)
           : "Start Playing Games To Get An Average Score"}
       </Text>
       {"\n"}
       {"\n"}
       {"\n"}
+      </View>
+      </View>
       <View style={s.shareScoreButtonContainer}>
         <TouchableOpacity style={s.shareScoreButton} onPress={handleCopy}>
           <Text style={s.shareScoreButtonText}>Share FLAGL Score</Text>
         </TouchableOpacity>
       </View>
+    
     </>
   );
 }

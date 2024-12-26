@@ -22,19 +22,18 @@ return ( <>
     {"\n"}
     <Text style={s.helpGuess}>Guess the Flag</Text>
     {"\n"}
-    {"\n"}Every day you will see the same flags as all the other FLAGL
-    players. The goal of course is to correctly identify as many flags
-    as you can. All you need to do is to start typing in the box under
-    the flag to get a list of countries and territories. Click on one of
-    the country or territory buttons to make your choice.
+    {"\n"}Every day all FLAGL Players will see the same five flags. The goal is to correctly name as many flags
+    as you can. Start typing a flag name in the box under
+    the flag. You will then see a list of countries and territories. Click on one of
+    the country / territory buttons to make your choice.
     {"\n\n"}
     At the end of the flag quiz you will see what percentage of flags
     you got right. The statistics section on the top right shows your
-    average score per game so you can see if you're improving. Share and
-    compare your score with friends by selecting the "Share Results"
-    button in the statistics section. {"\n"}
+    average score per game so you can see if you're getting better. Share and
+    compare your score with friends by clicking the "Share Results"
+    button. {"\n"}
     They might be wowed by your flag guessing ability. Or maybe not.
-    There's only one way of telling.
+    
     {"\n"}
     {"\n"}
     Does this format look familiar? The game is inspired by the
@@ -58,6 +57,7 @@ return ( <>
       wordominoes.net
     </Text>
     .
+    {"\n"}
   </Text>
 </>)
 

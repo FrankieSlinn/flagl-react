@@ -49,12 +49,17 @@ export default function Index() {
 
   /*Changes:
 
-  Add clipboard
-  Add timing
+Only display Share FLAGL Score in Stats after game finished
   Layout
   Landscape view
 
-  Make sure flag alway displays - Prob done. 
+  Make sure flag alway displays - Prob done.
+  Check at midnight. 
+  Reword help section. 
+  Test different iphones. 
+  Get into Apple Store. 
+  Do for Android. 
+  Test for Android. 
 
   If don't get word show message, type in valid country name
   Check democratic republic of Congo - Changed to capitalise Of

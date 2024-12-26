@@ -44,6 +44,35 @@ export const s = StyleSheet.create({
     textAlign: "center",
     fontSize: 18.4,
   },
+
+  statsContainer:{
+    flex: 1,
+    flexDirection: "column",
+   // justifyContent: "center",
+  alignItems: "center",
+ 
+    marginBottom: 40,
+
+  },
+  statsBody:{
+   // marginTop: 10,
+   // marginBottom: 10,
+    borderWidth: 3, 
+  borderColor: "#053e4c", 
+  backgroundColor: "#e0e8e8",
+  borderRadius: 15,  // Optional: Set rounded corners if needed
+  paddingTop: 20,
+  paddingBottom: 20,
+  padding: 10,  // Optional: Add padding inside the container
+width: 330,
+
+  },
+ statsText: {
+    textAlign: "center",
+    fontSize: 18.4,
+    lineHeight: 18,
+  },
+
   closeButtonContainer: {
     flexDirection: "row",
     justifyContent: "flex-end", // Aligns the button to the right
