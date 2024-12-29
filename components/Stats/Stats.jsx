@@ -136,9 +136,11 @@ export function Stats({
       </View>
       </View>
       <View style={s.shareScoreButtonContainer}>
-        <TouchableOpacity style={s.shareScoreButton} onPress={handleCopy}>
-          <Text style={s.shareScoreButtonText}>Share FLAGL Score</Text>
-        </TouchableOpacity>
+      { turns >= 4 ?(<TouchableOpacity style={s.shareScoreButton} onPress={handleCopy}>
+      
+      <Text style={s.shareScoreButtonText}>Share FLAGL Score</Text>
+      </TouchableOpacity>): null}
+ 
       </View>
     
     </>

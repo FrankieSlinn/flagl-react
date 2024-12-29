@@ -52,6 +52,7 @@ export default function Index() {
 Only display Share FLAGL Score in Stats after game finished
   Layout
   Landscape view
+  Do footer
 
   Make sure flag alway displays - Prob done.
   Check at midnight. 

@@ -225,7 +225,7 @@ width: 330,
     backgroundColor: "#053e4c",
     paddingVertical: 10, // Vertical padding
     paddingHorizontal: 20,
-    borderRadius: 8, // Rounded corners
+    borderRadius: 15, // Rounded corners
     borderWidth: 1, // Border width
     borderColor: "#388E3C", // Border color
     alignItems: "center", // Center the text inside the button
