@@ -55,15 +55,14 @@ export const s = StyleSheet.create({
 
   },
   statsBody:{
-   // marginTop: 10,
-   // marginBottom: 10,
-    borderWidth: 3, 
+
+   // borderWidth: 3, 
   borderColor: "#053e4c", 
   backgroundColor: "#e0e8e8",
-  borderRadius: 15,  // Optional: Set rounded corners if needed
+  borderRadius: 15,  
   paddingTop: 20,
   paddingBottom: 20,
-  padding: 10,  // Optional: Add padding inside the container
+  padding: 10,  
 width: 330,
 
   },
@@ -80,7 +79,7 @@ width: 330,
   closeButton: {
     padding: 10,
     backgroundColor: "#ADD8E6", // Light blue color
-    borderRadius: 50, // Circular button
+    borderRadius: 15,  
   },
   close: {
     fontWeight: "bold",
@@ -189,7 +188,7 @@ width: 330,
     backgroundColor: "#053e4c",
     paddingVertical: 10, // Vertical padding
     paddingHorizontal: 20,
-    borderRadius: 8, // Rounded corners
+    borderRadius: 15, // Rounded corners
     borderWidth: 1, // Border width
     borderColor: "#388E3C", // Border color
     alignItems: "center", // Center the text inside the button
