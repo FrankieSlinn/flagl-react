@@ -121,9 +121,11 @@ export function FinishGameScreen({
   }, []); // Removed extra brace, added "icon" to dependencies
 
   function practiceButtonPress() {
+    console.log("practiceButtonPress funtion running")
     setCountryUnderscore("");
     setCountry("");
     setIcon("practice");
+    console.log("icon for practice in finish game screen after set", icon)
     
   }
 
@@ -175,7 +177,7 @@ export function FinishGameScreen({
       </View>
   <View style={s.practiceButtonContainer}>
       <Text style={s.practiceText}>To Improve Your Game Go To</Text>
-      <TouchableOpacity style={s.practiceButton} >
+      <TouchableOpacity onPress={practiceButtonPress} style={s.practiceButton} >
         <Text style={s.shareScoreButtonText}>Practice FLAGL</Text>
       </TouchableOpacity>
       </View>

@@ -139,32 +139,30 @@ width: 330,
   },
   countryButton: {
     backgroundColor: "#053e4c",
-    paddingVertical: 10, // Vertical padding
-    paddingHorizontal: 20, // Horizontal padding
-    borderRadius: 8, // Rounded corners
-    borderWidth: 1, // Border width
-    borderColor: "#388E3C", // Border color
+    paddingVertical: 10, 
+    paddingHorizontal: 20, 
+    borderRadius: 8, 
+    borderWidth: 1, 
+    borderColor: "#388E3C", 
     alignItems: "center", 
     margin: 3,
   },
   countryButtonText: {
-    color: "#FFFFFF", // Text color
-    fontSize: 16, // Text size
-    fontWeight: "bold", // Bold text
+    color: "#FFFFFF", 
+    fontSize: 16, 
+    fontWeight: "bold", 
   },
 
   timerContainer:{
-    // flex: 1,
-    // justifyContent: "center",
-    // alignItems: "center",
+
     marginTop: 10,
     marginBottom: 10,
     borderWidth: 3, 
   borderColor: "#053e4c", 
   backgroundColor: "#e0e8e8",
-  borderRadius: 15,  // Optional: Set rounded corners if needed
+  borderRadius: 15, 
   paddingTop: 3,
-  padding: 10,  // Optional: Add padding inside the container
+  padding: 10,  
   height: 100,
 
 
