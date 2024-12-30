@@ -163,6 +163,7 @@ width: 330,
   borderColor: "#053e4c", 
   backgroundColor: "#e0e8e8",
   borderRadius: 15,  // Optional: Set rounded corners if needed
+  paddingTop: 3,
   padding: 10,  // Optional: Add padding inside the container
   height: 100,
 
@@ -260,13 +261,11 @@ width: 330,
   footerContainer:{
     flex: 1,
     flexDirection: "row",
-
-    // backgroundColor: "#353839",
     justifyContent: "center",
     alignItems: "center",
-    //backgroundColor: "#e0e8e8",
     padding: 10,
     marginBottom: 10,
+    backgroundColor: "white",
 
    
   },
