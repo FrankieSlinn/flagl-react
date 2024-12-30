@@ -86,7 +86,7 @@ width: 330,
   },
 
   mainContentText: {
-    marginTop: 15,
+    marginTop: 20,
     fontSize: 20,
     textAlign: "center",
   },
@@ -252,9 +252,33 @@ width: 330,
     fontSize: 25,
     textAlign: "center",
   },
+  footer:{
+    height: 80,
+  },
 
-  footer: {
-    height: 15,
-    backgroundColor: "orange",
+
+  footerContainer:{
+    flex: 1,
+    flexDirection: "row",
+
+    // backgroundColor: "#353839",
+    justifyContent: "center",
+    alignItems: "center",
+    //backgroundColor: "#e0e8e8",
+    padding: 10,
+    marginBottom: 10,
+
+   
+  },
+  footerText:{
+    fontSize: 17,
+    textAlign: "center",
+    marginBottom: 7,
+
+  },
+
+  footerLink: {
+    color: "blue", 
+    textDecorationLine: 'underline',
   },
 });

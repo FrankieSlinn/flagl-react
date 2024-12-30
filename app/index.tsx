@@ -17,6 +17,7 @@ import { Practice } from "../components/Practice/Practice";
 import { PracticeFeedback} from "../components/PracticeFeedback/PracticeFeedback";
 import { FeedbackScreen } from "../components/FeedbackScreen/FeedbackScreen";
 import {FinishGameScreen} from "../components/FinishGameScreen/FinishGameScreen";
+import { Footer} from "../components/Footer/Footer";
 import { useState, useRef, useEffect } from "react";
 import { ScreenProvider } from '../utils/helpLastScreen';
 
@@ -48,8 +49,7 @@ export default function Index() {
 
 
   /*Changes:
-
-Only display Share FLAGL Score in Stats after game finished
+Check practice mode
   Layout
   Landscape view
   Do footer
@@ -354,7 +354,7 @@ East Timor - country buttons displayed before input
  
    </Animated.View>
       <View style={s.footer}>
-        <Text>Footer</Text>
+      <Footer />
       </View>
 
  
