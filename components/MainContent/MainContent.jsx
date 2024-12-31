@@ -74,17 +74,13 @@ export function MainContent({
 
   let currentFlagNumber;
 
-  console.log("is rsultsArray array?", Array.isArray(resultsArray)) 
+  console.log("icon in mainContent", icon);
 
   arrayDailyFlags.forEach((flag, index) => {
     arrayFlagNames.push(flags[flag]);
   });
 
-  // useEffect(() => {
-  //   if (score !== null && score !== undefined) {
-  //     storeScore(score);
-  //   }
-  // }, [score]);
+ 
 
   useEffect(() => {
     setLastScreen("");

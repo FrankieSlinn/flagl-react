@@ -270,7 +270,7 @@ width: 330,
   footerText:{
     fontSize: 17,
     textAlign: "center",
-    marginBottom: 7,
+    marginBottom: 12,
 
   },
 

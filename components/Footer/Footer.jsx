@@ -2,7 +2,10 @@ import { s } from "../../App.style.js";
 
 import { Text, View, Linking, TouchableOpacity } from "react-native";
 
-export function Footer() {
+export function Footer({icon}) {
+
+console.log("icon showing in footer", icon)
+
   const openLink = () => {
     Linking.openURL("https://ko-fi.com/fkissling").catch((err) =>
       console.error("Failed to open URL:", err)
@@ -11,7 +14,7 @@ export function Footer() {
 
   return (
     <>
-      <View style={s.footerContainer}>
+      <View style={[s.footerContainer, { backgroundColor: icon === "practice" || icon === "practiceFeedback" ? "#e7feff" : "white" }]}>
         <TouchableOpacity onPress={openLink}>
           <Text style={s.footerText}>
             {" "}

@@ -354,7 +354,9 @@ East Timor - country buttons displayed before input
  
    </Animated.View>
       <View style={s.footer}>
-      <Footer />
+      <Footer 
+      icon={icon}
+      />
       </View>
 
  
