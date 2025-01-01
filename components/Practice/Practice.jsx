@@ -4,11 +4,12 @@ import { s } from "../../App.style.js";
 import * as allFlagImages from "../../utils/flagMappings.js";
 import { flags } from "../../utils/countryTerritoryNames.js";
 import { useScreenContext } from "../../utils/helpLastScreen.js";
+import { returnToGameMode } from "../../utils/returnToGameMode.js";
 import { PracticeCountryButton } from "../PracticeCountryButton/PracticeCountryButton.jsx";
 import { PracticeHeading } from "../PracticeHeading/PracticeHeading";
 import { PracticeInput } from "../PracticeInput/PracticeInput";
 
-import { getStoredTurns } from "../../utils/asyncStorageUtils.js";
+
 
 export function Practice({
   icon,
@@ -31,9 +32,7 @@ export function Practice({
   practiceCountryButtonVisible,
   setPracticeCountryButtonVisible,
 }) {
-  console.log("countryButtonVisible in practice", practiceCountryButtonVisible);
-
-  const { lastScreen, setLastScreen } = useScreenContext();
+  const { setLastScreen } = useScreenContext();
 
   useEffect(() => {
     setLastScreen("practice");
@@ -59,24 +58,6 @@ export function Practice({
     console.log("currentPracticeFlag set to:", randomFlag);
     setPracticeCountryUnderscore(stringRandomFlag.replaceAll(" ", "_"));
     console.log("practiceCountryUnderscore", practiceCountryUnderscore);
-  }
-
-  //go to correct game mode screen determined by turn
-  function returnToGameMode() {
-    const loadTurns = async () => {
-      try {
-        const turnCount = await getStoredTurns();
-        console.log("turnCount in practice to go back to game mode", turnCount);
-        if (turnCount >= 4) {
-          setIcon("finish");
-        } else {
-          setIcon("");
-        }
-      } catch (error) {
-        console.error("Error loading turns", error);
-      }
-    };
-    loadTurns();
   }
 
   return (
@@ -132,10 +113,10 @@ export function Practice({
             setPracticeCountryButtonVisible={setPracticeCountryButtonVisible}
           />
         </View>
-      <View style={s.practiceButtonContainer}>
-        <TouchableOpacity style = {s.practiceButton} practiceBonPress={returnToGameMode}>
-          <Text style={s.shareScoreButtonText}>Go To Game Mode</Text>
-        </TouchableOpacity>
+        <View style={s.practiceButtonContainer}>
+          <TouchableOpacity style={s.practiceButton} onPress={()=>returnToGameMode(setIcon)}>
+            <Text style={s.shareScoreButtonText}>Go To Game Mode</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </>

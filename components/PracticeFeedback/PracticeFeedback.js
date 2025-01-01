@@ -2,6 +2,7 @@ import { Text, View, Image, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
 import { s } from "../../App.style.js";
 import { useScreenContext } from "../../utils/helpLastScreen";
+import { returnToGameMode } from "../../utils/returnToGameMode.js";
 
 export function PracticeFeedback({
   icon,
@@ -51,12 +52,18 @@ export function PracticeFeedback({
         </Text>
 
         <TouchableOpacity
-          style={s.countryButton}
+          style={s.newTurnPractice}
           onPress={handleFeedbackButtonPress}
         >
           <Text style={s.countryButtonText}>Have Another Go</Text>
         </TouchableOpacity>
+
+        <View style={s.practiceButtonContainer}>
+        <TouchableOpacity style = {s.practiceButton} onPress={()=>returnToGameMode(setIcon)}>
+          <Text style={s.shareScoreButtonText}>Go To Game Mode</Text>
+        </TouchableOpacity>
+        </View>
       </View>
     </>
-  );
+    )
 }

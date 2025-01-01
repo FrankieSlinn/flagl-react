@@ -49,7 +49,9 @@ export default function Index() {
 
 
   /*Changes:
+  Get rid of index at the top.
 Check practice mode
+finish return to Game Mode functionality. 
   Layout
   Landscape view
   Do footer
@@ -208,9 +210,6 @@ East Timor - country buttons displayed before input
         practiceCountryButtonVisible={practiceCountryButtonVisible}
         setPracticeCountryButtonVisible={setPracticeCountryButtonVisible}
 
-
-
-
         />
         
        
@@ -351,7 +350,6 @@ East Timor - country buttons displayed before input
             {/* </KeyboardAvoidingView> */}
           </View>
           </ScreenProvider>
- 
    </Animated.View>
       <View style={s.footer}>
       <Footer 

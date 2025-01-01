@@ -152,6 +152,32 @@ width: 330,
     fontSize: 16, 
     fontWeight: "bold", 
   },
+  newTurn:{
+        backgroundColor: "#053e4c",
+    paddingVertical: 10, 
+    paddingHorizontal: 20, 
+    borderRadius: 15, 
+    borderWidth: 1, 
+    borderColor: "#388E3C", 
+    alignItems: "center", 
+    margin: 3,
+
+
+  },
+
+  newTurnPractice:{
+    backgroundColor: "#053e4c",
+paddingVertical: 10, 
+paddingHorizontal: 20, 
+borderRadius: 15, 
+borderWidth: 1, 
+borderColor: "#388E3C", 
+alignItems: "center", 
+marginBottom: 12,
+margin: 3,
+
+
+},
 
   timerContainer:{
 

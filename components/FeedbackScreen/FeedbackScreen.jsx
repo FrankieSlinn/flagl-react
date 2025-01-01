@@ -1,21 +1,18 @@
 import { s } from "../../App.style.js";
-import { View, Text, TouchableOpacity, useContext } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
-import { Stars } from "../Stars/Stars";
-//import {useCorrectAnswer} from "../../utils/useCorrectAnswer"
-import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
-import { flags } from "../../utils/countryTerritoryNames";
+import { Stars } from "../Stars/Stars.jsx";
+import { flags } from "../../utils/countryTerritoryNames.js";
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
-import  { useScreenContext }from '../../utils/helpLastScreen';
-import { getStoredGameCount, storeAllScores, storeScore, getAllStoredScores, storeGameCount, storeTurns, getStoredTurns,
-  getStoredCountryUnderscore, storeCountryUnderscore
-} from '../../utils/asyncStorageUtils';
+import  { useScreenContext }from '../../utils/helpLastScreen.js';
+import { getStoredTurns,
+  getStoredCountryUnderscore
+} from '../../utils/asyncStorageUtils.js';
+
 
 export function FeedbackScreen({
   currentFlag,
   setCurrentFlag,
-  country,
-  setCountry,
   countryUnderscore,
   setCountryUnderscore,
   icon,
@@ -27,9 +24,8 @@ export function FeedbackScreen({
   correctAnswers,
   setCorrectAnswers,
   haveAnswer,
-  setHaveAnswer,
   score, 
-  setScore,
+
 
 }) {
   const { lastScreen, setLastScreen } = useScreenContext();
@@ -39,17 +35,10 @@ export function FeedbackScreen({
   const moveToNormalPosition = () => {
     
     setTranslateY(0); // Reset translateY to 0
-    console.log("Moving screen back to original position", translateY);
+
   };
 
-  //NOTE: withTiming instead of withSpring could be good
 
-
-  // const moveScreenBack = useAnimatedStyle(() => {
-  //   return {
-  //     transform: [{ screenMoveDown.value: 0}],
-  //   };
-  // });
 
 
   useEffect(() => {
@@ -58,13 +47,7 @@ setLastScreen("feedback")
 console.log("last Screen in feedback", lastScreen)
 }, []);
 
-// useEffect(()=>{
-//   screenMoveDown.value = withSpring(0, {
-//     damping: 20,
-//     stiffness: 100,
-//   });
 
-// })
 
 useEffect(() => {
   const fetchCountryunderscore = async () => {
@@ -202,7 +185,7 @@ useEffect(() => {
 
       {turns <= 3 && (
         <TouchableOpacity
-          style={s.countryButton}
+          style={s.newTurn}
           onPress={handleFeedbackButtonPress}
         >
           <Text style={s.countryButtonText}>Have Another Go</Text>
