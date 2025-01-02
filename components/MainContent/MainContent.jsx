@@ -227,7 +227,7 @@ export function MainContent({
           Which Country or Territory Does this Flag Belong to?
         </Text>
 
-        <View>
+        <View style={s.flagImageContainer}>
           {currentFlag && allFlagImages[currentFlag] ? (
             <Image source={allFlagImages[currentFlag]} style={s.flagImage} />
           ) : (

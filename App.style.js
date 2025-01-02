@@ -3,14 +3,14 @@ import { StyleSheet, Dimensions } from "react-native";
 export const s = StyleSheet.create({
   app: {
     flex: 1,
-    paddingTop: 15, // Add padding to the top
-    paddingLeft: 15, // Add padding to the left
+    paddingTop: 15, 
+    paddingLeft: 15, 
     paddingRight: 15,
     color: "#353839",
     fontSize: 30, // Roughly equivalent to 1.25rem (20px)
-    backgroundColor: "white", // Background color for text container
-    fontFamily: "Arial", // Font family
-    letterSpacing: -0.08, // Letter spacing in pixels (React Native uses px by default)
+    backgroundColor: "white", 
+    fontFamily: "Arial", 
+    letterSpacing: -0.08, 
   },
 
   header: {
@@ -23,10 +23,26 @@ export const s = StyleSheet.create({
   body: {
     marginTop: -50,
     flex: 6,
-    paddingTop: 15, // Add padding to the top
-    paddingLeft: 15, // Add padding to the left
+    paddingTop: 15, 
+    paddingLeft: 15, 
     paddingRight: 15,
     textAlign: "center",
+  },
+  backgroundImage:{
+    flex: 1,
+    resizeMode: "contain",
+
+    width: "100%",
+  
+  
+  
+  },
+  blurView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 1,
+   
   },
   link: {
     color: "blue",
@@ -98,13 +114,20 @@ width: 330,
   star: {
     color: "#a9a9a9",
   },
+  flagImageContainer:{
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center", 
+
+
+
+  },
 
   flagImage: {
     marginTop: 20,
     width: 350,
     height: 200,
-    flex: 1,
-    justifyContent: "center",
+
   },
   inputView: {
     flex: 1,
@@ -171,7 +194,7 @@ paddingVertical: 10,
 paddingHorizontal: 20, 
 borderRadius: 15, 
 borderWidth: 1, 
-borderColor: "#388E3C", 
+//borderColor: "#388E3C", 
 alignItems: "center", 
 marginBottom: 12,
 margin: 3,

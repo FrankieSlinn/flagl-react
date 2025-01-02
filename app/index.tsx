@@ -1,15 +1,14 @@
 import {
   View,
-  Text,
   ScrollView, 
-  KeyboardAvoidingView,
-  Platform, Keyboard
+  ImageBackground,
+ Keyboard
 } from "react-native";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+
 import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import { s } from "../App.style";
 import { Header } from "../components/Header/Header";
-
+import { BlurView } from "expo-blur";
 import { Stats } from "../components/Stats/Stats";
 import { Help} from "../components/Help/Help";
 import { MainContent } from "../components/MainContent/MainContent";
@@ -327,9 +326,15 @@ East Timor - country buttons displayed before input
   style={[s.app, animatedStyle, 
     { backgroundColor: icon === "practice" || icon === "practiceFeedback" ? "#e7feff" : "white", flex: 1, transform: [{ translateY: icon===""?keyboardOffset.value:0 }],}, ]}
 
->
-          <ScreenProvider>
-          <View style={s.header}>
+> 
+{/* <ImageBackground
+   source={require("../assets/images/WorldMap.jpg")}
+   style={[s.backgroundImage, { zIndex: -1 }]}
+   resizeMode="cover"
+
+      >
+          <BlurView style = {s.blurView} intensity={10} >*/}
+          <View style={s.header}> 
             <Header
               content={content}
               setContent={setContent}
@@ -337,7 +342,16 @@ East Timor - country buttons displayed before input
               setIcon={setIcon}
             />
           </View>
+
+     
+          <ScreenProvider>
+
+
+
+
+
           <View style={s.body}>
+ 
 
             <ScrollView showsVerticalScrollIndicator={false} 
               keyboardShouldPersistTaps={true}
@@ -347,9 +361,16 @@ East Timor - country buttons displayed before input
     >
               {renderContent()}
             </ScrollView>
-            {/* </KeyboardAvoidingView> */}
+
           </View>
+            
+
+       
           </ScreenProvider>
+          {/* </BlurView>
+          </ImageBackground> */}
+        
+
    </Animated.View>
       <View style={s.footer}>
       <Footer 
