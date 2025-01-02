@@ -324,7 +324,7 @@ East Timor - country buttons displayed before input
    
      <Animated.View
   style={[s.app, animatedStyle, 
-    { backgroundColor: icon === "practice" || icon === "practiceFeedback" ? "#e7feff" : "white", flex: 1, transform: [{ translateY: icon===""?keyboardOffset.value:0 }],}, ]}
+    { backgroundColor: icon === "practice" || icon === "practiceFeedback" ? "#e0e8e8": "white", flex: 1, transform: [{ translateY: icon===""?keyboardOffset.value:0 }],}, ]}
 
 > 
 {/* <ImageBackground

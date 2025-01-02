@@ -14,7 +14,7 @@ console.log("icon showing in footer", icon)
 
   return (
     <>
-      <View style={[s.footerContainer, { backgroundColor: icon === "practice" || icon === "practiceFeedback" ? "#e7feff" : "white" }]}>
+      <View style={[s.footerContainer, { backgroundColor: icon === "practice" || icon === "practiceFeedback" ?  "#e0e8e8": "white" }]}>
         <TouchableOpacity onPress={openLink}>
           <Text style={s.footerText}>
             {" "}

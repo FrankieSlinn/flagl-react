@@ -50,8 +50,10 @@ export const s = StyleSheet.create({
   },
   iconHeader: {
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: 24,
     textAlign: "center",
+    marginTop: 12,
+    marginBottom: -2,
   },
   helpGuess: {
     fontWeight: "bold",
@@ -72,7 +74,7 @@ export const s = StyleSheet.create({
   },
   statsBody:{
 
-   // borderWidth: 3, 
+
   borderColor: "#053e4c", 
   backgroundColor: "#e0e8e8",
   borderRadius: 15,  
@@ -288,11 +290,14 @@ margin: 3,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-
     fontFamily: "Arial",
+  
+    marginTop: -10,
+    marginBottom: -19,
   },
   practiceHeadingTitle: {
     fontSize: 25,
+    fontWeight: "bold",
     padding: 15,
   },
   scoreText: {
