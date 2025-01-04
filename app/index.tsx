@@ -1,8 +1,8 @@
 import {
   View,
   ScrollView, 
-  ImageBackground,
- Keyboard
+ Keyboard, 
+ ImageBackground
 } from "react-native";
 
 import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
@@ -53,7 +53,7 @@ Check practice mode
 finish return to Game Mode functionality. 
   Layout
   Landscape view
-  Do footer
+Reset score and text
 
   Make sure flag alway displays - Prob done.
   Check at midnight. 
@@ -327,13 +327,16 @@ East Timor - country buttons displayed before input
     { backgroundColor: icon === "practice" || icon === "practiceFeedback" ? "#e0e8e8": "white", flex: 1, transform: [{ translateY: icon===""?keyboardOffset.value:0 }],}, ]}
 
 > 
-{/* <ImageBackground
-   source={require("../assets/images/WorldMap.jpg")}
+ <ImageBackground
+   source={require("../assets/images/WorldMap_v3.png")}
    style={[s.backgroundImage, { zIndex: -1 }]}
    resizeMode="cover"
 
       >
-          <BlurView style = {s.blurView} intensity={10} >*/}
+          <BlurView style = {s.blurView} intensity={10} >
+
+
+
           <View style={s.header}> 
             <Header
               content={content}
@@ -363,12 +366,13 @@ East Timor - country buttons displayed before input
             </ScrollView>
 
           </View>
-            
+     
 
        
           </ScreenProvider>
-          {/* </BlurView>
-          </ImageBackground> */}
+          </BlurView>
+     
+          </ImageBackground>
         
 
    </Animated.View>
