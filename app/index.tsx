@@ -69,6 +69,7 @@ Add safeare? When screen goes up, clashes with time.
   If don't get word show message, type in valid country name
   Check democratic republic of Congo - Changed to capitalise Of
 East Timor - country buttons displayed before input
+Push code
 
   */
   const keyboardOffset = useSharedValue(0);
@@ -333,15 +334,16 @@ East Timor - country buttons displayed before input
     { backgroundColor: icon === "practice" || icon === "practiceFeedback" ? "#e0e8e8": "white", flex: 1, transform: [{ translateY: icon===""?keyboardOffset.value:0 }],}, ]}
 
 > 
- <ImageBackground
-   source={require("../assets/images/WorldMap_v3.png")}
-   style={[s.backgroundImage, { zIndex: -1 }]}
-   resizeMode="cover"
-
-      >
-          <BlurView style = {s.blurView} intensity={10} >
-
-
+<ImageBackground
+  source={
+    icon === "practice" || icon === "practiceFeedback"
+      ? null
+      : require("../assets/images/WorldMap_v3.png")
+  }
+  style={[s.backgroundImage, { zIndex: -1 }]}
+  resizeMode="cover"
+>
+  <BlurView style={s.blurView} intensity={10}>
 
           <View style={s.header}> 
             <Header
