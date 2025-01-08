@@ -1,35 +1,18 @@
 import { Text, View, TouchableOpacity, Animated, Keyboard } from "react-native";
 import { useEffect, useCallback, useState , useLayoutEffect} from "react";
-//import { useShared } from '../../SharedContext';
+
 import { s } from "../../App.style.js";
-import { flags } from "../../utils/countryTerritoryNames";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
+import { useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import { useScreenContext } from "../../utils/helpLastScreen";
-import {
 
-  storeScore,
-
-} from "../../utils/asyncStorageUtils";
-// import {
-//   getStoredGameCount,
-//   storeAllScores,
-//   storeScore,
-//   getAllStoredScores,
-//   storeGameCount,
-//   storeTurns,
-//   getStoredTurns,
-//   getStoredCountryunderscore,
-//   storeCountryunderscore,
-// } from "../../utils/asyncStorageUtils";
 
 export function CountryButton({
   countryMatchingPredText,
-  setCountryMatchingPredText,
   icon,
   setIcon,
   currentFlag,
-  setCurrentFlag,
   country,
   setCountry,
   turns,
@@ -46,12 +29,11 @@ export function CountryButton({
 resultsArray,
 setResultsArray, 
 validateCorrect,
-setValidateCorrect
+setValidateCorrect, 
+scoreArrayUpdated, 
+setScoreArrayUpdated
 }) {
-  console.log(
-    "country Button visible in country button component",
-    countryButtonVisible
-  );
+
 
   const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
   const { lastScreen, setLastScreen } = useScreenContext();
@@ -61,7 +43,7 @@ setValidateCorrect
     };
   });
 
-
+//settings for country button display
   const setNewCountryUnderscore = useCallback(
     (country) => {
       if (icon === "") {
@@ -87,6 +69,8 @@ setValidateCorrect
           return prev; // Don't update if it's the same value
         });
       }
+      
+      setScoreArrayUpdated(false)
       setValidateCorrect(false)
       console.log("setValidateCorrect", setValidateCorrect)
     },
@@ -94,7 +78,7 @@ setValidateCorrect
     [setCountryUnderscore]
   ); 
 
-  // Effect to compare countryUnderscore with currentFlag after both are updated
+  // Effect to compare countryUnderscore with currentFlag after both are updated. Updates score, resultsArray, correctAnswers(for stars )if answer matches result
   useLayoutEffect(() => {
     console.log("useEffect meant to be after countryUnderscore change");
     if (icon === "") {
@@ -119,7 +103,7 @@ setValidateCorrect
           console.log("Correct Answer!!");
           setResultsArray((prevResultsArray)=>prevResultsArray.concat("right"))
           setCorrectAnswers((prevCorrectAnswers) => prevCorrectAnswers + 1);
-          setScore((prevScore) => prevScore + 20); // Increase the score by 20
+          setScore((prevScore) => prevScore + 20); 
           console.log("score updated!!!!!", score);
           console.log("resultsArray after right answer", resultsArray)
           setValidateCorrect(true)

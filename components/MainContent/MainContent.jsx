@@ -62,7 +62,9 @@ export function MainContent({
   resultsArray, 
   setResultsArray, 
   validateCorrect, 
-  setValidateCorrect
+  setValidateCorrect,
+  scoreArrayUpdated,
+  setScoreArrayUpdated
 }) {
   let arrayFlagNames = [];
 
@@ -84,6 +86,7 @@ export function MainContent({
 
   useEffect(() => {
     setLastScreen("");
+   
     console.log("last screen main");
   }, []);
 
@@ -103,19 +106,20 @@ export function MainContent({
     if (turns !== null) {
       storeTurnsInAsyncStorage();
     } })
-
+//reset score in beginning
   useEffect(() => {
     if (turns===0){
-      //storeScore(0);
+
       setScore(0)
       storeScore(0)
+ 
       
       console.log("SCORE SET TO 0 IN MAIN")
       setResultsArray([]);
       console.log("Resultsarray with zero turns", resultsArray)
     }}, [turns])
 
-  // Load the stored turns from AsyncStorage when the component mounts
+  // Load the stored turns from AsyncStorage when the component mounts. Reset Turns when needed.
   useEffect(() => {
     const loadTurnsFromAsyncStorage = async () => {
       try {
@@ -140,6 +144,7 @@ export function MainContent({
     loadTurnsFromAsyncStorage();
   }, []);
   // set below variables to ensure that feedback screen not shown until country button pressed
+//reset items
 
   useEffect(() => {
     console.log("score in main", score);
@@ -295,6 +300,8 @@ export function MainContent({
             setResultsArray={setResultsArray}
             validateCorrect={validateCorrect}
       setValidateCorrect={setValidateCorrect}
+      scoreArrayUpdated={scoreArrayUpdated}
+      setScoreArrayUpdated={setScoreArrayUpdated}  
           />
         </View>
       </View>

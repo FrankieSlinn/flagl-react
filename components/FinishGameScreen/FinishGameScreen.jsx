@@ -22,9 +22,12 @@ export function FinishGameScreen({
   setCountryUnderscore,
   icon,
   setIcon,
-  resultsArray
+  resultsArray,
+  scoreArrayUpdated,
+  setScoreArrayUpdated
 }) {
   const { lastScreen, setLastScreen } = useScreenContext();
+  
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
 
   console.log("resultsArray in Finish game", resultsArray)
@@ -68,36 +71,35 @@ export function FinishGameScreen({
     fetchCountryunderscore();
   }, []);
 
-  useEffect(() => {
-    if (score !== null && score !== undefined) {
-      storeScore(score);
-    }
-  }, [score]);
 
   useEffect(() => {
     const loadAndIncrementScoreArray = async () => {
       try {
-        if (icon === "finish") {
+        if (icon === "finish" && scoreArrayUpdated===false) {
           const storedScoreArray = await getAllStoredScores();
           console.log(
-            "Existing score array before adding new score:",
+            "Existing score array in finish before adding new score:",
             storedScoreArray
           );
 
           // Add the new score
-          const incrementedScoreArray = Array.isArray(storedScoreArray)
+          const incrementedScoreArray = 
+          Array.isArray(storedScoreArray)
             ? storedScoreArray.concat([score])
             : [score];
+          setScoreArrayUpdated(true)
           console.log("[score]", [score]);
           console.log(
             "Updated score array in Finish Game with new score:",
             incrementedScoreArray
           );
+          console.log("!!!score array updated in finish", scoreArrayUpdated)
 
           // Store the new score array in AsyncStorage
           await AsyncStorage.setItem(
             "scoreArray",
-            JSON.stringify(incrementedScoreArray)
+            //JSON.stringify(incrementedScoreArray)
+            JSON.stringify(incrementedScoreArray),
           );
 
           // Check if it was stored correctly
@@ -118,7 +120,7 @@ export function FinishGameScreen({
       console.log("resultArray in finish", resultsArray)
       console.log("is rsultsArray in finish game array?", Array.isArray(resultsArray)) 
     }
-  }, []); // Removed extra brace, added "icon" to dependencies
+  }, [score]); // Removed extra brace, added "icon" to dependencies
 
   function practiceButtonPress() {
     console.log("practiceButtonPress funtion running")

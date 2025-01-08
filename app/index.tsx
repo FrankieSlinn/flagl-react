@@ -43,17 +43,20 @@ export default function Index() {
   const [inputValue, setInputValue] = useState("");
   const [resultsArray, setResultsArray] = useState([]);
   const [validateCorrect, setValidateCorrect] = useState(false);
+  const [scoreArrayUpdated, setScoreArrayUpdated] = useState(true)
 
 
 
 
   /*Changes:
-  Get rid of index at the top.
+
 Check practice mode
-finish return to Game Mode functionality. 
   Layout
   Landscape view
+  Fix bug score not showing
 Reset score and text
+
+Add safeare? When screen goes up, clashes with time. 
 
   Make sure flag alway displays - Prob done.
   Check at midnight. 
@@ -170,6 +173,8 @@ East Timor - country buttons displayed before input
       setResultsArray={setResultsArray}
       validateCorrect={validateCorrect}
       setValidateCorrect={setValidateCorrect}
+      scoreArrayUpdated={scoreArrayUpdated}
+      setScoreArrayUpdated={setScoreArrayUpdated}
    
         />
         
@@ -312,7 +317,8 @@ East Timor - country buttons displayed before input
       setScoreArray={setScoreArray}
       resultsArray = {resultsArray}
       setResultsArray={setResultsArray}
-
+      scoreArrayUpdated={scoreArrayUpdated}
+      setScoreArrayUpdated={setScoreArrayUpdated}  
       />
       </>)
 
