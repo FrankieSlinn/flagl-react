@@ -302,6 +302,7 @@ export function MainContent({
       setValidateCorrect={setValidateCorrect}
       scoreArrayUpdated={scoreArrayUpdated}
       setScoreArrayUpdated={setScoreArrayUpdated}  
+      inputValue={inputValue}
           />
         </View>
       </View>

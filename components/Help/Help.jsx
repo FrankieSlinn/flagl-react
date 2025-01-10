@@ -22,10 +22,8 @@ return ( <>
     {"\n"}
     <Text style={s.helpGuess}>Guess the Flag</Text>
     {"\n"}
-    {"\n"}Every day all FLAGL Players will see the same five flags. The goal is to correctly name as many flags
-    as you can. Start typing a flag name in the box under
-    the flag. You will then see a list of countries and territories. Click on one of
-    the country / territory buttons to make your choice.
+    {"\n"}Every day all FLAGL Players get the same five flags. Start typing the flag name in the box underneath
+    the flag. You will then see buttons with the names of countries and territories. Click on a button to make your choice.
     {"\n\n"}
     At the end of the flag quiz you will see what percentage of flags
     you got right. The statistics section on the top right shows your

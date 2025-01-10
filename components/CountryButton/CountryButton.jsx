@@ -30,7 +30,7 @@ resultsArray,
 setResultsArray, 
 validateCorrect,
 setValidateCorrect, 
-scoreArrayUpdated, 
+inputValue,
 setScoreArrayUpdated
 }) {
 
@@ -185,8 +185,9 @@ setScoreArrayUpdated
  
       ));
     
-    } else {
-      return null;
+    } else if(inputValue!="" && countryMatchingPredText.length===0){
+      return <Text style={[s.mainContentText, {marginTop: -3}]}>
+        No countries found that match this spelling. Try again.  </Text>;
     }
   }
 

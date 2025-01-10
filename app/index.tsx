@@ -2,8 +2,10 @@ import {
   View,
   ScrollView, 
  Keyboard, 
- ImageBackground
+ ImageBackground,
+
 } from "react-native";
+import {StatusBar} from 'expo-status-bar';
 
 import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
 import { s } from "../App.style";
@@ -19,6 +21,7 @@ import {FinishGameScreen} from "../components/FinishGameScreen/FinishGameScreen"
 import { Footer} from "../components/Footer/Footer";
 import { useState, useRef, useEffect } from "react";
 import { ScreenProvider } from '../utils/helpLastScreen';
+import { SafeAreaView } from "react-native-safe-area-context"
 
 export default function Index() {
   const [content, setContent] = useState("This is the default content");
@@ -51,19 +54,17 @@ export default function Index() {
   /*Changes:
 
 Check practice mode
-  Layout
-  Landscape view
-  Fix bug score not showing
-Reset score and text
+  Layout - Done
+  Landscape view - might not be nessecary
 
-Add safeare? When screen goes up, clashes with time. 
 
-  Make sure flag alway displays - Prob done.
+Add safeare? When screen goes up, clashes with time - Didn't work.
+
   Check at midnight. 
   Reword help section. 
   Test different iphones. 
   Get into Apple Store. 
-  Do for Android. 
+  Do for Android? 
   Test for Android. 
 
   If don't get word show message, type in valid country name
@@ -328,12 +329,17 @@ Push code
 
   return (
     <>
-   
+
+<View style={s.statusBarBackground}>
+        <StatusBar style="dark" translucent={false} backgroundColor="white"/>
+      </View>
+
      <Animated.View
   style={[s.app, animatedStyle, 
     { backgroundColor: icon === "practice" || icon === "practiceFeedback" ? "#e0e8e8": "white", flex: 1, transform: [{ translateY: icon===""?keyboardOffset.value:0 }],}, ]}
 
 > 
+
 <ImageBackground
   source={
     icon === "practice" || icon === "practiceFeedback"
@@ -384,6 +390,7 @@ Push code
         
 
    </Animated.View>
+
       <View style={s.footer}>
       <Footer 
       icon={icon}

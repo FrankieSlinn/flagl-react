@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { StyleSheet,  Platform} from "react-native";
 
 export const s = StyleSheet.create({
   app: {
@@ -11,7 +11,20 @@ export const s = StyleSheet.create({
     backgroundColor: "white",
     fontFamily: "Arial",
     letterSpacing: -0.08,
-    marginTop: 70,
+    marginTop: 55,
+  },
+  statusBarBackground:{
+   // height: Platform.OS === "ios" ? StatusBar.currentHeight || 44 : StatusBar.currentHeight || 24,
+   paddingTop: 70,
+    backgroundColor: "white",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 10,
+    
+
+
   },
 
   header: {
