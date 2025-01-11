@@ -72,6 +72,8 @@ Add safeare? When screen goes up, clashes with time - Didn't work.
 East Timor - country buttons displayed before input
 Push code
 
+iphone 12 has different background color (oer image? than the iPhone 15. )
+
   */
   const keyboardOffset = useSharedValue(0);
 
@@ -340,7 +342,7 @@ Push code
 
 > 
 
-<ImageBackground
+{/* <ImageBackground
   source={
     icon === "practice" || icon === "practiceFeedback"
       ? null
@@ -349,7 +351,7 @@ Push code
   style={[s.backgroundImage, { zIndex: -1 }]}
   resizeMode="cover"
 >
-  <BlurView style={s.blurView} intensity={10}>
+  <BlurView style={s.blurView} intensity={10}> */}
 
           <View style={s.header}> 
             <Header
@@ -384,9 +386,9 @@ Push code
 
        
           </ScreenProvider>
-          </BlurView>
+          {/* </BlurView>
      
-          </ImageBackground>
+          </ImageBackground> */}
         
 
    </Animated.View>

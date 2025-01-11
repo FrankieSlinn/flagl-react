@@ -72,6 +72,7 @@ export const s = StyleSheet.create({
   helpBody: {
     textAlign: "center",
     fontSize: 18.4,
+
   },
 
   statsContainer: {
@@ -293,7 +294,10 @@ export const s = StyleSheet.create({
     textAlign: "center",
   },
   footer: {
-    height: 80,
+    height: 100,
+    marginTop: -5,
+ 
+    
   },
 
   footerContainer: {
