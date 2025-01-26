@@ -41,4 +41,3 @@ export const copyResultsToClipboard = async (resultsArray, daysElapsed) => {
   }
 };
 
-export {copyResultsToClipboard}
