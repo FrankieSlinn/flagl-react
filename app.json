@@ -8,12 +8,15 @@
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "backgroundColor": "#232323",
+      "image": "./assets/images/GLOBE_SPLASH.jpg",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      // "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.frankissling.flagl",
+      "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
@@ -33,6 +36,11 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "01a24365-50c0-4293-9b94-f1b0ffd2a6f7"
+      }
     }
   }
 }
