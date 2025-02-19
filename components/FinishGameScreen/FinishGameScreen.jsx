@@ -52,6 +52,11 @@ export function FinishGameScreen({
       const minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
       const seconds = Math.floor((timeDifference / 1000) % 60);
       setTimeLeft({ hours, minutes, seconds });
+
+      if(timeLeft==={ hours: 0, minutes: 0, seconds: 0 }){
+        setIcon("")
+
+      }
     };
 
     calculateTimeLeft(); // Initial calculation
@@ -77,10 +82,7 @@ export function FinishGameScreen({
       try {
         if (icon === "finish" && scoreArrayUpdated===false) {
           const storedScoreArray = await getAllStoredScores();
-          console.log(
-            "Existing score array in finish before adding new score:",
-            storedScoreArray
-          );
+      
 
           // Add the new score
           const incrementedScoreArray = 
@@ -88,12 +90,8 @@ export function FinishGameScreen({
             ? storedScoreArray.concat([score])
             : [score];
           setScoreArrayUpdated(true)
-          console.log("[score]", [score]);
-          console.log(
-            "Updated score array in Finish Game with new score:",
-            incrementedScoreArray
-          );
-          console.log("!!!score array updated in finish", scoreArrayUpdated)
+         
+        
 
           // Store the new score array in AsyncStorage
           await AsyncStorage.setItem(

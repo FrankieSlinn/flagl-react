@@ -59,8 +59,8 @@ Check practice mode
 
 
 Add safeare? When screen goes up, clashes with time - Didn't work.
-
-  Check at midnight. 
+ 
+  Check at midnight - Went to zero but nothing happened
   Reword help section. 
   Test different iphones. 
   Get into Apple Store. 

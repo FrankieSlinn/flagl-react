@@ -4,14 +4,14 @@
     "slug": "flagl-react",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/FLAGL_FAV_1024.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
       "backgroundColor": "#232323",
       "image": "./assets/images/GLOBE_SPLASH.jpg",
-      "resizeMode": "contain",
-      // "backgroundColor": "#ffffff"
+      "resizeMode": "contain"
+     
     },
     "ios": {
       "supportsTablet": true,
