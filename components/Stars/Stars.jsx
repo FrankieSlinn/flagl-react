@@ -11,7 +11,7 @@ export function Stars({ correctAnswers, setCorrectAnswers, turns, setTurns }) {
 
 
 
-  console.log("correctAnswers in Star", correctAnswers)
+  // console.log("correctAnswers in Star", correctAnswers)
 
   return (<>
   

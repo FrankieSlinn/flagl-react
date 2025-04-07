@@ -12,9 +12,13 @@ export function PracticeFeedback({
   setPracticeCountry,
   practiceCountryUnderscore,
   setPracticeCountryUnderscore,
-
   setPracticeHaveAnswer,
+  practiceCountryButtonVisible,
+  setPracticeCountryButtonVisible,
+
 }) {
+console.log("practiceCountryButtonVisible", practiceCountryButtonVisible)
+
   const { lastScreen, setLastScreen } = useScreenContext();
 
   useEffect(() => {
@@ -24,15 +28,10 @@ export function PracticeFeedback({
 
   useEffect(() => {
     const practiceCountryUnderscore = practiceCountry.replace(" ", "_");
-    setPracticeCountryUnderscore(practiceCountryUnderscore); 
+    setPracticeCountryUnderscore(practiceCountryUnderscore);
+    setPracticeCountryButtonVisible(false);
+    
   }, []);
-
-  console.log(
-    "Countryundescore in practicefeedback",
-    practiceCountryUnderscore,
-    "currentPracticeFlag in practicefeedback",
-    currentPracticeFlag
-  );
 
   function handleFeedbackButtonPress() {
     setPracticeCountry("");
@@ -59,11 +58,14 @@ export function PracticeFeedback({
         </TouchableOpacity>
 
         <View style={s.practiceButtonContainer}>
-        <TouchableOpacity style = {s.practiceButton} onPress={()=>returnToGameMode(setIcon)}>
-          <Text style={s.shareScoreButtonText}>Go To Game Mode</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={s.practiceButton}
+            onPress={() => returnToGameMode(setIcon)}
+          >
+            <Text style={s.shareScoreButtonText}>Go To Game Mode</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </>
-    )
+  );
 }

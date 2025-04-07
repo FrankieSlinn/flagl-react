@@ -23,10 +23,10 @@ export const copyResultsToClipboard = async (resultsArray, daysElapsed) => {
 
     // Create the content directly without centering
     const flaglWithDays = `FLAGL ${daysElapsed}`;
-    const footer = "flagl.net";
+   
 
     // Combine all components
-    const contentToCopy = `${flaglWithDays}\n\n${resultsString}\n\n${footer}`;
+    const contentToCopy = `${flaglWithDays}\n\n${resultsString}`;
 
     // Debugging: Log final content
     console.log("Content to Copy:", contentToCopy);

@@ -1,4 +1,4 @@
-import { TextInput, View, Keyboard, KeyboardAvoidingView, Platform, ScrollView, Animated} from "react-native";
+import { TextInput, View, Text} from "react-native";
    // import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {useEffect, useRef, useState} from "react";
 import { s } from "../../App.style.js";
@@ -18,7 +18,7 @@ export function Input({
 
 
   function populateCountryArray(inputValue) {
-    console.log("countrybutton visible", countryButtonVisible);
+  
 
     let arrayFlagNames = [];
     let lowerCaseInput = String(inputValue).toLowerCase();
@@ -32,9 +32,9 @@ export function Input({
         arrayFlagNames.push(flags[i]);
       }
     }
-    console.log("matching flag Names in array for pred text", arrayFlagNames);
+ 
 
-    // Slice the array to keep only the first 5 elements
+    // Slice the array to keep only the first 5 elements to be shown in buttons
     if (arrayFlagNames.length > 5) {
       arrayFlagNames = arrayFlagNames.slice(0, 5);
     }
@@ -42,7 +42,6 @@ export function Input({
     // Set the reduced array into state
     setCountryMatchingPredText(arrayFlagNames);
 
-    console.log("matching flag Names reduced to 5", arrayFlagNames);
   }
 
 
@@ -54,6 +53,7 @@ export function Input({
 
 
       <View style={s.inputContainer}>
+        <Text>
    
    
         <TextInput
@@ -70,12 +70,7 @@ export function Input({
             setInputValue(text);
          
 
-            console.log(
-              "in input check which icon //is country button visible?",
-              icon,
-              countryButtonVisible, 
-              inputValue
-            );
+         
             console.log(
               "in putValue.length", inputValue.length)
           
@@ -84,6 +79,7 @@ export function Input({
             populateCountryArray(text);
           }}
         />
+        </Text>
 
 
     

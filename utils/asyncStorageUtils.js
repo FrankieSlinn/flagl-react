@@ -2,8 +2,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const storeTurns = async (turns) => {
     try {
-        await AsyncStorage.setItem("score", JSON.stringify(turns));
-        console.log("Turnsstored successfully!");
+        await AsyncStorage.setItem("turns", JSON.stringify(turns));
+        console.log("Turnsstored successfully!", turns);
     } catch (error) {
         console.error("Error saving turns", error);
     }
@@ -86,6 +86,28 @@ export const getStoredCountryUnderscore= async () => {
         return null;  // If no country is stored, return null
     } catch (error) {
         console.error("Error retrieving countryUnderscore", error);
+        return null;
+    }
+};
+
+export const storeArrayDailyFlags = async (arrayDailyFlags) => {
+    try {
+        await AsyncStorage.setItem("arrayDailyFlags", JSON.stringify(arrayDailyFlags));
+        console.log("arrayDailyFlags stored successfully!");
+    } catch (error) {
+        console.error("Error saving arrayDailyFlags", error);
+    }
+};
+
+export const getStoredArrayDailyFlags= async () => {
+    try {
+        const value = await AsyncStorage.getItem("arrayDailyFlags");
+        if (value !== null) {
+            return JSON.parse(value);  // If there is a country, parse it
+        }
+        return null;  // If no country is stored, return null
+    } catch (error) {
+        console.error("Error retrieving arrayDailyFlags", error);
         return null;
     }
 };

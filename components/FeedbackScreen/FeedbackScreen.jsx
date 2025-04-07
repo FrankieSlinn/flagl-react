@@ -6,6 +6,7 @@ import { flags } from "../../utils/countryTerritoryNames.js";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useScreenContext } from "../../utils/helpLastScreen.js";
 import {
+  storeTurns,
   getStoredTurns,
   getStoredCountryUnderscore,
 } from "../../utils/asyncStorageUtils.js";
@@ -24,15 +25,17 @@ export function FeedbackScreen({
   setCorrectAnswers,
   haveAnswer,
   score,
+  newGame,
+  setNewGame,
 }) {
   const { lastScreen, setLastScreen } = useScreenContext();
 
   const [translateY, setTranslateY] = useState(0);
 
+  setNewGame(false);
+
   useEffect(() => {
     setLastScreen("feedback");
-
-    console.log("last Screen in feedback", lastScreen);
   }, []);
 
   useEffect(() => {
@@ -45,12 +48,8 @@ export function FeedbackScreen({
     fetchCountryunderscore();
   }, []);
 
-  console.log("correctAnswers in Feedback Screen", correctAnswers);
-
   const setTheCurrentFlag = async (storedTurnCount) => {
     try {
-      console.log("storedTurnCount in setCurrentFlag", storedTurnCount);
-
       if (arrayDailyFlags.length > 0) {
         let currentFlagNumber = arrayDailyFlags[storedTurnCount];
         let flagWithoutUnderscore = String(flags[currentFlagNumber]);
@@ -68,64 +67,39 @@ export function FeedbackScreen({
 
   function handleFinishGame() {
     setIcon("finish");
-    console.log("Game Finished. Current Icon:", icon);
-    console.log("correctAnswers in Finish Screen", correctAnswers);
   }
 
   function handleFeedbackButtonPress() {
     // Reset icon
     newTurn();
     console.log("resetting icon to main content");
-    console.log("setHaveAnswer", haveAnswer);
+    // console.log("setHaveAnswer", haveAnswer);
   }
 
-  function newTurn() {
-    console.log("newTurn function running");
+  const newTurn = async () => {
+    try {
+      console.log("newTurn function running");
+      const storedTurnCount = await getStoredTurns();
+      const incrementedStoredTurnCount = storedTurnCount + 1;
 
-    if (turns <= 3) {
-      const loadAndIncrementTurns = async () => {
-        try {
-          // Retrieve stored game count
+      if (storedTurnCount <= 3) {
+  
 
-          const incrementedStoredTurnCount = (await getStoredTurns()) + 1;
+        storeTurns(JSON.stringify(incrementedStoredTurnCount));
 
-          console.log(
-            "getStoredGameCount in Feedback",
-            incrementedStoredTurnCount
-          );
+        setTurns(incrementedStoredTurnCount);
 
-          // Store the new game count back to AsyncStorage
-          await AsyncStorage.setItem(
-            "stored turnCount",
-            JSON.stringify(incrementedStoredTurnCount)
-          );
-          setTurns(incrementedStoredTurnCount);
-          setTheCurrentFlag(incrementedStoredTurnCount);
-          if (incrementedStoredTurnCount <= 4) {
-            setIcon("");
-          } else if (incrementedStoredTurnCount > 4) {
-            console.log("turns in finishgame use effect", turns);
-            console.log("Turns are 4. Ending game...");
-
-            handleFinishGame();
-          }
-        } catch (error) {
-          console.error("Error loading or updating turn count:", error);
-        }
-      };
-
-      loadAndIncrementTurns();
-
-      console.log("Turns after newTurn:", turns);
-    } else if (turns === 4) {
-      if (turns === 4) {
-        console.log("turns in finishgame use effect", turns);
-        console.log("Turns are 4. Ending game...");
-
+        setTheCurrentFlag(incrementedStoredTurnCount);
+      }
+      if (incrementedStoredTurnCount <= 4) {
+        setIcon("");
+      } else if (incrementedStoredTurnCount > 4) {
         handleFinishGame();
       }
+    } catch (error) {
+      console.error("Error loading or updating turn count:", error);
     }
-  }
+  };
 
   return (
     <View style={[s.mainContent, { transform: [{ translateY }] }]}>

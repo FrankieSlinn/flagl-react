@@ -34,9 +34,12 @@ export function Practice({
 }) {
   const { setLastScreen } = useScreenContext();
 
+
+  //This console log may be needed to get a rerendering of the practiceCountryButtonVisible to prevent country button showing in practice screen. 
+  console.log("practice country button visible in practice", practiceCountryButtonVisible)
+
   useEffect(() => {
     setLastScreen("practice");
-    console.log("last screen practice");
   }, []);
 
   useEffect(() => {
@@ -55,9 +58,8 @@ export function Practice({
     const randomFlag = flags[randomIndex];
     const stringRandomFlag = String(randomFlag);
     setCurrentPracticeFlag(stringRandomFlag);
-    console.log("currentPracticeFlag set to:", randomFlag);
     setPracticeCountryUnderscore(stringRandomFlag.replaceAll(" ", "_"));
-    console.log("practiceCountryUnderscore", practiceCountryUnderscore);
+
   }
 
   return (

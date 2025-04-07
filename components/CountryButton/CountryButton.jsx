@@ -54,7 +54,7 @@ setScoreArrayUpdated
               "countryUnderscore",
               JSON.stringify(countryWithUnderscore)
             );
-            console.log("Saved countryUnderscore:", countryWithUnderscore);
+            // console.log("Saved countryUnderscore:", countryWithUnderscore);
           } catch (error) {
             console.error("Error saving country underscore:", error);
           }
@@ -72,7 +72,7 @@ setScoreArrayUpdated
       
       setScoreArrayUpdated(false)
       setValidateCorrect(false)
-      console.log("setValidateCorrect", setValidateCorrect)
+      // console.log("setValidateCorrect", setValidateCorrect)
     },
 
     [setCountryUnderscore]
@@ -88,8 +88,8 @@ setScoreArrayUpdated
 
         if(countryUnderscore !=currentFlag  ){
           setResultsArray((prevResultsArray)=>prevResultsArray.concat("wrong"))
-          console.log("countryUnderscore for wrong answer", countryUnderscore, "currentFlag", currentFlag)
-          console.log("resultsArray after wrong answer", resultsArray)
+          // console.log("countryUnderscore for wrong answer", countryUnderscore, "currentFlag", currentFlag)
+          // console.log("resultsArray after wrong answer", resultsArray)
           setValidateCorrect(true)
         
 
@@ -104,8 +104,8 @@ setScoreArrayUpdated
           setResultsArray((prevResultsArray)=>prevResultsArray.concat("right"))
           setCorrectAnswers((prevCorrectAnswers) => prevCorrectAnswers + 1);
           setScore((prevScore) => prevScore + 20); 
-          console.log("score updated!!!!!", score);
-          console.log("resultsArray after right answer", resultsArray)
+          // console.log("score updated!!!!!", score);
+          // console.log("resultsArray after right answer", resultsArray)
           setValidateCorrect(true)
          
         }
@@ -158,9 +158,9 @@ setScoreArrayUpdated
       setCountryButtonVisible(false);
       
   
-      console.log("country in country button after press", country);
+      // console.log("country in country button after press", country);
 
-      console.log("country after selected by pressing country button", country);
+      // console.log("country after selected by pressing country button", country);
     }
   }
 
@@ -193,7 +193,7 @@ setScoreArrayUpdated
 
   return <>
        <View style={s.countryButtonContainer}>
-  {mapCountryArrayToButtons(countryMatchingPredText)};
+ <Text>{mapCountryArrayToButtons(countryMatchingPredText)}</Text> 
   </View>
   </>
 }

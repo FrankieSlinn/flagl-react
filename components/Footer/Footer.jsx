@@ -4,7 +4,7 @@ import { Text, View, Linking, TouchableOpacity } from "react-native";
 
 export function Footer({icon}) {
 
-console.log("icon showing in footer", icon)
+
 
   const openLink = () => {
     Linking.openURL("https://ko-fi.com/fkissling").catch((err) =>

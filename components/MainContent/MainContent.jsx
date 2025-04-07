@@ -9,21 +9,15 @@ import {
 } from "react-native";
 import { useState, useEffect, useContext, useRef } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {getStoredTurns, storeTurns, storeScore, getStoredArrayDailyFlags} from "../../utils/asyncStorageUtils";
 import { Stars } from "../Stars/Stars";
 import { Input } from "../Input/Input";
 import { CountryButton } from "../CountryButton/CountryButton";
-import { generateNewFlagsToPopulateArrayDailyFlags } from "../../utils/practiceAndDaily.js";
+import { generateNewFlagsToPopulateArrayDailyFlags, fetchOrGenerateFlags } from "../../utils/practiceAndDaily.js";
 import * as allFlagImages from "../../utils/flagMappings";
 import { flags } from "../../utils/countryTerritoryNames";
 import { useScreenContext } from "../../utils/helpLastScreen";
 
-
-import {
-
-  storeScore,
-
-  getStoredTurns,
-} from "../../utils/asyncStorageUtils";
 
 export function MainContent({
   icon,
@@ -34,8 +28,10 @@ export function MainContent({
   setCountry,
   turns,
   setTurns,
-  arrayDailyFlags,
+  arrayDailyFlags, 
   setArrayDailyFlags,
+  arrayFlagNames,
+  setArrayFlagNames,
   correctAnswers,
   setCorrectAnswers,
   countryUnderscore,
@@ -64,23 +60,81 @@ export function MainContent({
   validateCorrect, 
   setValidateCorrect,
   scoreArrayUpdated,
-  setScoreArrayUpdated
+  setScoreArrayUpdated,
+  newGame, 
+  setNewGame,
+  sessionStart, 
+  setSessionStart
 }) {
-  let arrayFlagNames = [];
+ 
 
   const { lastScreen, setLastScreen } = useScreenContext();
 
-  const [keyboardHeight] = useState(new Animated.Value(0));
+  // const [keyboardHeight] = useState(new Animated.Value(0));
+
 
   const scrollViewRef = useRef(null);
 
-  let currentFlagNumber;
 
-  console.log("icon in mainContent", icon);
 
-  arrayDailyFlags.forEach((flag, index) => {
-    arrayFlagNames.push(flags[flag]);
-  });
+
+  // console.log("MainContent ----!!!setArrayDailyFlags Should eb running", "new game:", 
+  //   newGame, "score", score, "turns", turns, "correctAnswers", correctAnswers,
+  //   "resultsArray", resultsArray, arrayDailyFlags, arrayFlagNames
+  // )
+ 
+//Listener to update more quickly
+  useEffect(() => {
+    console.log("function to update flag parameters to display flag in main running!!!!!")
+    if(newGame===false){
+    const setFlagParametersForDisplay = async()=>
+    {
+      try{
+        const updatedFlagArray = await getStoredArrayDailyFlags();
+        console.log("!!!!!!!!!!AsyncarrayDailyFlags in main content", updatedFlagArray);
+        console.log("arrayDailyFlags in main content", arrayDailyFlags);
+
+        const storedTurnCount = await getStoredTurns();
+        // const updatedFlagArray = await getStoredArrayDailyFlags();
+        const retrieveStoredArrayDailyFlags = await getStoredArrayDailyFlags();
+  
+        console.log("retrieveStoredArrayDailyFlags = " + updatedFlagArray);
+        console.log("!!!!!!!storedTurnCount:", storedTurnCount);
+  
+        if (storedTurnCount === 0) {
+          let currentFlagNumber = updatedFlagArray[storedTurnCount];
+          console.log("currentFlagNumber: " + currentFlagNumber);
+  
+          let flagWithoutUnderscore = String(flags[currentFlagNumber]);
+         
+
+          console.log("flagWithoutUnderscore: " + flagWithoutUnderscore);
+  
+          let flagWithUnderscore = flagWithoutUnderscore.replaceAll(" ", "_");
+           // Update state for currentFlag - needed for image
+          setCurrentFlag(flagWithUnderscore);
+         
+
+          console.log("current flag", currentFlag)
+  
+         
+        }
+  
+        console.log("score updated to 0 in main");
+
+
+      }
+      catch(error){
+        console.error("Error getting arrayDailyFlags:", error);
+      }
+    
+    }
+    setFlagParametersForDisplay();
+  }
+   
+
+},[arrayFlagNames])
+
 
  
 
@@ -92,23 +146,29 @@ export function MainContent({
 
   // Store the updated turns in AsyncStorage whenever it changes
   useEffect(() => {
-    const storeTurnsInAsyncStorage = async () => {
-      try {
-        const turnsStored = await AsyncStorage.setItem(
-          "turns",
-          JSON.stringify(turns)
-        );
-        console.log("Turns stored in AsyncStorage: in main", turnsStored);
-      } catch (error) {
-        console.error("Error storing turns in AsyncStorage:", error);
-      }
-    };
-    if (turns !== null) {
-      storeTurnsInAsyncStorage();
-    } })
+    
+
+      const handleTurns = async () => {
+        if (newGame) {
+          await storeTurns(0);
+          const storedTurns = await getStoredTurns();  // Wait for the stored value
+          console.log("new game in maincontent", newGame, "getStoredTurns()", storedTurns, "turns", turns);
+          setTurns(0);
+        }
+    
+        if (turns !== null) {
+          await storeTurns(turns);
+        }
+      };
+      handleTurns();}
+
+  , [turns, newGame]); //
 //reset score in beginning
   useEffect(() => {
-    if (turns===0){
+    const handleScoresResultsIfNoTurns = async () => {
+      try{
+      const storedTurnCount = await getStoredTurns(); 
+    if (storedTurnCount===0){
 
       setScore(0)
       storeScore(0)
@@ -116,33 +176,45 @@ export function MainContent({
       
       console.log("SCORE SET TO 0 IN MAIN")
       setResultsArray([]);
-      console.log("Resultsarray with zero turns", resultsArray)
-    }}, [turns])
+      console.log("Resultsarray with zero turns", resultsArray)}
+    }
+    catch (error) {
+      console.error("Error setting scores, results in 0 turns", error);
+    handleScoresResultsIfNoTurns()
+  };
+  
+  }
+  }, [])
 
   // Load the stored turns from AsyncStorage when the component mounts. Reset Turns when needed.
   useEffect(() => {
-    const loadTurnsFromAsyncStorage = async () => {
+    const switchToFinishScreen = async () => {
       try {
-        const storedTurns = await AsyncStorage.getItem("turns");
-        if (storedTurns !== null) {
-          setTurns(JSON.parse(storedTurns));
-          console.log(
-            "Turns loaded from AsyncStorage in Main content:",
-            storedTurns
-          );
-          if (storedTurns === 5) {
+        const storedTurnCount = await getStoredTurns(); 
+  
+        if (storedTurnCount !== null) {
+          console.log("storedTurns in MainContent", storedTurnCount);
+          setTurns(storedTurnCount);  // Removed ()
+  
+          console.log("Turns loaded from AsyncStorage in Main content:", storedTurnCount);
+          
+          if (storedTurnCount === 5) {
             console.log("Setting icon to finish");
             setIcon("finish");
           }
         } else {
-          setTurns(0);
+          await storeTurns(0); // Corrected function call with argument
         }
       } catch (error) {
-        console.error("Error loading turns from AsyncStorage:", error);
+        console.error("Error loading or storing turns:", error);
       }
     };
-    loadTurnsFromAsyncStorage();
+  
+    switchToFinishScreen(); // Call the async function inside useEffect
+  
   }, []);
+      
+
   // set below variables to ensure that feedback screen not shown until country button pressed
 //reset items
 
@@ -153,72 +225,40 @@ export function MainContent({
     setHaveAnswer(false);
     setCountryUnderscore("");
 
-    console.log(
-      "useEffect to set Haveanswer and countryUnderscore to false at beginning of MAIN SCREEN: setHaveAnswer and setCountryUnderscore",
-      haveAnswer,
-      countryUnderscore
-    );
+
   }, []); // Empty dependency array means this runs only once on mount
 
   let storedTurns;
   useEffect(() => {
-    storedTurns = async () => {
-      try {
-        storedTurns = await getStoredTurns();
+    
         if (
-          (turns === 0 && countryUnderscore === "") ||
+          (getStoredTurns === 0 && countryUnderscore === "") ||
           arrayDailyFlags === null
         ) {
           setScore(0);
         }
         console.log("score  updated to 0 in main");
-      } catch (error) {
-        console.error("Error loading turn count: in main", error);
-      }
-    };
-  }, [turns]);
+  
+    },
+   []);
 
-  // Function to fetch or generate new flags based on the date
-  const fetchOrGenerateFlags = async () => {
-    try {
-      const storedFlags = await AsyncStorage.getItem("arrayDailyFlags"); // Retrieve stored flags
-      const storedDate = await AsyncStorage.getItem("flagGenerationDate"); // Retrieve the stored generation date
-
-      const today = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
-
-      if (storedFlags !== null && storedDate === today) {
-        // If flags exist and were generated today, use them
-        setArrayDailyFlags(JSON.parse(storedFlags));
-        // console.log("Flags loaded from storage:", JSON.parse(storedFlags));
-      } else {
-        // If no flags are stored or it's a new day, generate new flags
-        const newFlags = generateNewFlagsToPopulateArrayDailyFlags();
-        setArrayDailyFlags(newFlags);
-
-        // Store new flags and the current date
-        await AsyncStorage.setItem("arrayDailyFlags", JSON.stringify(newFlags));
-        await AsyncStorage.setItem("flagGenerationDate", today);
-
-        console.log("Generated and stored new flags:", newFlags);
-      }
-    } catch (error) {
-      console.error("Error fetching or generating flags:", error);
-    }
-  };
+//only want this to be generated once in the beginning
 
   useEffect(() => {
-    fetchOrGenerateFlags();
+    console.log("!??????!!!!Running fetch Or Geenerate Flags From Main!!!! session start in main", sessionStart)
+    if(sessionStart===true){
+      setSessionStart(false)
+    console.log("fetchOrGenerateFlags initiated from MainContent")
+ 
+    fetchOrGenerateFlags(newGame, setNewGame, arrayDailyFlags, setArrayDailyFlags, arrayFlagNames, setArrayFlagNames);
+  
+    }
+  
     // Fetch or generate flags only once when the component mounts
   }, []);
 
-  useEffect(() => {
-    if (turns === 0) {
-      let currentFlagNumber = arrayDailyFlags[turns];
-      let flagWithoutUnderscore = String(flags[currentFlagNumber]);
-      let flagWithUnderscore = flagWithoutUnderscore.replaceAll(" ", "_");
-      setCurrentFlag(flagWithUnderscore);
-    }
-  });
+
+  
 
   return (
     <>

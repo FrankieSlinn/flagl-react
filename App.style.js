@@ -7,7 +7,7 @@ export const s = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
     color: "#353839",
-    fontSize: 30, // Roughly equivalent to 1.25rem (20px)
+    fontSize: 30, 
     backgroundColor: "white",
     fontFamily: "Arial",
     letterSpacing: -0.08,
@@ -78,9 +78,7 @@ export const s = StyleSheet.create({
   statsContainer: {
     flex: 1,
     flexDirection: "column",
-    // justifyContent: "center",
     alignItems: "center",
-
     marginBottom: 40,
   },
   statsBody: {
@@ -104,11 +102,12 @@ export const s = StyleSheet.create({
   },
   closeButton: {
     padding: 10,
-    backgroundColor: "#ADD8E6", // Light blue color
+    backgroundColor: "#053e4c",
     borderRadius: 15,
   },
   close: {
     fontWeight: "bold",
+    color: "#FFFFFF"
   },
 
   mainContentText: {
@@ -200,8 +199,9 @@ export const s = StyleSheet.create({
     borderWidth: 1,
 
     alignItems: "center",
-    marginBottom: 12,
+    marginBottom: 30,
     margin: 3,
+
   },
 
   timerContainer: {
