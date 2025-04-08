@@ -193,7 +193,7 @@ setScoreArrayUpdated
 
   return <>
        <View style={s.countryButtonContainer}>
- <Text>{mapCountryArrayToButtons(countryMatchingPredText)}</Text> 
+{mapCountryArrayToButtons(countryMatchingPredText)}
   </View>
   </>
 }

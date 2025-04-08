@@ -167,11 +167,12 @@ export const s = StyleSheet.create({
   },
   countryButton: {
     backgroundColor: "#053e4c",
+    // height: 25,
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: "#388E3C",
+    //borderColor: "#388E3C",
     alignItems: "center",
     margin: 3,
   },
