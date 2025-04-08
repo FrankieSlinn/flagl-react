@@ -110,10 +110,10 @@ export default function Index() {
         />
       );
     } else if (icon === "") {
-      console.log("user in mainscreen");
+      console.log("user in mainscreen (logged from index)");
 
       return (
-        <>
+    
           <MainContent
             icon={icon}
             setIcon={setIcon}
@@ -155,7 +155,7 @@ export default function Index() {
             sessionStart={sessionStart}
             setSessionStart={setSessionStart}
           />
-        </>
+     
       );
     } else if (icon === "practice") {
       console.log("user in practice screen");

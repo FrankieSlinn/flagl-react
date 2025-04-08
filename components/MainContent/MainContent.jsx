@@ -8,12 +8,12 @@ import {
 
 } from "react-native";
 import { useState, useEffect, useContext, useRef } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
 import {getStoredTurns, storeTurns, storeScore, getStoredArrayDailyFlags} from "../../utils/asyncStorageUtils";
 import { Stars } from "../Stars/Stars";
 import { Input } from "../Input/Input";
 import { CountryButton } from "../CountryButton/CountryButton";
-import { generateNewFlagsToPopulateArrayDailyFlags, fetchOrGenerateFlags } from "../../utils/practiceAndDaily.js";
+import {fetchOrGenerateFlags } from "../../utils/practiceAndDaily.js";
 import * as allFlagImages from "../../utils/flagMappings";
 import { flags } from "../../utils/countryTerritoryNames";
 import { useScreenContext } from "../../utils/helpLastScreen";
@@ -76,12 +76,6 @@ export function MainContent({
   const scrollViewRef = useRef(null);
 
 
-
-
-  // console.log("MainContent ----!!!setArrayDailyFlags Should eb running", "new game:", 
-  //   newGame, "score", score, "turns", turns, "correctAnswers", correctAnswers,
-  //   "resultsArray", resultsArray, arrayDailyFlags, arrayFlagNames
-  // )
  
 //Listener to update more quickly
   useEffect(() => {
@@ -91,8 +85,8 @@ export function MainContent({
     {
       try{
         const updatedFlagArray = await getStoredArrayDailyFlags();
-        console.log("!!!!!!!!!!AsyncarrayDailyFlags in main content", updatedFlagArray);
-        console.log("arrayDailyFlags in main content", arrayDailyFlags);
+        // console.log("!!!!!!!!!!AsyncarrayDailyFlags in main content", updatedFlagArray);
+        // console.log("arrayDailyFlags in main content", arrayDailyFlags);
 
         const storedTurnCount = await getStoredTurns();
         // const updatedFlagArray = await getStoredArrayDailyFlags();
@@ -120,7 +114,7 @@ export function MainContent({
          
         }
   
-        console.log("score updated to 0 in main");
+        // console.log("score updated to 0 in main");
 
 
       }
@@ -174,9 +168,10 @@ export function MainContent({
       storeScore(0)
  
       
-      console.log("SCORE SET TO 0 IN MAIN")
+      // console.log("SCORE SET TO 0 IN MAIN")
       setResultsArray([]);
-      console.log("Resultsarray with zero turns", resultsArray)}
+      // console.log("Resultsarray with zero turns", resultsArray)
+    }
     }
     catch (error) {
       console.error("Error setting scores, results in 0 turns", error);
@@ -193,10 +188,10 @@ export function MainContent({
         const storedTurnCount = await getStoredTurns(); 
   
         if (storedTurnCount !== null) {
-          console.log("storedTurns in MainContent", storedTurnCount);
+          // console.log("storedTurns in MainContent", storedTurnCount);
           setTurns(storedTurnCount);  // Removed ()
   
-          console.log("Turns loaded from AsyncStorage in Main content:", storedTurnCount);
+          // console.log("Turns loaded from AsyncStorage in Main content:", storedTurnCount);
           
           if (storedTurnCount === 5) {
             console.log("Setting icon to finish");
@@ -228,19 +223,17 @@ export function MainContent({
 
   }, []); // Empty dependency array means this runs only once on mount
 
-  let storedTurns;
-  useEffect(() => {
-    
-        if (
-          (getStoredTurns === 0 && countryUnderscore === "") ||
-          arrayDailyFlags === null
-        ) {
-          setScore(0);
-        }
-        console.log("score  updated to 0 in main");
+
+  // useEffect(() => {
+  //   const zeroS
+  //   const storedTurnCount = await getStoredTurns(); // in async function
+  //   if (storedTurnCount === 0 && countryUnderscore === "") {
+  //     setScore(0);
+  //   }
+  //       console.log("score  updated to 0 in main");
   
-    },
-   []);
+  //   },
+  //  []);
 
 //only want this to be generated once in the beginning
 
