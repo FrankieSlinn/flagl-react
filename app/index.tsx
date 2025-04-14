@@ -81,9 +81,14 @@ export default function Index() {
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
-      transform: [{ translateY: keyboardOffset.value }],
+      transform: [
+        {
+          translateY: icon === "" || icon === "practice"? keyboardOffset.value : 0, // ← condition lives here
+        },
+      ],
     };
   });
+
 
   const renderContent = () => {
     if (icon === "help") {
@@ -302,14 +307,14 @@ export default function Index() {
       <Animated.View
         style={[
           s.app,
-          animatedStyle,
+       animatedStyle,
           {
             backgroundColor:
               icon === "practice" || icon === "practiceFeedback"
                 ? "#e0e8e8"
                 : "white",
             flex: 1,
-            transform: [{ translateY: icon === "" ? keyboardOffset.value : 0 }],
+            // transform: [{ translateY: icon === "" ? animatedStyle : 0 }],
           },
         ]}
       >
