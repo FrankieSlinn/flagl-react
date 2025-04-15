@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
 import { Stars } from "../Stars/Stars.jsx";
 import { flags } from "../../utils/countryTerritoryNames.js";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useScreenContext } from "../../utils/helpLastScreen.js";
 import {
   storeTurns,
@@ -16,14 +15,12 @@ export function FeedbackScreen({
   setCurrentFlag,
   countryUnderscore,
   setCountryUnderscore,
-  icon,
   setIcon,
   turns,
   setTurns,
   arrayDailyFlags,
   correctAnswers,
   setCorrectAnswers,
-  haveAnswer,
   score,
   newGame,
   setNewGame,
@@ -32,7 +29,9 @@ export function FeedbackScreen({
 
   const [translateY, setTranslateY] = useState(0);
 
-  setNewGame(false);
+  useEffect(() => {
+    setNewGame(false);
+  }, []);
 
   useEffect(() => {
     setLastScreen("feedback");
@@ -41,7 +40,6 @@ export function FeedbackScreen({
   useEffect(() => {
     const fetchCountryunderscore = async () => {
       const countryUnderscore = await getStoredCountryUnderscore();
-      console.log("Score in stats", score);
       setCountryUnderscore(countryUnderscore);
     };
 
@@ -54,10 +52,6 @@ export function FeedbackScreen({
         let currentFlagNumber = arrayDailyFlags[storedTurnCount];
         let flagWithoutUnderscore = String(flags[currentFlagNumber]);
         let flagWithUnderscore = flagWithoutUnderscore.replaceAll(" ", "_");
-
-        console.log("Stored Turns updated to:", storedTurnCount);
-        console.log("Updating flag to:", flagWithUnderscore);
-
         setCurrentFlag(flagWithUnderscore); // Set the flag after turns has updated
       }
     } catch (error) {

@@ -57,7 +57,6 @@ export function FinishGameScreen({
       const calculateTimeLeft = () => {
         const now = new Date();
         const ukMidnight = new Date();
-        
         ukMidnight.setHours(24, 0, 0, 0);
 
         
@@ -75,9 +74,6 @@ export function FinishGameScreen({
           seconds: Math.floor((timeDifference / 1000) % 60),
         });
   
-     
-      
-        
       };
   
       const resetGame = async () => {try{
@@ -153,8 +149,7 @@ export function FinishGameScreen({
 
   const handleCopy = async (arrayToCopy) => {
     try {
-      console.log("Array.isArray(arrayToCopy)", Array.isArray(arrayToCopy));
-      console.log("arrayToCopy:", arrayToCopy);
+      // console.log("arrayToCopy:", arrayToCopy);
       await copyResultsToClipboard(arrayToCopy, daysElapsed);
     } catch (error) {
       console.error("Failed to copy results to clipboard:", error);

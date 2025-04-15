@@ -1,12 +1,11 @@
 import { Text, View, TouchableOpacity, Animated, Keyboard } from "react-native";
-import { useEffect, useCallback, useState , useLayoutEffect} from "react";
+import { useEffect, useCallback, useState, useLayoutEffect } from "react";
 
 import { s } from "../../App.style.js";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useAnimatedStyle, withSpring } from 'react-native-reanimated';
-import { useScreenContext } from "../../utils/helpLastScreen";
-
+import { withSpring } from "react-native-reanimated";
+// import { useScreenContext } from "../../utils/helpLastScreen";
 
 export function CountryButton({
   countryMatchingPredText,
@@ -18,7 +17,6 @@ export function CountryButton({
   turns,
   countryUnderscore,
   setCountryUnderscore,
-  score,
   setScore,
   setCorrectAnswers,
   haveAnswer,
@@ -26,24 +24,20 @@ export function CountryButton({
   countryButtonVisible,
   setCountryButtonVisible,
   keyboardOffset,
-resultsArray,
-setResultsArray, 
-validateCorrect,
-setValidateCorrect, 
-inputValue,
-setScoreArrayUpdated
+  setResultsArray,
+  validateCorrect,
+  setValidateCorrect,
+  inputValue,
+  setScoreArrayUpdated,
 }) {
+  // const { lastScreen, setLastScreen } = useScreenContext();
+  // const moveScreenBack = useAnimatedStyle(() => {
+  //   return {
+  //     transform: [{ moveYBack: 0}],
+  //   };
+  // });
 
-
-  const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
-  const { lastScreen, setLastScreen } = useScreenContext();
-  const moveScreenBack = useAnimatedStyle(() => {
-    return {
-      transform: [{ moveYBack: 0}],
-    };
-  });
-
-//settings for country button display
+  //settings for country button display
   const setNewCountryUnderscore = useCallback(
     (country) => {
       if (icon === "") {
@@ -54,7 +48,6 @@ setScoreArrayUpdated
               "countryUnderscore",
               JSON.stringify(countryWithUnderscore)
             );
-            // console.log("Saved countryUnderscore:", countryWithUnderscore);
           } catch (error) {
             console.error("Error saving country underscore:", error);
           }
@@ -63,75 +56,60 @@ setScoreArrayUpdated
         // Save to async storage and update state if different
         setCountryUnderscore((prev) => {
           if (prev !== countryWithUnderscore) {
-        
             return countryWithUnderscore;
           }
           return prev; // Don't update if it's the same value
         });
       }
-      
-      setScoreArrayUpdated(false)
-      setValidateCorrect(false)
-      // console.log("setValidateCorrect", setValidateCorrect)
+
+      setScoreArrayUpdated(false);
+      setValidateCorrect(false);
     },
 
     [setCountryUnderscore]
-  ); 
+  );
 
   // Effect to compare countryUnderscore with currentFlag after both are updated. Updates score, resultsArray, correctAnswers(for stars )if answer matches result
   useLayoutEffect(() => {
     console.log("useEffect meant to be after countryUnderscore change");
     if (icon === "") {
-      if (countryUnderscore != ""&& validateCorrect===false) {
-
+      if (countryUnderscore != "" && validateCorrect === false) {
         setHaveAnswer(true);
-
-        if(countryUnderscore !=currentFlag  ){
-          setResultsArray((prevResultsArray)=>prevResultsArray.concat("wrong"))
-          // console.log("countryUnderscore for wrong answer", countryUnderscore, "currentFlag", currentFlag)
-          // console.log("resultsArray after wrong answer", resultsArray)
-          setValidateCorrect(true)
-        
-
-        }
-
-        else if (
-          countryUnderscore === currentFlag 
-      
-          
-        ) {
+        if (countryUnderscore != currentFlag) {
+          setResultsArray((prevResultsArray) =>
+            prevResultsArray.concat("wrong")
+          );
+          setValidateCorrect(true);
+        } else if (countryUnderscore === currentFlag) {
           console.log("Correct Answer!!");
-          setResultsArray((prevResultsArray)=>prevResultsArray.concat("right"))
+          setResultsArray((prevResultsArray) =>
+            prevResultsArray.concat("right")
+          );
           setCorrectAnswers((prevCorrectAnswers) => prevCorrectAnswers + 1);
-          setScore((prevScore) => prevScore + 20); 
+          setScore((prevScore) => prevScore + 20);
           // console.log("score updated!!!!!", score);
           // console.log("resultsArray after right answer", resultsArray)
-          setValidateCorrect(true)
-         
+          setValidateCorrect(true);
         }
-
       }
     }
   }, [countryUnderscore, currentFlag]);
 
   useEffect(() => {
-
     // Adding a small timeout to wait for state changes to propagate
     const timeout = setTimeout(() => {
-    
-      console.log(
-        "country",
-        country,
-        "countryUnderscore",
-        countryUnderscore,
-        "haveAnswer",
-        haveAnswer
-      );
+      // console.log(
+      //   "country",
+      //   country,
+      //   "countryUnderscore",
+      //   countryUnderscore,
+      //   "haveAnswer",
+      //   haveAnswer
+      // );
 
       if (haveAnswer === true && countryUnderscore !== "" && country !== "") {
         if (turns < 4) {
           if (icon === "") {
-            console.log("Setting icon to feedback");
             setIcon("feedback");
           }
         } else if (turns === 4) {
@@ -143,57 +121,50 @@ setScoreArrayUpdated
     return () => clearTimeout(timeout); // Cleanup the timeout when the effect is rerun
   }, [haveAnswer, country, countryUnderscore]);
 
-  // Function to handle button press and update the country state
+  // Function to handle button press, move displayand update the country state
   function handleButtonPress(selectedCountry) {
     keyboardOffset.value = withSpring(0, {
       damping: 20,
       stiffness: 100,
     });
     if (icon === "") {
- 
-      Keyboard.dismiss()
-     
+      Keyboard.dismiss();
       setCountry(selectedCountry); // Update country, triggers the useEffect to update countryUnderscore
       setNewCountryUnderscore(selectedCountry);
       setCountryButtonVisible(false);
-      
-  
-      // console.log("country in country button after press", country);
-
-      // console.log("country after selected by pressing country button", country);
     }
   }
 
-  // Function to map country array to buttons
+  // Function to map country array to country buttons
   function mapCountryArrayToButtons(countryMatchingPredText) {
     if (countryMatchingPredText.length > 0) {
- 
-      return countryMatchingPredText.map((country, index) => (
-    
+      return countryMatchingPredText.map(
+        (country, index) =>
           countryButtonVisible && (
             <TouchableOpacity
-            key={index} 
+              key={index}
               style={s.countryButton}
               activeOpacity={0.7}
               onPress={() => handleButtonPress(country)}
-            
-
             >
               <Text style={s.countryButtonText}>{country}</Text>
             </TouchableOpacity>
           )
- 
-      ));
-    
-    } else if(inputValue!="" && countryMatchingPredText.length===0){
-      return <Text style={[s.mainContentText, {marginTop: -3}]}>
-        No countries found that match this spelling. Try again.  </Text>;
+      );
+    } else if (inputValue != "" && countryMatchingPredText.length === 0) {
+      return (
+        <Text style={[s.mainContentText, { marginTop: -3 }]}>
+          No countries found that match this spelling. Try again.{" "}
+        </Text>
+      );
     }
   }
 
-  return <>
-       <View style={s.countryButtonContainer}>
-{mapCountryArrayToButtons(countryMatchingPredText)}
-  </View>
-  </>
+  return (
+    <>
+      <View style={s.countryButtonContainer}>
+        {mapCountryArrayToButtons(countryMatchingPredText)}
+      </View>
+    </>
+  );
 }

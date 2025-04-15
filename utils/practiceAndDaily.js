@@ -31,23 +31,12 @@ random_number = generateRandomNumber(generate_seed(), generate_seed());
     console.log("newGame in fetchOrGenerateFlags", newGame);
     console.log("storedFlags", storedFlags);
 
-    // if (storedFlags.length===0 && storedDate === today) {
-    //   // Use stored flags if they exist and are from today
-    //   console.log("populate arrayDailyFlags based on storedFlags")
-    //   setArrayDailyFlags(JSON.parse(storedFlags));
-    // } 
+ 
     //if game reset
    if (newGame === true) {
     setNewGame(false);
       console.log("newGame is true, now generating new flags to populate arrayDailyFlags")
       generateNewFlagsToPopulateArrayDailyFlags(storedFlags, setArrayDailyFlags, arrayFlagNames, setArrayFlagNames);
-      // Generate new flags if it's a new game
-      // const newFlags = generateNewFlagsToPopulateArrayDailyFlags(arrayDailyFlags, setArrayDailyFlags, arrayFlagNames, setArrayFlagNames);
-
-
-  
-
-      // console.log("Generated and stored new flags:", newFlags);
     }
     else{
       console.log("getchorGenerateFlags doesn't fit in if or else")
@@ -67,16 +56,12 @@ const generateNewFlagsToPopulateArrayDailyFlags = async (arrayDailyFlags, setArr
     console.log("generateNewFlagsToPopulateArrayDailyFlagsRunning");
     console.log("showStoredArrayDailyFlags", showStoredArrayDailyFlags);
 
-    // Update state with a function to ensure the latest state
-   
-      // console.log("Previous arrayDailyFlags:", prevArrayDailyFlags);
-
     let newFlags = showStoredArrayDailyFlags
       
       // Generate new flags
       while (newFlags.length < 5) {
         let newFlagItem = Math.abs(Math.floor(random_number() * 225));
-        console.log("newFlagItem", newFlagItem);
+        // console.log("newFlagItem", newFlagItem);
         
         if (!newFlags.includes(newFlagItem)) {
           newFlags.push(newFlagItem);
@@ -110,11 +95,11 @@ const populateFlagNames = async (setArrayFlagNames) => {
     console.log("populateFlagNames function is running");
 
     if (arrayDailyFlagData && Array.isArray(arrayDailyFlagData)) {
-      console.log("There is an arrayDailyFlags in populateFlagNames");
+      // console.log("There is an arrayDailyFlags in populateFlagNames");
 
       let newArrayFlagNames = arrayDailyFlagData.map((flag) => flags[flag]);
 
-      console.log("newArrayFlagNames", newArrayFlagNames);
+      // console.log("newArrayFlagNames", newArrayFlagNames);
       setArrayFlagNames(newArrayFlagNames); // Update state with new flag names
       console.log("Updated arrayFlagNames in populateFlagNames", newArrayFlagNames);
     } else {

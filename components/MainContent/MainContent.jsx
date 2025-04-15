@@ -3,9 +3,6 @@ import {
   Text,
   Image,
   View,
-
-  Animated,
-
 } from "react-native";
 import { useState, useEffect, useContext, useRef } from "react";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -70,12 +67,7 @@ export function MainContent({
 
   const { lastScreen, setLastScreen } = useScreenContext();
 
-  // const [keyboardHeight] = useState(new Animated.Value(0));
-
-
-  const scrollViewRef = useRef(null);
-
-
+  // const scrollViewRef = useRef(null);
  
 //Listener to update more quickly
   useEffect(() => {
@@ -294,7 +286,7 @@ export function MainContent({
             setIcon={setIcon}
             practiceCountryButtonVisible={practiceCountryButtonVisible}
             setPracticeCountryButtonVisible={setPracticeCountryButtonVisible}
-            scrollViewRef={scrollViewRef}
+            // scrollViewRef={scrollViewRef}
           />
         </View>
 
@@ -327,7 +319,7 @@ export function MainContent({
             setPracticeCountryUnderscore={setPracticeCountryUnderscore}
             practiceCountry={practiceCountry}
             setPracticeCountry={setPracticeCountry}
-            scrollViewRef={scrollViewRef}
+            // scrollViewRef={scrollViewRef}
             keyboardOffset={keyboardOffset}
             resultsArray = {resultsArray}
             setResultsArray={setResultsArray}

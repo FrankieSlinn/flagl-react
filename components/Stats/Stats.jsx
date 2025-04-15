@@ -118,10 +118,9 @@ export function Stats({
             ) : (
               "Average Score: TBC"
             )}
+     
           </Text>
-          {"\n"}
-          {"\n"}
-          {"\n"}
+         
         </View>
       </View>
       <View style={s.shareScoreButtonContainer}>
