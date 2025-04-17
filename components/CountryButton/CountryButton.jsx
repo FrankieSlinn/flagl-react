@@ -71,7 +71,6 @@ export function CountryButton({
 
   // Effect to compare countryUnderscore with currentFlag after both are updated. Updates score, resultsArray, correctAnswers(for stars )if answer matches result
   useLayoutEffect(() => {
-    console.log("useEffect meant to be after countryUnderscore change");
     if (icon === "") {
       if (countryUnderscore != "" && validateCorrect === false) {
         setHaveAnswer(true);

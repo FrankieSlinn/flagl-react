@@ -8,7 +8,6 @@ import Animated, {
 } from "react-native-reanimated";
 import { s } from "../App.style";
 import { Header } from "../components/Header/Header";
-import { BlurView } from "expo-blur";
 import { Stats } from "../components/Stats/Stats";
 import { Help } from "../components/Help/Help";
 import { MainContent } from "../components/MainContent/MainContent";
@@ -19,7 +18,6 @@ import { FinishGameScreen } from "../components/FinishGameScreen/FinishGameScree
 import { Footer } from "../components/Footer/Footer";
 import { useState, useRef, useEffect } from "react";
 import { ScreenProvider } from "../utils/helpLastScreen";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
   const [content, setContent] = useState("This is the default content");
@@ -53,31 +51,37 @@ export default function Index() {
   const keyboardOffset = useSharedValue(0);
 
   useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener(
-      "keyboardDidShow",
-      (event) => {
-        keyboardOffset.value = withSpring(-event.endCoordinates.height + 85, {
+    const keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", (event) => {
+      let amountShiftedUp = 0;
+  
+      if (icon === "") {
+        amountShiftedUp = 85;
+      } else if (icon === "practice") {
+        amountShiftedUp = 135;
+      }
+  
+      keyboardOffset.value = withSpring(
+        -event.endCoordinates.height + amountShiftedUp,
+        {
           damping: 100,
           stiffness: 100,
-        });
-      }
-    );
-
-    const keyboardDidHideListener = Keyboard.addListener(
-      "keyboardDidHide",
-      () => {
-        keyboardOffset.value = withSpring(0, {
-          damping: 20,
-          stiffness: 100,
-        });
-      }
-    );
-
+        }
+      );
+    });
+  
+    const keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", () => {
+      keyboardOffset.value = withSpring(0, {
+        damping: 20,
+        stiffness: 100,
+      });
+    });
+  
     return () => {
       keyboardDidShowListener.remove();
       keyboardDidHideListener.remove();
     };
-  }, []);
+  }, [icon]);
+  
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -115,7 +119,7 @@ export default function Index() {
         />
       );
     } else if (icon === "") {
-      console.log("user in mainscreen (logged from index)");
+     
 
       return (
     
@@ -314,7 +318,7 @@ export default function Index() {
                 ? "#e0e8e8"
                 : "white",
             flex: 1,
-            // transform: [{ translateY: icon === "" ? animatedStyle : 0 }],
+     
           },
         ]}
       >

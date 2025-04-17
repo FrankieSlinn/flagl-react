@@ -1,12 +1,9 @@
 import { TextInput, View, Text } from "react-native";
-
 import { s } from "../../App.style.js";
-
 import { flags } from "../../utils/countryTerritoryNames.js";
 
 export function Input({
   setCountryButtonVisible,
-  inputValue,
   setInputValue,
   setCountryMatchingPredText,
 }) {
@@ -22,12 +19,10 @@ export function Input({
         arrayFlagNames.push(flags[i]);
       }
     }
-
     // Slice the array to keep only the first 5 elements to be shown in buttons
     if (arrayFlagNames.length > 5) {
       arrayFlagNames = arrayFlagNames.slice(0, 5);
     }
-
     // Set the reduced array into state
     setCountryMatchingPredText(arrayFlagNames);
   }
@@ -46,9 +41,6 @@ export function Input({
             spellCheck={false}
             onChangeText={(text) => {
               setInputValue(text);
-
-              console.log("in putValue.length", inputValue.length);
-
               populateCountryArray(text);
             }}
           />

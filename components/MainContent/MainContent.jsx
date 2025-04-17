@@ -77,36 +77,22 @@ export function MainContent({
     {
       try{
         const updatedFlagArray = await getStoredArrayDailyFlags();
-        // console.log("!!!!!!!!!!AsyncarrayDailyFlags in main content", updatedFlagArray);
-        // console.log("arrayDailyFlags in main content", arrayDailyFlags);
-
         const storedTurnCount = await getStoredTurns();
-        // const updatedFlagArray = await getStoredArrayDailyFlags();
-        const retrieveStoredArrayDailyFlags = await getStoredArrayDailyFlags();
-  
-        console.log("retrieveStoredArrayDailyFlags = " + updatedFlagArray);
-        console.log("!!!!!!!storedTurnCount:", storedTurnCount);
+        // const retrieveStoredArrayDailyFlags = await getStoredArrayDailyFlags();
   
         if (storedTurnCount === 0) {
           let currentFlagNumber = updatedFlagArray[storedTurnCount];
-          console.log("currentFlagNumber: " + currentFlagNumber);
   
           let flagWithoutUnderscore = String(flags[currentFlagNumber]);
-         
-
-          console.log("flagWithoutUnderscore: " + flagWithoutUnderscore);
   
           let flagWithUnderscore = flagWithoutUnderscore.replaceAll(" ", "_");
            // Update state for currentFlag - needed for image
           setCurrentFlag(flagWithUnderscore);
-         
 
-          console.log("current flag", currentFlag)
-  
          
         }
   
-        // console.log("score updated to 0 in main");
+
 
 
       }
@@ -180,13 +166,10 @@ export function MainContent({
         const storedTurnCount = await getStoredTurns(); 
   
         if (storedTurnCount !== null) {
-          // console.log("storedTurns in MainContent", storedTurnCount);
+
           setTurns(storedTurnCount);  // Removed ()
-  
-          // console.log("Turns loaded from AsyncStorage in Main content:", storedTurnCount);
-          
+
           if (storedTurnCount === 5) {
-            console.log("Setting icon to finish");
             setIcon("finish");
           }
         } else {
@@ -206,8 +189,6 @@ export function MainContent({
 //reset items
 
   useEffect(() => {
-    console.log("score in main", score);
-
     setCountry("");
     setHaveAnswer(false);
     setCountryUnderscore("");
@@ -286,7 +267,6 @@ export function MainContent({
             setIcon={setIcon}
             practiceCountryButtonVisible={practiceCountryButtonVisible}
             setPracticeCountryButtonVisible={setPracticeCountryButtonVisible}
-            // scrollViewRef={scrollViewRef}
           />
         </View>
 
@@ -319,7 +299,6 @@ export function MainContent({
             setPracticeCountryUnderscore={setPracticeCountryUnderscore}
             practiceCountry={practiceCountry}
             setPracticeCountry={setPracticeCountry}
-            // scrollViewRef={scrollViewRef}
             keyboardOffset={keyboardOffset}
             resultsArray = {resultsArray}
             setResultsArray={setResultsArray}
