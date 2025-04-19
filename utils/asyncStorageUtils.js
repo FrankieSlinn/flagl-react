@@ -67,29 +67,6 @@ export const getAllStoredScores = async () => {
   
 
 
-
-export const storeCountryUnderscore = async (countryUnderscore) => {
-    try {
-        await AsyncStorage.setItem("countryUnderscore", JSON.stringify(countryUnderscore));
-        console.log("Country stored successfully!");
-    } catch (error) {
-        console.error("Error saving countryUnderscore", error);
-    }
-};
-
-export const getStoredCountryUnderscore= async () => {
-    try {
-        const value = await AsyncStorage.getItem("countryUnderscore");
-        if (value !== null) {
-            return JSON.parse(value);  // If there is a country, parse it
-        }
-        return null;  // If no country is stored, return null
-    } catch (error) {
-        console.error("Error retrieving countryUnderscore", error);
-        return null;
-    }
-};
-
 export const storeArrayDailyFlags = async (arrayDailyFlags) => {
     try {
         await AsyncStorage.setItem("arrayDailyFlags", JSON.stringify(arrayDailyFlags));

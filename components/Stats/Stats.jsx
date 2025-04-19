@@ -4,9 +4,7 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import { s } from "../../App.style.js";
 import { CloseButton } from "../CloseButton/CloseButton";
 import {
-  getStoredScore,
   getAllStoredScores,
-  storeAllScores
 } from "../../utils/asyncStorageUtils";
 import { useScreenContext } from "../../utils/helpLastScreen";
 import { daysElapsed } from "../../utils/daysElapsed";
@@ -18,15 +16,10 @@ export function Stats({
   score,
   gameCount,
   setGameCount,
-  scoreArray,
-  setScoreArray,
   resultsArray,
 }) {
   const { lastScreen, setLastScreen } = useScreenContext();
-
   const [averageScore, setAverageScore] = useState(0);
-
-  console.log("resultsArray in Stats", resultsArray);
 
 
   // Fetch the stored score when the component mounts
@@ -35,15 +28,11 @@ export function Stats({
       try {
         const fetchedScoreArray = await getAllStoredScores();
         console.log("Fetched scoreArray in Stats:", fetchedScoreArray);
-  
-       // setScoreArray(fetchedScoreArray); // Update state with fetched scores
-        setGameCount(fetchedScoreArray.length);
-  
-        const totalScore = fetchedScoreArray.reduce((acc, val) => acc + val, 0);
+        setGameCount(fetchedScoreArray?fetchedScoreArray.length:0);
+        const totalScore = fetchedScoreArray?fetchedScoreArray.reduce((acc, val) => acc + val, 0):0;
         const average = fetchedScoreArray.length > 0
           ? (totalScore / fetchedScoreArray.length).toFixed(0)
-          : 0;
-  
+          : score?score:0;
         setAverageScore(average);
       } catch (error) {
         console.error("Error fetching and setting scoreArray in Stats:", error);
@@ -58,7 +47,6 @@ export function Stats({
       setIcon(lastScreen);
     }
     setLastScreen("popup");
-    console.log("last screen in stats", lastScreen);
   }
 
   const handleCopy = async () => {

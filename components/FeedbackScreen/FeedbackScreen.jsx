@@ -21,12 +21,9 @@ export function FeedbackScreen({
   arrayDailyFlags,
   correctAnswers,
   setCorrectAnswers,
-  score,
-  newGame,
   setNewGame,
 }) {
   const { lastScreen, setLastScreen } = useScreenContext();
-
   const [translateY, setTranslateY] = useState(0);
 
   useEffect(() => {
@@ -66,8 +63,6 @@ export function FeedbackScreen({
   function handleFeedbackButtonPress() {
     // Reset icon
     newTurn();
-    console.log("resetting icon to main content");
-    // console.log("setHaveAnswer", haveAnswer);
   }
 
   const newTurn = async () => {
@@ -77,12 +72,8 @@ export function FeedbackScreen({
       const incrementedStoredTurnCount = storedTurnCount + 1;
 
       if (storedTurnCount <= 3) {
-  
-
         storeTurns(JSON.stringify(incrementedStoredTurnCount));
-
         setTurns(incrementedStoredTurnCount);
-
         setTheCurrentFlag(incrementedStoredTurnCount);
       }
       if (incrementedStoredTurnCount <= 4) {
@@ -101,7 +92,6 @@ export function FeedbackScreen({
         correctAnswers={correctAnswers}
         setCorrectAnswers={setCorrectAnswers}
       />
-
       <Text style={s.mainContentText}>
         {countryUnderscore === currentFlag
           ? `Congratulations. You Are Right. The Answer Is ${
@@ -112,7 +102,6 @@ export function FeedbackScreen({
             }.`}
         {"\n"}
       </Text>
-
       {turns <= 3 && (
         <TouchableOpacity style={s.newTurn} onPress={handleFeedbackButtonPress}>
           <Text style={s.countryButtonText}>Have Another Go</Text>

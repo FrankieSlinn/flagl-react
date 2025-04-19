@@ -9,8 +9,6 @@ import { PracticeCountryButton } from "../PracticeCountryButton/PracticeCountryB
 import { PracticeHeading } from "../PracticeHeading/PracticeHeading";
 import { PracticeInput } from "../PracticeInput/PracticeInput";
 
-
-
 export function Practice({
   icon,
   setIcon,
@@ -34,9 +32,11 @@ export function Practice({
 }) {
   const { setLastScreen } = useScreenContext();
 
-
-  //This console log may be needed to get a rerendering of the practiceCountryButtonVisible to prevent country button showing in practice screen. 
-  console.log("practice country button visible in practice", practiceCountryButtonVisible)
+  //This console log may be needed to get a rerendering of the practiceCountryButtonVisible to prevent country button showing in practice screen.
+  console.log(
+    "practice country button visible in practice",
+    practiceCountryButtonVisible
+  );
 
   useEffect(() => {
     setLastScreen("practice");
@@ -59,7 +59,6 @@ export function Practice({
     const stringRandomFlag = String(randomFlag);
     setCurrentPracticeFlag(stringRandomFlag);
     setPracticeCountryUnderscore(stringRandomFlag.replaceAll(" ", "_"));
-
   }
 
   return (
@@ -70,7 +69,7 @@ export function Practice({
           Which Country or Territory Does this Flag Belong to?
         </Text>
 
-        <View>
+        <View style={s.flagImageContainer}>
           <Image
             source={allFlagImages[practiceCountryUnderscore]}
             style={s.flagImage}
@@ -116,7 +115,10 @@ export function Practice({
           />
         </View>
         <View style={s.practiceButtonContainer}>
-          <TouchableOpacity style={s.practiceButton} onPress={()=>returnToGameMode(setIcon)}>
+          <TouchableOpacity
+            style={s.practiceButton}
+            onPress={() => returnToGameMode(setIcon)}
+          >
             <Text style={s.shareScoreButtonText}>Go To Game Mode</Text>
           </TouchableOpacity>
         </View>

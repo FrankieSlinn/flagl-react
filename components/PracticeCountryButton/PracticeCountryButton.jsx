@@ -15,11 +15,6 @@ export function PracticeCountryButton({
   practiceCountryUnderscore,
   setPracticeCountryUnderscore,
 }) {
-  console.log(
-    "practice country Button visible in country button component",
-    practiceCountryButtonVisible
-  );
-
   const setNewPracticeCountryUnderscore = useCallback(
     (practiceCountry) => {
       const practiceCountryWithUnderscore = practiceCountry.replaceAll(
@@ -27,7 +22,6 @@ export function PracticeCountryButton({
         "_"
       );
       setPracticeCountryUnderscore(practiceCountryWithUnderscore);
-
       return practiceCountryWithUnderscore;
     },
 
@@ -36,9 +30,6 @@ export function PracticeCountryButton({
 
   // Effect to compare countryUnderscore with currentFlag after both are updated
   useLayoutEffect(() => {
-    console.log(
-      "useLayoutEffect meant to be after practice countryUnderscore change"
-    );
     if (icon === "practice") {
       if (practiceCountryUnderscore != "") {
         setPracticeHaveAnswer(true);
@@ -71,7 +62,6 @@ export function PracticeCountryButton({
       //get into format where can validate
       //The country button should no longer be visible.
       setPracticeCountryButtonVisible(false);
-
       setNewPracticeCountryUnderscore(selectedPracticeCountry);
     }
   }

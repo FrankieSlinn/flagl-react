@@ -143,17 +143,20 @@ export const s = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 10,
+    marginTop: 20,
+    marginBottom: 0,
     height: 40,
     width: 300,
-    borderColor: "#353839", // Color of the border
-    borderWidth: 2, // Border width
-    borderRadius: 10, // Rounded corners
-    fontSize: 20, // Font size
-    textAlign: "center", //
+    borderColor: "#353839", 
+    borderWidth: 2, 
+    borderRadius: 10, 
+    fontSize: 20, 
+    textAlign: "center", 
   },
   inputText: {
-    fontSize: 20, // Font size
+    fontSize: 20, 
+    fontWeight: "bold",
+    textAlign: "center",
   },
   countryButtonContainer: {
     flex: 1,
@@ -162,19 +165,18 @@ export const s = StyleSheet.create({
     flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 10,
+    marginTop: 15,
     alignItems: "center",
+    marginBottom: 10,
   },
   countryButton: {
     backgroundColor: "#053e4c",
-    // height: 25,
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
     borderWidth: 1,
-    //borderColor: "#388E3C",
     alignItems: "center",
-    margin: 3,
+    margin: 5,
   },
   countryButtonText: {
     color: "#FFFFFF",

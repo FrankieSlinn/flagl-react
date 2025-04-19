@@ -50,6 +50,9 @@ export default function Index() {
   const [sessionStart, setSessionStart] = useState(true);
   const keyboardOffset = useSharedValue(0);
 
+  //Text in middle
+  //Center flag
+
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", (event) => {
       let amountShiftedUp = 0;

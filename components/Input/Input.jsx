@@ -19,6 +19,7 @@ export function Input({
         arrayFlagNames.push(flags[i]);
       }
     }
+    arrayFlagNames.sort();
     // Slice the array to keep only the first 5 elements to be shown in buttons
     if (arrayFlagNames.length > 5) {
       arrayFlagNames = arrayFlagNames.slice(0, 5);

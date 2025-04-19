@@ -1,5 +1,5 @@
-import { Text, View, TouchableOpacity, Animated, Keyboard } from "react-native";
-import { useEffect, useCallback, useState, useLayoutEffect } from "react";
+import { Text, View, TouchableOpacity, Keyboard } from "react-native";
+import { useEffect, useCallback,  useLayoutEffect } from "react";
 
 import { s } from "../../App.style.js";
 
@@ -30,14 +30,7 @@ export function CountryButton({
   inputValue,
   setScoreArrayUpdated,
 }) {
-  // const { lastScreen, setLastScreen } = useScreenContext();
-  // const moveScreenBack = useAnimatedStyle(() => {
-  //   return {
-  //     transform: [{ moveYBack: 0}],
-  //   };
-  // });
 
-  //settings for country button display
   const setNewCountryUnderscore = useCallback(
     (country) => {
       if (icon === "") {
@@ -80,14 +73,11 @@ export function CountryButton({
           );
           setValidateCorrect(true);
         } else if (countryUnderscore === currentFlag) {
-          console.log("Correct Answer!!");
           setResultsArray((prevResultsArray) =>
             prevResultsArray.concat("right")
           );
           setCorrectAnswers((prevCorrectAnswers) => prevCorrectAnswers + 1);
           setScore((prevScore) => prevScore + 20);
-          // console.log("score updated!!!!!", score);
-          // console.log("resultsArray after right answer", resultsArray)
           setValidateCorrect(true);
         }
       }
@@ -97,14 +87,6 @@ export function CountryButton({
   useEffect(() => {
     // Adding a small timeout to wait for state changes to propagate
     const timeout = setTimeout(() => {
-      // console.log(
-      //   "country",
-      //   country,
-      //   "countryUnderscore",
-      //   countryUnderscore,
-      //   "haveAnswer",
-      //   haveAnswer
-      // );
 
       if (haveAnswer === true && countryUnderscore !== "" && country !== "") {
         if (turns < 4) {
