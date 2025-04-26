@@ -1,4 +1,4 @@
-import { View, ScrollView, Keyboard, ImageBackground } from "react-native";
+import { View, ScrollView, Keyboard } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 import Animated, {
@@ -50,8 +50,8 @@ export default function Index() {
   const [sessionStart, setSessionStart] = useState(true);
   const keyboardOffset = useSharedValue(0);
 
-  //Text in middle
-  //Center flag
+  //replace splash screen with flag
+//make input clickable
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", (event) => {
@@ -338,7 +338,7 @@ export default function Index() {
           <View style={s.body}>
             <ScrollView
               showsVerticalScrollIndicator={false}
-              keyboardShouldPersistTaps="always"
+              keyboardShouldPersistTaps="handled"
               keyboardDismissMode="interactive"
             >
               {renderContent()}

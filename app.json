@@ -2,21 +2,23 @@
   "expo": {
     "name": "flagl-react",
     "slug": "flagl-react",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/FLAGL_FAV_1024.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
       "backgroundColor": "#ffffff",
-      "image": "./assets/images/GLOBE_SPLASH.jpg",
+      "image": "./assets/images/FLAGL_FAV_1024",
       "resizeMode": "contain"
-     
     },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.frankissling.flagl",
-      "buildNumber": "1.0.0"
+      "buildNumber": "2",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
