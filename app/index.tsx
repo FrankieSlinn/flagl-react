@@ -16,7 +16,7 @@ import { PracticeFeedback } from "../components/PracticeFeedback/PracticeFeedbac
 import { FeedbackScreen } from "../components/FeedbackScreen/FeedbackScreen";
 import { FinishGameScreen } from "../components/FinishGameScreen/FinishGameScreen";
 import { Footer } from "../components/Footer/Footer";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { ScreenProvider } from "../utils/helpLastScreen";
 
 export default function Index() {
@@ -50,52 +50,55 @@ export default function Index() {
   const [sessionStart, setSessionStart] = useState(true);
   const keyboardOffset = useSharedValue(0);
 
-  //replace splash screen with flag
-//make input clickable
-
+  //shifts keyboard when user types
   useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", (event) => {
-      let amountShiftedUp = 0;
-  
-      if (icon === "") {
-        amountShiftedUp = 85;
-      } else if (icon === "practice") {
-        amountShiftedUp = 135;
-      }
-  
-      keyboardOffset.value = withSpring(
-        -event.endCoordinates.height + amountShiftedUp,
-        {
-          damping: 100,
-          stiffness: 100,
+    const keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      (event) => {
+        let amountShiftedUp = 0;
+
+        if (icon === "") {
+          amountShiftedUp = 85;
+        } else if (icon === "practice") {
+          amountShiftedUp = 135;
         }
-      );
-    });
-  
-    const keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", () => {
-      keyboardOffset.value = withSpring(0, {
-        damping: 20,
-        stiffness: 100,
-      });
-    });
-  
+
+        keyboardOffset.value = withSpring(
+          -event.endCoordinates.height + amountShiftedUp,
+          {
+            damping: 100,
+            stiffness: 100,
+          }
+        );
+      }
+    );
+
+    const keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      () => {
+        keyboardOffset.value = withSpring(0, {
+          damping: 20,
+          stiffness: 100,
+        });
+      }
+    );
+
     return () => {
       keyboardDidShowListener.remove();
       keyboardDidHideListener.remove();
     };
   }, [icon]);
-  
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
       transform: [
         {
-          translateY: icon === "" || icon === "practice"? keyboardOffset.value : 0, // ← condition lives here
+          translateY:
+            icon === "" || icon === "practice" ? keyboardOffset.value : 0, // ← condition lives here
         },
       ],
     };
   });
-
 
   const renderContent = () => {
     if (icon === "help") {
@@ -122,52 +125,48 @@ export default function Index() {
         />
       );
     } else if (icon === "") {
-     
-
       return (
-    
-          <MainContent
-            icon={icon}
-            setIcon={setIcon}
-            currentFlag={currentFlag}
-            setCurrentFlag={setCurrentFlag}
-            country={country}
-            setCountry={setCountry}
-            turns={turns}
-            setTurns={setTurns}
-            arrayDailyFlags={arrayDailyFlags}
-            setArrayDailyFlags={setArrayDailyFlags}
-            arrayFlagNames={arrayFlagNames}
-            setArrayFlagNames={setArrayFlagNames}
-            correctAnswers={correctAnswers}
-            setCorrectAnswers={setCorrectAnswers}
-            countryUnderscore={countryUnderscore}
-            setCountryUnderscore={setCountryUnderscore}
-            score={score}
-            setScore={setScore}
-            haveAnswer={haveAnswer}
-            setHaveAnswer={setHaveAnswer}
-            practiceHaveAnswer={practiceHaveAnswer}
-            setPracticeHaveAnswer={setPracticeHaveAnswer}
-            countryMatchingPredText={countryMatchingPredText}
-            setCountryMatchingPredText={setCountryMatchingPredText}
-            inputValue={inputValue}
-            setInputValue={setInputValue}
-            countryButtonVisible={countryButtonVisible}
-            setCountryButtonVisible={setCountryButtonVisible}
-            keyboardOffset={keyboardOffset}
-            resultsArray={resultsArray}
-            setResultsArray={setResultsArray}
-            validateCorrect={validateCorrect}
-            setValidateCorrect={setValidateCorrect}
-            scoreArrayUpdated={scoreArrayUpdated}
-            setScoreArrayUpdated={setScoreArrayUpdated}
-            newGame={newGame}
-            setNewGame={setNewGame}
-            sessionStart={sessionStart}
-            setSessionStart={setSessionStart}
-          />
-     
+        <MainContent
+          icon={icon}
+          setIcon={setIcon}
+          currentFlag={currentFlag}
+          setCurrentFlag={setCurrentFlag}
+          country={country}
+          setCountry={setCountry}
+          turns={turns}
+          setTurns={setTurns}
+          arrayDailyFlags={arrayDailyFlags}
+          setArrayDailyFlags={setArrayDailyFlags}
+          arrayFlagNames={arrayFlagNames}
+          setArrayFlagNames={setArrayFlagNames}
+          correctAnswers={correctAnswers}
+          setCorrectAnswers={setCorrectAnswers}
+          countryUnderscore={countryUnderscore}
+          setCountryUnderscore={setCountryUnderscore}
+          score={score}
+          setScore={setScore}
+          haveAnswer={haveAnswer}
+          setHaveAnswer={setHaveAnswer}
+          practiceHaveAnswer={practiceHaveAnswer}
+          setPracticeHaveAnswer={setPracticeHaveAnswer}
+          countryMatchingPredText={countryMatchingPredText}
+          setCountryMatchingPredText={setCountryMatchingPredText}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+          countryButtonVisible={countryButtonVisible}
+          setCountryButtonVisible={setCountryButtonVisible}
+          keyboardOffset={keyboardOffset}
+          resultsArray={resultsArray}
+          setResultsArray={setResultsArray}
+          validateCorrect={validateCorrect}
+          setValidateCorrect={setValidateCorrect}
+          scoreArrayUpdated={scoreArrayUpdated}
+          setScoreArrayUpdated={setScoreArrayUpdated}
+          newGame={newGame}
+          setNewGame={setNewGame}
+          sessionStart={sessionStart}
+          setSessionStart={setSessionStart}
+        />
       );
     } else if (icon === "practice") {
       console.log("user in practice screen");
@@ -314,14 +313,13 @@ export default function Index() {
       <Animated.View
         style={[
           s.app,
-       animatedStyle,
+          animatedStyle,
           {
             backgroundColor:
               icon === "practice" || icon === "practiceFeedback"
                 ? "#e0e8e8"
                 : "white",
             flex: 1,
-     
           },
         ]}
       >

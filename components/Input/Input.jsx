@@ -31,7 +31,7 @@ export function Input({
   return (
     <>
       <View style={s.inputContainer}>
-        <Text>
+   
           <TextInput
             style={s.inputText}
             placeholder="Type and buttons will appear"
@@ -45,7 +45,7 @@ export function Input({
               populateCountryArray(text);
             }}
           />
-        </Text>
+ 
       </View>
     </>
   );

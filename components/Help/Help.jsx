@@ -1,16 +1,12 @@
-import {Text, View, Navigation} from "react-native";
+import {Text, View, Linking} from "react-native";
 import {s} from "../../App.style.js";
 import { CloseButton } from "../CloseButton/CloseButton";
 import  { useScreenContext } from '../../utils/helpLastScreen';
 
 
 export function Help({setIcon, onPress, navigation, route}){
- 
+  //to get back to screen the user was on before
     const { lastScreen, setLastScreen } = useScreenContext();
-
-    console.log("last screen in Help", lastScreen)
-    
-
 
 return ( <>
 <View style={s.closeButtonContainer}>
@@ -50,7 +46,16 @@ return ( <>
     Love tough word games? Go to:{" "}
     <Text
       style={s.link}
-      onPress={() => Linking.openURL("https://wordominoes.net/")}
+      onPress={async () => {
+        const url = "https://wordominoes.net/";
+        const supported = await Linking.canOpenURL(url);
+        if (supported) {
+          await Linking.openURL(url);
+        } else {
+          console.warn("Can't open URL:", url);
+        }
+      }}
+      
     >
       wordominoes.net
     </Text>

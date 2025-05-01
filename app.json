@@ -2,14 +2,15 @@
   "expo": {
     "name": "flagl-react",
     "slug": "flagl-react",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
+      "jsEngine": "hermes",
     "icon": "./assets/images/FLAGL_FAV_1024.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
       "backgroundColor": "#ffffff",
-      "image": "./assets/images/FLAGL_FAV_1024",
+      "image": "./assets/images/GLOBE_SPLASH.jpg",
       "resizeMode": "contain"
     },
     "ios": {
@@ -24,7 +25,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.frankissling.flagl"
     },
     "web": {
       "bundler": "metro",
