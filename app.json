@@ -10,7 +10,7 @@
     "userInterfaceStyle": "automatic",
     "splash": {
       "backgroundColor": "#ffffff",
-      "image": "./assets/images/GLOBE_SPLASH.jpg",
+      "image": "./assets/images/GLOBE_SPLASH.png",
       "resizeMode": "contain"
     },
     "ios": {

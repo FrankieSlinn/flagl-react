@@ -17,6 +17,7 @@ import { copyResultsToClipboard } from "../../utils/copyResultsToClipboard";
 export function FinishGameScreen({
   setCountry,
   currentFlag,
+  setCurrentFlag,
   score,
   setScore,
   correctAnswers,
@@ -103,7 +104,7 @@ export function FinishGameScreen({
           console.log("Game has been reset.");
         }
       } catch (error) {
-        console.error(error);
+        console.error("resetGame failed", error);
       }
     };
 
@@ -114,13 +115,16 @@ export function FinishGameScreen({
   }, []);
 
   useEffect(() => {
-    if (turns === 0) {
-      let currentFlagNumber = arrayDailyFlags[turns];
-      let flagWithoutUnderscore = String(flags[currentFlagNumber]);
-      let flagWithUnderscore = flagWithoutUnderscore.replaceAll(" ", "_");
-      setCurrentFlag(flagWithUnderscore);
-    }
-  });
+    if (turns === 0 && arrayDailyFlags.length > 0) {
+      const currentFlagNumber = arrayDailyFlags[0];
+      if (typeof currentFlagNumber === "number") {
+        const flagWithoutUnderscore = String(flags[currentFlagNumber]);
+        setCurrentFlag(flagWithoutUnderscore.replaceAll(" ", "_"));
+      }
+    }  });
+
+
+  
 
   useEffect(() => {
     const fetchCountryunderscore = async () => {

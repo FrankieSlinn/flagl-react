@@ -18,7 +18,12 @@ return ( <>
     {"\n"}
     <Text style={s.helpGuess}>Guess the Flag</Text>
     {"\n"}
-    {"\n"}Every day all FLAGL Players get the same five flags. Start typing the flag name in the box underneath
+    {"\n"}
+    Hello! Thank you for choosing FLAGL! 
+    {"\n"}
+    {"\n"}
+    
+    This is how it works: Every day all FLAGL Players get the same five flags. Start typing the flag name in the box underneath
     the flag. You will then see buttons with the names of countries and territories. Click on a button to make your choice.
     {"\n\n"}
     At the end of the flag quiz you will see what percentage of flags
@@ -43,23 +48,9 @@ return ( <>
       geografiend.com
     </Text>
     .{"\n\n"}
-    Love tough word games? Go to:{" "}
-    <Text
-      style={s.link}
-      onPress={async () => {
-        const url = "https://wordominoes.net/";
-        const supported = await Linking.canOpenURL(url);
-        if (supported) {
-          await Linking.openURL(url);
-        } else {
-          console.warn("Can't open URL:", url);
-        }
-      }}
-      
-    >
-      wordominoes.net
-    </Text>
-    .
+Happy flag guessing! 
+
+    
     {"\n"}
     {"\n"}
   </Text>

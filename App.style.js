@@ -310,6 +310,8 @@ export const s = StyleSheet.create({
     alignItems: "center",
     padding: 10,
     marginBottom: 10,
+    height: 70,
+
     backgroundColor: "white",
   },
   footerText: {
