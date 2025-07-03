@@ -21,7 +21,7 @@ extensions.configure(com.facebook.react.ReactSettingsExtension) { ex ->
   }
 }
 
-rootProject.name = 'flagl-react'
+rootProject.name = 'FLAGL'
 
 dependencyResolutionManagement {
   versionCatalogs {

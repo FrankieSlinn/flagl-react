@@ -1,12 +1,17 @@
 {
   "expo": {
-    "name": "flagl-react",
+    "name": "FLAGL",
     "slug": "flagl-react",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "orientation": "portrait",
       "jsEngine": "hermes",
     "icon": "./assets/images/FLAGL_FAV_1024.png",
     "scheme": "myapp",
+    "splash": {
+        "image": "./assets/images/flagImage.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+      },
     "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": true,

@@ -15,13 +15,10 @@ export function Footer({icon}) {
   return (
     <>
       <View style={[s.footerContainer, { backgroundColor: icon === "practice" || icon === "practiceFeedback" ?  "#e0e8e8": "white" }]}>
-        <TouchableOpacity onPress={openLink}>
-          <Text style={s.footerText}>
-            {" "}
-            &#x1F496; FLAGL? <Text style={s.footerLink}>Buy Me A Coffee</Text>.
-          </Text>
+       
+      
           <Text style={s.footerText}>©2022 F. Kissling</Text>
-        </TouchableOpacity>
+      
       </View>
     </>
   );
