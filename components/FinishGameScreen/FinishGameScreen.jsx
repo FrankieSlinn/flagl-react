@@ -201,6 +201,7 @@ export function FinishGameScreen({
             <Text style={s.shareScoreButtonText}>Share FLAGL Score</Text>
           </TouchableOpacity>
         </View>
+        <View style={s.timerContainerHolder}>
         <View style={s.timerContainer}>
           <Text style={s.mainContentText}>
             FLAGL Will Reset In {""}
@@ -212,6 +213,7 @@ export function FinishGameScreen({
             <Text style={{ fontWeight: "bold" }}>{timeLeft.seconds}</Text>{" "}
             Seconds
           </Text>
+        </View>
         </View>
         <View style={s.practiceButtonContainer}>
           <Text style={s.practiceText}>To Improve Your Game Go To</Text>

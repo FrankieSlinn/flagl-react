@@ -1,4 +1,8 @@
-import { StyleSheet,  Platform} from "react-native";
+import { StyleSheet,  Dimensions, sPlatform} from "react-native";
+
+const { width, height } = Dimensions.get("window");
+
+const isTablet = width >= 768;
 
 export const s = StyleSheet.create({
   app: {
@@ -140,13 +144,13 @@ export const s = StyleSheet.create({
     justifyContent: "center",
   },
   inputContainer: {
-    flex: 1,
+    // flex: 1,
     justifyContent: "center",
     alignItems: "center",
     marginTop: 20,
     marginBottom: 0,
     height: 40,
-    width: 300,
+    width: "50%",
     borderColor: "#353839", 
     borderWidth: 2, 
     borderRadius: 10, 
@@ -183,18 +187,29 @@ export const s = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
   },
+  newTurnContainer:{
+flex:1,
+
+  // justifyContent: "center",
+alignItems: "center",
+
+
+
+  },
   newTurn: {
+    width: "50%",
     backgroundColor: "#053e4c",
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 15,
     borderWidth: 1,
     borderColor: "#388E3C",
-    alignItems: "center",
     margin: 3,
+   alignItems: "center"
   },
 
   newTurnPractice: {
+    width: "50%",
     backgroundColor: "#053e4c",
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -206,17 +221,31 @@ export const s = StyleSheet.create({
     margin: 3,
 
   },
+  timerContainerHolder:{
+   
+    alignItems: "center",
+    justifyContent:"center",
+   
+   
+
+
+  },
 
   timerContainer: {
+  flex:1,
     marginTop: 10,
     marginBottom: 10,
     borderWidth: 3,
     borderColor: "#053e4c",
     backgroundColor: "#e0e8e8",
     borderRadius: 15,
-    paddingTop: 3,
+    // paddingTop: 3,
     padding: 10,
+    paddingBottom: isTablet ? 30 : 10,
     height: 100,
+    width: "80%",
+    justifyContent: "center",
+    alignItems: "center"
   },
 
   shareScoreButtonContainer: {

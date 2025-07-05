@@ -102,11 +102,13 @@ export function FeedbackScreen({
             }.`}
         {"\n"}
       </Text>
+      <View style={s.newTurnContainer}>
       {turns <= 3 && (
         <TouchableOpacity style={s.newTurn} onPress={handleFeedbackButtonPress}>
           <Text style={s.countryButtonText}>Have Another Go</Text>
         </TouchableOpacity>
       )}
+      </View>
     </View>
   );
 }

@@ -49,13 +49,14 @@ console.log("practiceCountryButtonVisible", practiceCountryButtonVisible)
             : `Unlucky. That Was Not Correct. The Answer Is ${currentPracticeFlag}.`}
           {"\n"}
         </Text>
-
+            <View style={s.newTurnContainer}>
         <TouchableOpacity
           style={s.newTurnPractice}
           onPress={handleFeedbackButtonPress}
         >
           <Text style={s.countryButtonText}>Have Another Go</Text>
         </TouchableOpacity>
+        </View>
 
         <View style={s.practiceButtonContainer}>
           <TouchableOpacity
