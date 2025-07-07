@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { s } from "../../App.style.js";
 import { useScreenContext } from "../../utils/helpLastScreen";
 import { returnToGameMode } from "../../utils/returnToGameMode.js";
+import {PracticeHeading} from "../PracticeHeading/PracticeHeading"
 
 export function PracticeFeedback({
   icon,
@@ -43,6 +44,7 @@ console.log("practiceCountryButtonVisible", practiceCountryButtonVisible)
   return (
     <>
       <View style={s.mainContent}>
+         <PracticeHeading />
         <Text style={s.mainContentText}>
           {practiceCountryUnderscore === currentPracticeFlag.replace(" ", "_")
             ? `Congratulations. You Are Right. The Answer Is ${currentPracticeFlag}.`

@@ -1,5 +1,6 @@
 import { View, ScrollView, Keyboard } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Dimensions, Platform } from "react-native";
 
 import Animated, {
   useSharedValue,
@@ -50,43 +51,48 @@ export default function Index() {
   const [sessionStart, setSessionStart] = useState(true);
   const keyboardOffset = useSharedValue(0);
 
+  const { width, height } = Dimensions.get("window");
+
+  const isTablet = width >= 768;
+
   //shifts keyboard when user types
   useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener(
-      "keyboardDidShow",
-      (event) => {
-        let amountShiftedUp = 0;
+    if (!isTablet) {
+      const keyboardDidShowListener = Keyboard.addListener(
+        "keyboardDidShow",
+        (event) => {
+          let amountShiftedUp = 0;
 
-        if (icon === "") {
-          amountShiftedUp = 85;
-        } else if (icon === "practice") {
-          amountShiftedUp = 135;
-        }
-
-        keyboardOffset.value = withSpring(
-          -event.endCoordinates.height + amountShiftedUp,
-          {
-            damping: 100,
-            stiffness: 100,
+          if (icon === "") {
+            amountShiftedUp = 85;
+          } else if (icon === "practice") {
+            amountShiftedUp = 135;
           }
-        );
-      }
-    );
+          keyboardOffset.value = withSpring(
+            -event.endCoordinates.height + amountShiftedUp,
+            {
+              damping: 100,
+              stiffness: 100,
+            }
+          );
+        }
+      );
 
-    const keyboardDidHideListener = Keyboard.addListener(
-      "keyboardDidHide",
-      () => {
-        keyboardOffset.value = withSpring(0, {
-          damping: 20,
-          stiffness: 100,
-        });
-      }
-    );
+      const keyboardDidHideListener = Keyboard.addListener(
+        "keyboardDidHide",
+        () => {
+          keyboardOffset.value = withSpring(0, {
+            damping: 20,
+            stiffness: 100,
+          });
+        }
+      );
 
-    return () => {
-      keyboardDidShowListener.remove();
-      keyboardDidHideListener.remove();
-    };
+      return () => {
+        keyboardDidShowListener.remove();
+        keyboardDidHideListener.remove();
+      };
+    }
   }, [icon]);
 
   const animatedStyle = useAnimatedStyle(() => {
@@ -306,9 +312,13 @@ export default function Index() {
 
   return (
     <>
-      <View style={s.statusBarBackground}>
-        <StatusBar style="dark" translucent={false} backgroundColor="white" />
-      </View>
+   <View style={s.statusBarBackground}>
+  <StatusBar
+    style="dark"
+    translucent={false}
+    backgroundColor="white"
+  />
+</View>
 
       <Animated.View
         style={[

@@ -1,8 +1,10 @@
-import { StyleSheet,  Dimensions, sPlatform} from "react-native";
+import { StyleSheet, Dimensions, sPlatform } from "react-native";
 
 const { width, height } = Dimensions.get("window");
 
 const isTablet = width >= 768;
+
+//  const statusBarColor = icon==="practice" ? "#e0e8e8" : "white";
 
 export const s = StyleSheet.create({
   app: {
@@ -11,24 +13,20 @@ export const s = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
     color: "#353839",
-    fontSize: 30, 
+    fontSize: 30,
     backgroundColor: "white",
     fontFamily: "Arial",
     letterSpacing: -0.08,
     marginTop: 55,
   },
-  statusBarBackground:{
-   // height: Platform.OS === "ios" ? StatusBar.currentHeight || 44 : StatusBar.currentHeight || 24,
-   paddingTop: 70,
-    backgroundColor: "white",
+  statusBarBackground: {
+    paddingTop:70,
+backgroundColor: "white",
     position: "absolute",
     top: 0,
     left: 0,
     right: 0,
     zIndex: 10,
-    
-
-
   },
 
   header: {
@@ -38,6 +36,7 @@ export const s = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "baseline",
     marginTop: 10,
+    marginBottom: isTablet ? -30 : 0,
   },
   body: {
     marginTop: -50,
@@ -76,7 +75,6 @@ export const s = StyleSheet.create({
   helpBody: {
     textAlign: "center",
     fontSize: 18.4,
-
   },
 
   statsContainer: {
@@ -111,7 +109,7 @@ export const s = StyleSheet.create({
   },
   close: {
     fontWeight: "bold",
-    color: "#FFFFFF"
+    color: "#FFFFFF",
   },
 
   mainContentText: {
@@ -150,15 +148,15 @@ export const s = StyleSheet.create({
     marginTop: 20,
     marginBottom: 0,
     height: 40,
-    width: "50%",
-    borderColor: "#353839", 
-    borderWidth: 2, 
-    borderRadius: 10, 
-    fontSize: 20, 
-    textAlign: "center", 
+    width: isTablet?"50%":"80%",
+    borderColor: "#353839",
+    borderWidth: 2,
+    borderRadius: 10,
+    fontSize: 20,
+    textAlign: "center",
   },
   inputText: {
-    fontSize: 20, 
+    fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
   },
@@ -187,14 +185,11 @@ export const s = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
   },
-  newTurnContainer:{
-flex:1,
+  newTurnContainer: {
+    flex: 1,
 
-  // justifyContent: "center",
-alignItems: "center",
-
-
-
+    // justifyContent: "center",
+    alignItems: "center",
   },
   newTurn: {
     width: "50%",
@@ -205,7 +200,7 @@ alignItems: "center",
     borderWidth: 1,
     borderColor: "#388E3C",
     margin: 3,
-   alignItems: "center"
+    alignItems: "center",
   },
 
   newTurnPractice: {
@@ -219,20 +214,14 @@ alignItems: "center",
     alignItems: "center",
     marginBottom: 30,
     margin: 3,
-
   },
-  timerContainerHolder:{
-   
+  timerContainerHolder: {
     alignItems: "center",
-    justifyContent:"center",
-   
-   
-
-
+    justifyContent: "center",
   },
 
   timerContainer: {
-  flex:1,
+    // flex: 1,
     marginTop: 10,
     marginBottom: 10,
     borderWidth: 3,
@@ -242,10 +231,11 @@ alignItems: "center",
     // paddingTop: 3,
     padding: 10,
     paddingBottom: isTablet ? 30 : 10,
+    paddingTop:isTablet?10:3,
     height: 100,
-    width: "80%",
-    justifyContent: "center",
-    alignItems: "center"
+    width: isTablet?"80%":"auto",
+    // justifyContent: "center",
+    // alignItems: "center",
   },
 
   shareScoreButtonContainer: {
@@ -328,8 +318,6 @@ alignItems: "center",
   footer: {
     height: 100,
     marginTop: -5,
- 
-    
   },
 
   footerContainer: {
