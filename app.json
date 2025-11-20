@@ -21,13 +21,6 @@
         "ITSAppUsesNonExemptEncryption": false
       }
     },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "package": "com.frankissling.flagl"
-    },
     "web": {
       "bundler": "metro",
       "output": "static",
